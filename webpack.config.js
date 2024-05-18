@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
   entry: './client/index.js',
   output: {
-    path: path.resolve(__dirname, 'dist'), //this is the path that cannot resolve
+    path: path.resolve(__dirname, 'dist'), 
     filename: 'bundle.js',
   },
   mode: process.env.NODE_ENV,
