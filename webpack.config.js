@@ -12,9 +12,9 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '/index.html')
+      template: path.resolve(__dirname, '/client/index.html')
     }),
-    new MiniCssExtractPlugin({ filename: 'style.css' }),
+    new MiniCssExtractPlugin({ filename: 'styles.css' }),
   ],
 
   devServer: {
