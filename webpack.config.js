@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
   entry: './client/index.js',
   output: {
-    path: path.resolve(__dirname, 'dist'), 
+    path: path.resolve(__dirname, 'dist'), //this is the path that cannot resolve
     filename: 'bundle.js',
   },
   mode: process.env.NODE_ENV,
@@ -14,7 +14,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '/client/index.html')
     }),
-    new MiniCssExtractPlugin({ filename: 'styles.css' }),
+    new MiniCssExtractPlugin({ filename: 'style.css' }),
   ],
 
   devServer: {
@@ -24,15 +24,16 @@ module.exports = {
     },
     proxy: [
       {
-        context: ['/api'],
+        context: ['/plant/'],
         target: 'http://localhost:3000',
       },
     ],
-    compress: true,     
+    compress: true,
     port: 8080,
   },
 
   module: {
+    //where our loaders will go (loaders are plugins to translate different languages into css js and html)
     rules: [
       {
         test: /\.jsx?$/,
@@ -55,6 +56,7 @@ module.exports = {
         test: /\.css$/i,
         use: [
           MiniCssExtractPlugin.loader,
+          // 'style-loader',
           'css-loader',
           'postcss-loader',
         ],

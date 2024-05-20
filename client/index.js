@@ -1,7 +1,15 @@
-//Example Client Index File --> To be replaced
-function component() {
-  const element = document.createElement('div');
-  element.innerHTML = `Let\'s go Kubilyze or whatever are team name is!`;
-  return element;
-}
-document.body.appendChild(component());
+//Entry point for application. 
+import './styles.css';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App.jsx';
+//Hangs React app off of #root in index.html
+const root = createRoot(document.getElementById('root'));
+
+root.render(
+  <React.StrictMode>
+         <App />
+   </React.StrictMode>
+);
+
+
