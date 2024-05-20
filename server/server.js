@@ -1,6 +1,7 @@
 //Boilerplate server file
 const path = require('path');
 const express = require('express');
+const db = require('./models/userModel.js')
 
 const app = express();
 const port = 3000;
