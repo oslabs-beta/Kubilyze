@@ -18,7 +18,7 @@ body {
   background-color: rgb(60, 173, 173) ;
 }
 #main-area{
-  width: 75%;
+  width: 100%;
 }
 #graph-area{
   width: 100%;
@@ -30,3 +30,28 @@ body {
   width: 50%
 }
 canvas {width:600px; }
+.circle{
+  background-color:  hsl(258, 99%, 95%);
+  width: 50%;
+  height: 50%;
+}
+#cluster-area{
+
+  width: 100%;
+  margin-top:200px;
+  display:flex;
+  justify-content: center;
+ 
+}
+#cluster-circle{
+  background-color:  hsl(257, 63%, 72%);
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  border-radius: 150px;
+  border: none;
+  box-shadow: 0 2px 6px 0 hsla(0,0%,0%,0.2);
+  color: hsl(0, 0%, 88%) ;
+  font-size: large;
+
+}

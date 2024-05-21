@@ -2,6 +2,7 @@ import React from 'react';
 import {LineGraph} from './LineGraph.jsx';
 import {results} from './SampleData.js';
 
+//ToDo: update results processing to categorize data by days  and only have legend tick marks show for days not minutes
 
 const data = {};
 //iterate through objects in array
