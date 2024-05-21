@@ -1,57 +1,172 @@
+/* Reset some default browser styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
-  color: hsl(0, 0%, 32%);
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
 
-  margin: 100;
+#navbar {
+  display: flex;
+  justify-content: space-between;
 
-}
-#nav-bar{
+  align-items: center;
+  background-color: #2087cb; /* You can change the background color as needed */
+  padding: 20px 50px;
+  position: fixed;
+  top: 0;
+  left: 0; /* Ensure the navbar touches the left edge */
+  right: 0; /* Ensure the navbar touches the right edge */
   width: 100%;
-  height:50px;
-  background-color: rgb(102, 105, 105) ;
+  box-sizing: border-box;
+  z-index: 1000; /* Ensures the navbar stays on top */
 }
-#page{
-  display:flex;
-}
-#side-bar{
-  width: 25%;
-  background-color: rgb(60, 173, 173) ;
-}
-#main-area{
-  width: 100%;
-}
-#graph-area{
-  width: 100%;
-  display:flex;
-  justify-content: space-around;
 
+.logo img {
+  height: 70px; /* Adjust the height as needed */
 }
-#graphs{
-  width: 50%
-}
-canvas {width:600px; }
-.circle{
-  background-color:  hsl(258, 99%, 95%);
-  width: 50%;
-  height: 50%;
-}
-#cluster-area{
 
-  width: 100%;
-  margin-top:200px;
-  display:flex;
-  justify-content: center;
- 
+.nav-container {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 0px; /* Space between the logo and the nav links */
 }
-#cluster-circle{
-  background-color:  hsl(257, 63%, 72%);
-  width: 300px;
-  height: 300px;
-  margin: 0 auto;
-  border-radius: 150px;
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.nav-links a:hover {
+  background-color: #575757; /* Change the hover color as needed */
+  border-radius: 4px;
+}
+
+.auth-button button {
+  background-color: #4CAF50; /* Change the button color as needed */
+  color: white;
   border: none;
-  box-shadow: 0 2px 6px 0 hsla(0,0%,0%,0.2);
-  color: hsl(0, 0%, 88%) ;
-  font-size: large;
-
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
 }
+
+.auth-button button:hover {
+  background-color: #45a049;
+}
+
+#header {
+  margin-top: 60px; /* Adjust if needed to account for the fixed navbar height */
+  padding: 20px;
+}
+
+#loginform {
+  background-color: #68abd8;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  padding: 40px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 150px;
+}
+
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.title {
+  margin-bottom: 40px;
+  
+}
+
+.formGroup {
+  margin-bottom: 15px;
+}
+
+.account {
+  margin-top: 40px;
+  margin-bottom: 5px;
+}
+
+.signup {
+  margin-top: 5px;
+  text-decoration: none;
+  color: rgb(248, 248, 248); /* Adjust color as needed */
+}
+
+.submit button{
+  margin-top: 10px;
+  background-color: #4CAF50; /* Change the button color as needed */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.submit button:hover {
+  background-color: #45a049;
+}
+/* 
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.text-input {
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+}
+
+.input-error {
+  color: red;
+  font-size: 12px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.button2 {
+  margin-top: 20px;
+  background-color: #4CAF50; /* Change the button color as needed */
+  /* color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.button2:hover {
+  background-color: #45a049;
+} */ 
