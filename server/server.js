@@ -4,6 +4,7 @@ const path = require('path');
 require('dotenv').config();
 const express = require('express');
 const metricRouter = require('./routes/metricRoute');
+const userRouter = require('./routes/userRoute.js')
 const eksController = require('./controllers/eksController');
 const cloudwatchController = require('./controllers/cloudwatchController');
 
@@ -18,6 +19,7 @@ console.log(process.env.AWS_SECRET_ACCESS_KEY);
 app.use(express.static(path.resolve(__dirname, '../dist')));
 
 app.use('/api', metricRouter);
+app.use('/user', userRouter);
 
 //Glolbal error handler
 app.use((err, req, res, next) => {
