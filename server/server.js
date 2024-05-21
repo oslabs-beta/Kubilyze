@@ -1,5 +1,6 @@
 //Boilerplate server file
 const path = require('path');
+const cors = require('cors');
 
 require('dotenv').config();
 const express = require('express');
@@ -10,6 +11,7 @@ const cloudwatchController = require('./controllers/cloudwatchController');
 const app = express();
 const port = 3000;
 
+app.use(cors());
 app.use(express.json());
 console.log(process.env.AWS_ACCESS_KEY_ID);
 console.log(process.env.AWS_SECRET_ACCESS_KEY);
