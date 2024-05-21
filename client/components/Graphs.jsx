@@ -6,7 +6,7 @@ import {results} from './SampleData.js';
 const data = {};
 //iterate through objects in array
 results.forEach((obj)=>{
-    //check object's label key for data type
+    //check object's metric query label for data type
     let metric = '';
     if(obj.Label === 'container_cpu_utilization') metric = 'cpu';
     if(obj.Label === 'container_memory_utilization') metric = 'mem';
