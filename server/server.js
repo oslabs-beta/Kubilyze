@@ -10,6 +10,10 @@ app.use(express.json());
 //Serve files
 app.use(express.static(path.resolve(__dirname, '../dist')));
 
+// app.get('/', (req, res) => {
+//   return res.status(200).sendFile(path.join(__dirname, '../index.html'));
+// });
+
 //Glolbal error handler
 app.use((err, req, res, next) => {
   const defaultErr = {

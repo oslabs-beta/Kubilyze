@@ -28,8 +28,7 @@
     "pg": "^8.11.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-redux": "^9.1.1",
-    "react-router-dom": "^6.23.0"
+    "react-redux": "^9.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.24.4",
@@ -51,7 +50,8 @@
     "postcss": "^8.4.38",
     "postcss-import": "^16.1.0",
     "postcss-loader": "^8.1.1",
-    "style-loader": "^4.0.0",   
+    "react-router-dom": "^6.23.1",
+    "style-loader": "^4.0.0",
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.4"
