@@ -10,6 +10,16 @@ app.use(express.json());
 
 //Serve files
 app.use(express.static(path.resolve(__dirname, '../dist')));
+app.post('/create', (req, res, next)=> {
+  const {username, password} = req.body;
+  db.create({username, password})
+  .then(data=> {
+    res.status(200).send(data)
+  })
+  .catch(e =>{
+    return next({log: e})
+  })
+})
 
 //Glolbal error handler
 app.use((err, req, res, next) => {
