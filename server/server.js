@@ -1,18 +1,23 @@
 //Boilerplate server file
 const path = require('path');
+
+require('dotenv').config();
 const express = require('express');
+const metricRouter = require('./routes/metricRoute');
+const eksController = require('./controllers/eksController');
+const cloudwatchController = require('./controllers/cloudwatchController');
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
+console.log(process.env.AWS_ACCESS_KEY_ID);
+console.log(process.env.AWS_SECRET_ACCESS_KEY);
 
 //Serve files
 app.use(express.static(path.resolve(__dirname, '../dist')));
 
-// app.get('/', (req, res) => {
-//   return res.status(200).sendFile(path.join(__dirname, '../index.html'));
-// });
+app.use('/api', metricRouter);
 
 //Glolbal error handler
 app.use((err, req, res, next) => {
