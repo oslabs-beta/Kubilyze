@@ -8,6 +8,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
+  
 }
 
 #navbar {
@@ -24,6 +25,7 @@ body {
   width: 100%;
   box-sizing: border-box;
   z-index: 1000; /* Ensures the navbar stays on top */
+  height: 75px;
 }
 
 .logo img {
@@ -201,3 +203,27 @@ button {
   width: 50%
 }
 canvas {width:600px; }
+#page{
+  width:100%;
+  position:absolute;
+  top:75px;
+  display: flex;
+}
+.dashboard{
+  background-color: hsl(209, 74%, 92%);
+  height: 1000px;
+  width:75%;
+  margin:50px;
+  padding: 50px;
+  border-radius: 100px;
+  border-width:0.5px;
+  border-color:hsl(209, 74%, 92%);
+}
+.sidebar{
+
+  background-color: hsl(209, 74%, 92%);
+  height: 1000px;
+  width:25%;
+  margin:50px;
+  border-radius: 100px;
+}

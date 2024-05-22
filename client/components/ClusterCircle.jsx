@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
-export const ClusterCircle = () => {
-  const [clusterName, setClusterName] = useState('');
-  const [clusterStatus, setClusterStatus] = useState('');
-  const [clusterVersion, setClusterVersion] = useState('');
-  const [clusterDate, setClusterDate] = useState('');
+export const ClusterCircle = ({clusterName,  
+  setClusterName,
+  clusterStatus,      
+  setClusterStatus,
+  clusterVersion,
+  setClusterVersion, 
+  clusterDate,
+  setClusterDate}) => {
   const navigate = useNavigate();
   useEffect( () => {
     fetch('http://localhost:3000/api/clusters', {
