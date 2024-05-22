@@ -17,7 +17,7 @@ export default function SignUp() {
   })
   .then((data)=> {
     if(data){
-      username(data.username)
+      setUsername(data.username)
       navigate("/AddCluster");
     } 
     setUsername('')

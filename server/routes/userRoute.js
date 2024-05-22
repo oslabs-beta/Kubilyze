@@ -4,11 +4,11 @@ const userController = require('../controllers/userController.js')
 
 
 
-router.post('/signup', userController.signUp, (req, res)=> {
+userRouter.post('/signup', userController.signUp, (req, res)=> {
     res.status(200).json(res.locals.user)
 })
 
-router.post('/signin', userController.signIn, (req, res)=> {
+userRouter.post('/signin', userController.signIn, (req, res)=> {
 
 })
 
@@ -16,4 +16,4 @@ router.post('/signin', userController.signIn, (req, res)=> {
 
 
 
-module.exports = userRouterrouter
+module.exports = userRouter
