@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 
 export const ClusterCircle = () => {
   const [clusterName, setClusterName] = useState('');
   const [clusterStatus, setClusterStatus] = useState('');
   const [clusterVersion, setClusterVersion] = useState('');
   const [clusterDate, setClusterDate] = useState('');
-
+  const navigate = useNavigate();
   useEffect( () => {
     fetch('http://localhost:3000/api/clusters', {
       method: 'GET',
@@ -25,11 +26,17 @@ export const ClusterCircle = () => {
     .catch(err => console.log("err:", err))
   }, [])
 
+  const handleLoginClick = () => {
+    navigate("/clusterdashboard");
+  };
+
   return (
-    <>     
-      <button id="cluster-circle" className="circle">
+    <>
+      <div id="cluster-area">     
+      <button id="cluster-circle" className="circle" onClick={handleLoginClick}>
         {clusterName}
-      </button>           
+      </button> 
+      </div>          
     </>
   );
 };

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 export default function AddCluster() {
   const navigate = useNavigate();
   const handleLoginClick = () => {
-    navigate("/Dashboard");
+    navigate("/selectcluster");
   };
   return (
     <div className="loginContainer">
