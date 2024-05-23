@@ -5,6 +5,8 @@ import {Line} from 'react-chartjs-2';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
 export const LineGraph = ({xData, yData, type}) => {
+  console.log(xData.length)
+console.log(yData.length)
   const data = {
     labels: xData,
     datasets: [
@@ -46,7 +48,7 @@ export const LineGraph = ({xData, yData, type}) => {
         },
         ticks:{
           autoSkip: true,
-          maxTicksLimit:4
+          maxTicksLimit:7
         }
       },
       y: {
@@ -69,5 +71,5 @@ export const LineGraph = ({xData, yData, type}) => {
     </>
   );
 };
-
+// 
 

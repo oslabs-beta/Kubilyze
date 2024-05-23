@@ -17,15 +17,40 @@ results.forEach((obj)=>{
     const xData = timeArr.map((el) => {
       let currDate = new Date(el);
       let lastDate = new Date(timeArr[timeArr.length-1]);  
-      //process data as dya
-      let dif = ((currDate.getDay())/1000/60);
+      
+      //process data as dates
+      const yyyy = currDate.getFullYear();
+      let yy = yyyy.toString().slice(2);
+      let mm = currDate.getMonth() + 1; // Months start at 0!
+      let dd = currDate.getDate();
+      if (dd < 10) dd = '0' + dd;
+      if (mm < 10) mm = '0' + mm;       
+      let dif = mm + '/' + dd +  '/' + yy;
+      console.log(typeof yyyy)
+      //process data as difference in minutes
       // let dif = ((lastDate.getTime()-currDate.getTime())/1000/60);
-      //process data as hours
+      
+      //process data as difference in hours
       // let dif = ((lastDate.getDay()-currDate.getDay())*24+(lastDate.getTime()-currDate.getTime())/(3.6*10**6)); //formula needs to be modified to calculate hours difference across months
       return dif;
     });
-    // console.log("xData (hours):" + xData);
-    //process array of Values,  x axis data
+
+    
+
+    // let seen = new Set();
+    
+    // xData.forEach((value, index) => {
+    //   if (seen.has(value)) {
+    //     xData[index] = "test";
+    //   } else {
+    //     seen.add(value);
+    //   }
+    // });
+    
+  
+    
+
+
     const valArr = obj.Values.toReversed();
     const yData = valArr.map((el) => el.toFixed(3))  
     
@@ -34,7 +59,8 @@ results.forEach((obj)=>{
       yData: yData
     };      
 })
-
+// console.log(data.cpu.xData)
+// console.log(data.cpu.yData)
 export const Graphs = () => {
   return (
     <>      
