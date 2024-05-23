@@ -74,7 +74,7 @@ body {
   /* justify-content: space-between; */
 
   align-items: center;
-  background-color: #2087cb; /* You can change the background color as needed */
+  background-color: #19648D; /* You can change the background color as needed */
   padding: 20px 50px;
   position: fixed;
   top: 0;
@@ -110,7 +110,7 @@ body {
 }
 
 .nav-links a {
-  color: rgb(0, 0, 0);
+  color: #efefef;
   text-decoration: none;
   padding: 7px;
 
@@ -118,6 +118,7 @@ body {
 
 .nav-links a:hover {
   background-color: #e1e1e1; /* Change the hover color as needed */
+  color: rgb(48, 48, 48);
   border-radius: 4px;
 }
 
@@ -213,7 +214,7 @@ body {
 
 .signup:hover{
   color: #1F87CA;
-  border: 1px solid #1F87CA;
+  border: 1px solid #19648D;
 
 }
 
@@ -229,7 +230,7 @@ body {
 }
 
 .submit button:hover {
-  background-color: #1F87CA; /* Change the button color as needed */
+  background-color:  #19648D; /* Change the button color as needed */
 }
 
 /* ----------METRIC PAGES----------*/
