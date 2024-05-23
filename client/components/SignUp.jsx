@@ -15,7 +15,8 @@ export default function SignUp() {
   })
   .then((res)=> {
     if(res.ok) return res.json()
-    console.log('server error')
+    // console.log('Username is taken')
+    alert('Username is taken')
   })
   .then((data)=> {
     if(data){
@@ -47,10 +48,10 @@ export default function SignUp() {
           <input type="text" id="username" placeholder="Username" value={username} name="username" onChange={(e)=> setUsername(e.target.value)}/>
         </div>
         <div className="formGroup">
-          <input type="text" id="password" placeholder="Password" value={password} name="password" onChange={(e)=> setPassword(e.target.value)} />
+          <input type="password" id="password" placeholder="Password" value={password} name="password" onChange={(e)=> setPassword(e.target.value)} />
         </div>
         <div className="formGroup">
-          <input type="text" id="password" placeholder="Confirm Password" name="password" />
+          <input type="password" id="password" placeholder="Confirm Password" name="password" />
         </div>
         <div className="submit">
           <button onClick={handleLoginClick}>Submit</button>

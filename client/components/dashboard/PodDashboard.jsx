@@ -1,19 +1,38 @@
 import React, { useState } from "react";
 import {Graphs} from './widgets/Graphs.jsx';
-import SideBar from './SideBar.jsx';
+import SideBarPods2 from './SideBarPods2.jsx';
 import NavbarDash from "../NavbarDash.jsx";
+import {SmallWidget} from './widgets/SmallWidget.jsx';
 
-export default function ClusterDashboard() {
+export default function PodDashboard({pods, selectedPod, selectedNode, clusterName, nodes}) {
+
+  //rendered elements to be returned
   return (
-    <div id="page">
+    <>
       <NavbarDash/>
-     <SideBar/>
-      <div id='cluster-dashboard' className="dashboard">
-        <h1>This is your Pod dashboard</h1>
-        <div id="graph-area">
-                <Graphs/>           
+        <div id="page">
+          <SideBarPods2/>
+
+          <div id='cluster-dashboard' className="dashboard">
+
+            <div className="dashboard-title">
+              <h1>Dashboard</h1> 
+              <h4>Cluster:  {"  "+ clusterName}</h4> 
+              <h4>Node:  {"  "+ nodes[selectedNode].name}</h4>
+              <h4 style={{ color: 'black'}} >Pod:  {"  "}</h4>                        
+            </div>
+
+            <div id="graph-area">
+              <Graphs/>           
+            </div>
+
+            <div className="widget-container">         
+                <SmallWidget type={'Status:'} metric={""}/>
+                <SmallWidget type={'Created:'}  metric={""}/>
+                <SmallWidget type={'Instance:'}  metric={""}/>      
+            </div>
           </div>
-      </div>
-    </div>
+        </div>  
+    </>
   );
 }

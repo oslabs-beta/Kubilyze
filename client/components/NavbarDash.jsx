@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles.css";
 import { Link } from "react-router-dom";
 
-export default function NavbarDash({username}) {
+export default function NavbarDash({ username }) {
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
@@ -25,12 +25,11 @@ export default function NavbarDash({username}) {
           </Link>
         </div>
         <div className="rightside">
-        <a>Welcome, {"  "+ username}</a>
-        <div className="nav-links">
-        </div>
-        <div className="auth-button">
-          <button onClick={handleLoginClick}>Sign Out</button>
-        </div>
+          <a>Welcome, Maya </a>
+          <div className="nav-links"></div>
+          <div className="auth-button">
+            <button onClick={handleLoginClick}>Sign Out</button>
+          </div>
         </div>
       </div>
     </>

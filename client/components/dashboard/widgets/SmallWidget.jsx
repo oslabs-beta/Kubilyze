@@ -11,7 +11,7 @@ export const SmallWidget = ({ type, metric }) => {
 
   // // const formattedToday = dd + '/' + mm + '/' + yyyy;
   // console.log(dd + '/' + mm + '/' + yyyy);
-  console.log(metric);
+  // console.log(metric);
 
   //days running
   //function to process date

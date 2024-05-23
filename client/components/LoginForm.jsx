@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import SideBar from "./dashboard/SideBar.jsx";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar.jsx";
 
@@ -22,7 +23,8 @@ export default function LoginForm() {
   .then(async (data)=> {
     if(data.ok) return data.json()
     const log = await data.json()
-  console.log(log)
+    console.log(log)
+    alert(log)
   })
 .then((user)=> {
   if(user) {
@@ -39,6 +41,7 @@ export default function LoginForm() {
     <>
     <Navbar/>
     <div className='entirepage'>
+
     <div className="loginContainer">
       <div id="loginform">
         <h1 className="title">Sign in to Kubilyze</h1>
@@ -48,7 +51,7 @@ export default function LoginForm() {
         </div>
         <div className="formGroup">
           {/* <label htmlFor="password">Password:</label> */}
-          <input type="text" id="password" placeholder="Password"value ={password} name="password" onChange={(e)=> setPassword(e.target.value)} />
+          <input type="password" id="password" placeholder="Password"value ={password} name="password" onChange={(e)=> setPassword(e.target.value)} />
         </div>
         <div className="submit">
           <button onClick={handleLoginClick}>Submit</button>
