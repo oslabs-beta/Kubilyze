@@ -5,6 +5,8 @@ import {Line} from 'react-chartjs-2';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
 export const LineGraph = ({xData, yData, type}) => {
+  console.log(xData.length)
+console.log(yData.length)
   const data = {
     labels: xData,
     datasets: [
@@ -42,8 +44,12 @@ export const LineGraph = ({xData, yData, type}) => {
         display: true,
         title: {
           display: true,
-          text: 'Days Running (hours)'
+          text: 'Days Running'
         },
+        ticks:{
+          autoSkip: true,
+          maxTicksLimit:7
+        }
       },
       y: {
         // min:0.0745,
@@ -65,5 +71,5 @@ export const LineGraph = ({xData, yData, type}) => {
     </>
   );
 };
-
+// 
 

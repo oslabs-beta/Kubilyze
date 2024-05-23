@@ -511,7 +511,7 @@ margin-bottom:20px;
   justify-content: center;
  
 }
-.cluster-circle, .node-circle{
+.cluster-circle, .node-circle, .pod-circle{
   background-color:  #e8f5ee;
   margin: 0 auto;
   border: 3px solid #31a870;
@@ -532,6 +532,12 @@ margin-bottom:20px;
   width: 200px;
   height: 200px;
   border-radius:100px;
+  margin-bottom: 20px;;
+}
+.pod-circle{
+  width: 120px;
+  height: 120px;
+  border-radius:60px;
   margin-bottom: 20px;;
 }
 #graph-area{

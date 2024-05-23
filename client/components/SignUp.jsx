@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "./Navbar.jsx";
-
+import Navbar from "./Navbar.jsx"
 
 export default function SignUp() {
   const navigate = useNavigate();
   const handleLoginClick = () => {
+    if(password === cPassword){
     fetch('http://localhost:3000/user/signup', {
       method: "POST",
       headers: {
@@ -30,10 +30,19 @@ export default function SignUp() {
     console.log(e)
   })
     
-  };
+  }
+  else{
+    alert("Password's don't match")
+    setUsername('')
+    setPassword('')
+    setCpassword('')
+  }
+
+};
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [cPassword, setCpassword] = useState('');
 
 
 
@@ -51,7 +60,7 @@ export default function SignUp() {
           <input type="password" id="password" placeholder="Password" value={password} name="password" onChange={(e)=> setPassword(e.target.value)} />
         </div>
         <div className="formGroup">
-          <input type="password" id="password" placeholder="Confirm Password" name="password" />
+          <input type="password" id="password" placeholder="Confirm Password" value={cPassword} name="password" onChange={(e)=> setCpassword(e.target.value)}/>
         </div>
         <div className="submit">
           <button onClick={handleLoginClick}>Submit</button>

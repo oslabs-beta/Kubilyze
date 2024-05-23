@@ -11,7 +11,9 @@ export default function ClusterDashboard({
     clusterVersion,
     clusterDate,
     nodes,
-    setSelectedNode
+    setSelectedNode,
+    pods,
+    setPods
   })   {
 
   //routing upon button click  
@@ -19,6 +21,22 @@ export default function ClusterDashboard({
   const handleLoginClick = (index) => {
     setSelectedNode(index);
     navigate("/nodedashboard");
+   //fetch node metrics and set pods
+      fetch("http://localhost:3000/api/metrics/first-cluster/test", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          // console.log(data[data.length-1].Values[0])
+          setPods(data[data.length-1].Values[0]);
+        })
+        .catch((err) => console.log("err:", err));
+    
   };
 
   //node array

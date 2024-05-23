@@ -18,6 +18,8 @@ const App = () => {
   const [clusterDate, setClusterDate] = useState("2024-05-16T01:12:14.143Z");
   const [selectedNode, setSelectedNode] = useState(0);
   const [selectedPod, setSelectedPod] = useState(0);
+  const [selectedNode, setSelectedNode] = useState(0);
+  const [selectedPod, setSelectedPod] = useState(0);
   const [nodes, setNodes] = useState([
     {
       instanceId: "i-0b0deb6bb775b06c7",
@@ -80,7 +82,51 @@ const App = () => {
       launchTime: "2024-05-16T01:25:04.000Z",
     },
   ]);
-  const [pods, setPods] = useState([{}, {}]);
+  const [pods, setPods] = useState([
+    {
+        "instanceId": "i-0b0deb6bb775b068j",
+        "name": "ip-192-168-38-71.ec2.internal",
+        "state": "running",
+        "launchTime": "2024-05-16T01:25:04.000Z"
+    },
+    {
+        "instanceId": "i-09d10f65bb4092a1t",
+        "name": "ip-192-168-13-219.ec2.internal",
+        "state": "running",
+        "launchTime": "2024-05-16T01:25:04.000Z"
+    },
+      {
+        "instanceId": "i-09d10f65bb4092a15",
+        "name": "ip-192-168-13-219.ec2.internal",
+        "state": "running",
+        "launchTime": "2024-05-16T01:25:04.000Z"
+    },
+    {
+      "instanceId": "i-0b0deb6bb775b0681",
+      "name": "ip-192-168-38-71.ec2.internal",
+      "state": "running",
+      "launchTime": "2024-05-16T01:25:04.000Z"
+  },
+  {
+      "instanceId": "i-09d10f65bb4092a8j",
+      "name": "ip-192-168-13-219.ec2.internal",
+      "state": "running",
+      "launchTime": "2024-05-16T01:25:04.000Z"
+  },
+    {
+      "instanceId": "i-09d10f65bb4092a4w",
+      "name": "ip-192-168-13-219.ec2.internal",
+      "state": "running",
+      "launchTime": "2024-05-16T01:25:04.000Z"
+  },
+  {
+    "instanceId": "i-09d10f65bb4092a3f",
+    "name": "ip-192-168-13-219.ec2.internal",
+    "state": "running",
+    "launchTime": "2024-05-16T01:25:04.000Z"
+  }
+  
+  ]);
 
   return (
     <BrowserRouter>
@@ -113,6 +159,8 @@ const App = () => {
               clusterDate={clusterDate}
               nodes={nodes}
               setSelectedNode={setSelectedNode}
+              pods={pods} 
+              setPods={setPods} 
             />
           }
         />
