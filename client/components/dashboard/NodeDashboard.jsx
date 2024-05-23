@@ -34,7 +34,7 @@ export default function ClusterDashboard({clusterName, nodes, selectedNode, pods
  
 
   //pod array
-  const podNums = Array.from({length: pods}, (_, i) => i + 1)
+  const podNums = Array.from({length: pods.length}, (_, i) => i + 1)
   console.log("pod" + podNums)
   //rendered elements to be returned
   return (
@@ -43,7 +43,7 @@ export default function ClusterDashboard({clusterName, nodes, selectedNode, pods
         <div id="page">
           <SideBar/>
 
-          <div id='cluster-dashboard' className="dashboard">
+          <div id='node-dashboard' className="dashboard">
 
             <div className="dashboard-title">
               <h1>Dashboard</h1> 
@@ -52,7 +52,7 @@ export default function ClusterDashboard({clusterName, nodes, selectedNode, pods
             </div>
 
             <div id="graph-area">
-              <Graphs/>           
+              <Graphs level={"node"}/>           
             </div>
 
             <div className="widget-container">         
@@ -67,7 +67,7 @@ export default function ClusterDashboard({clusterName, nodes, selectedNode, pods
                   {podNums.map((button, index) => (
                     <button key={index} className="pod-circle" onClick={()=>handleLoginClick(index)}>
                       <h2>Pod{" "+ (index+1)}</h2>
-                      {/* <h6>{pods[index]}</h6> */}                
+                      <h6>{pods[index].name}</h6>            
                     </button> 
                   ))}
               </div>
