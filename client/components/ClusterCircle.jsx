@@ -9,6 +9,7 @@ export const ClusterCircle = ({
   setClusterVersion,
   setClusterDate,
   setNodes,
+  username
 }) => {
   //routing upon button click
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ export const ClusterCircle = ({
   //rendered elements to be returned
   return (
     <>
-      <NavbarDash />
+      <NavbarDash username={username}/>
       <h3 className="clustit">Select your cluster below to view your metrics dashboard</h3>
       <div id="cluster-area">
         <button className="cluster-circle" onClick={handleLoginClick}>

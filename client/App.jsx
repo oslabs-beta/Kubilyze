@@ -18,8 +18,7 @@ const App = () => {
   const [clusterDate, setClusterDate] = useState("2024-05-16T01:12:14.143Z");
   const [selectedNode, setSelectedNode] = useState(0);
   const [selectedPod, setSelectedPod] = useState(0);
-  const [selectedNode, setSelectedNode] = useState(0);
-  const [selectedPod, setSelectedPod] = useState(0);
+  const [username, setUsername] = useState('')
   const [nodes, setNodes] = useState([
     {
       instanceId: "i-0b0deb6bb775b06c7",
@@ -133,7 +132,7 @@ const App = () => {
       {/* <Navbar /> */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<LoginForm />} />
+        <Route path="/login" element={<LoginForm setUsername={setUsername} username={username}/>} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/addcluster" element={<AddCluster />} />
         <Route
@@ -146,6 +145,7 @@ const App = () => {
               setClusterVersion={setClusterVersion}
               setClusterDate={setClusterDate}
               setNodes={setNodes}
+              username={username}
             />
           }
         />
@@ -161,6 +161,8 @@ const App = () => {
               setSelectedNode={setSelectedNode}
               pods={pods} 
               setPods={setPods} 
+              username={username}
+
             />
           }
         />
@@ -174,6 +176,8 @@ const App = () => {
               pods={pods}
               setPods={setPods}
               setSelectedPod={setSelectedPod}
+              username={username}
+
             />
           }
         />
@@ -186,6 +190,8 @@ const App = () => {
               nodes={nodes}
               selectedNode={selectedNode}
               selectedPod={selectedPod}
+              username={username}
+
             />
           }
         />

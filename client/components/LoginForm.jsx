@@ -8,9 +8,8 @@ import Navbar from "./Navbar.jsx";
 // import { useNavigate } from "react-router-dom";
 // import "../styles.css";
 
-export default function LoginForm() {
+export default function LoginForm({setUsername, username}) {
   const navigate = useNavigate();
-  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const handleLoginClick = () => {
     fetch('http://localhost:3000/user/signin', {
@@ -28,6 +27,7 @@ export default function LoginForm() {
   })
 .then((user)=> {
   if(user) {
+    console.log(user.username)
     setUsername(user.username)
     navigate('/selectcluster')
   }

@@ -13,7 +13,8 @@ export default function ClusterDashboard({
     nodes,
     setSelectedNode,
     pods,
-    setPods
+    setPods, 
+    username
   })   {
 
   //routing upon button click  
@@ -46,7 +47,7 @@ export default function ClusterDashboard({
   //rendered elements to be returned
   return (
     <>
-    <NavbarDash />
+    <NavbarDash username={username}/>
       <div id="page">
         <SideBar clusterName={clusterName}/>
 
