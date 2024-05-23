@@ -17,10 +17,12 @@ results.forEach((obj)=>{
     const xData = timeArr.map((el) => {
       let currDate = new Date(el);
       let lastDate = new Date(timeArr[timeArr.length-1]);  
-      let dif = ((lastDate.getTime()-currDate.getTime())/1000/60);
+      // let dif = ((lastDate.getTime()-currDate.getTime())/1000/60);
+      // console.log(currDate.getTime()/(3.6*10**6))
+      let dif = ((lastDate.getDay()-currDate.getDay())*24+(lastDate.getTime()-currDate.getTime())/(3.6*10**6)); //formula needs to be modified to calculate hours difference across months
       return dif;
     });
-    
+    // console.log("xData (hours):" + xData);
     //process array of Values,  x axis data
     const valArr = obj.Values.toReversed();
     const yData = valArr.map((el) => el.toFixed(3))  
@@ -39,7 +41,7 @@ export const Graphs = () => {
               <LineGraph xData={data.cpu.xData} yData={data.cpu.yData} type='CPU Utilization'/>
               </div>
               <div id="graph">
-              <LineGraph xData={data.mem.xData} yData={data.mem.yData} type='Memory Utilization'/>
+              {/* <LineGraph xData={data.mem.xData} yData={data.mem.yData} type='Memory Utilization'/> */}
               </div>           
            
     </>
