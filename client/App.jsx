@@ -16,8 +16,8 @@ const App = () => {
   const [clusterStatus, setClusterStatus] = useState("ACTIVE");
   const [clusterVersion, setClusterVersion] = useState("1.29");
   const [clusterDate, setClusterDate] = useState("2024-05-16T01:12:14.143Z");
-  const [selectedNode, setSelectedNode] = useState();
-  const [selectedPod, setSelectedPod] = useState();
+  const [selectedNode, setSelectedNode] = useState(0);
+  const [selectedPod, setSelectedPod] = useState(0);
   const [nodes, setNodes] = useState([
             {
                 "instanceId": "i-0b0deb6bb775b06c7",
@@ -34,7 +34,51 @@ const App = () => {
         ]
    
 );
-const [pods, setPods] = useState([{},{}]);
+const [pods, setPods] = useState([
+  {
+      "instanceId": "i-0b0deb6bb775b068j",
+      "name": "ip-192-168-38-71.ec2.internal",
+      "state": "running",
+      "launchTime": "2024-05-16T01:25:04.000Z"
+  },
+  {
+      "instanceId": "i-09d10f65bb4092a1t",
+      "name": "ip-192-168-13-219.ec2.internal",
+      "state": "running",
+      "launchTime": "2024-05-16T01:25:04.000Z"
+  },
+    {
+      "instanceId": "i-09d10f65bb4092a15",
+      "name": "ip-192-168-13-219.ec2.internal",
+      "state": "running",
+      "launchTime": "2024-05-16T01:25:04.000Z"
+  },
+  {
+    "instanceId": "i-0b0deb6bb775b0681",
+    "name": "ip-192-168-38-71.ec2.internal",
+    "state": "running",
+    "launchTime": "2024-05-16T01:25:04.000Z"
+},
+{
+    "instanceId": "i-09d10f65bb4092a8j",
+    "name": "ip-192-168-13-219.ec2.internal",
+    "state": "running",
+    "launchTime": "2024-05-16T01:25:04.000Z"
+},
+  {
+    "instanceId": "i-09d10f65bb4092a4w",
+    "name": "ip-192-168-13-219.ec2.internal",
+    "state": "running",
+    "launchTime": "2024-05-16T01:25:04.000Z"
+},
+{
+  "instanceId": "i-09d10f65bb4092a3f",
+  "name": "ip-192-168-13-219.ec2.internal",
+  "state": "running",
+  "launchTime": "2024-05-16T01:25:04.000Z"
+}
+
+]);
 
   return (
     <BrowserRouter>
@@ -67,10 +111,12 @@ const [pods, setPods] = useState([{},{}]);
               clusterDate={clusterDate}          
               nodes={nodes}
               setSelectedNode={setSelectedNode}
+              pods={pods} 
+              setPods={setPods} 
             />
           }
         />
-        <Route path="/nodedashboard" element={<NodeDashboard   clusterName={clusterName} nodes={nodes} selectedNode={selectedNode} pods={pods} setPods={setPods} setSelectedPod={setSelectedPod} />} />
+        <Route path="/nodedashboard" element={<NodeDashboard clusterName={clusterName} nodes={nodes} selectedNode={selectedNode} pods={pods} setPods={setPods} setSelectedPod={setSelectedPod} />} />
         <Route path="/poddashboard" element={<PodDashboard clusterName={clusterName} pods={pods} nodes={nodes} selectedNode={selectedNode} selectedPod={selectedPod} />} />
       </Routes>
     </BrowserRouter>

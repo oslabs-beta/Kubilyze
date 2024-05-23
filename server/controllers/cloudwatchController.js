@@ -108,7 +108,7 @@ cloudwatchController.getNodeMetrics = async (clusterName) => {
               },
             ],
           },
-          Period: 60,
+          Period: 86400,
           Stat: 'Average',
         },
         ReturnData: true,
