@@ -26,15 +26,15 @@ export default function ClusterDashboard({
   //rendered elements to be returned
   return (
     <>
-    <NavbarDash/>
+    <NavbarDash />
       <div id="page">
-        <SideBar/>
+        <SideBar clusterName={clusterName}/>
 
         <div id='cluster-dashboard' className="dashboard">
 
           <div className="dashboard-title">
-            <h1>Dashboard</h1> 
-            <h3>Cluster Name:  {"  "+ clusterName}</h3>           
+            <h1>Cluster Dashboard</h1> 
+            <h3>{"  "+ clusterName}</h3>           
           </div>
           
 

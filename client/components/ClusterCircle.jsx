@@ -42,11 +42,13 @@ export const ClusterCircle = ({
   return (
     <>
       <NavbarDash />
+      <h3 className="clustit">Select your cluster below to view your metrics dashboard</h3>
       <div id="cluster-area">
         <button className="cluster-circle" onClick={handleLoginClick}>
           {clusterName}
         </button>
       </div>
+
     </>
   );
 };

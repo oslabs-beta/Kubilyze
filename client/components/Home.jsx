@@ -10,7 +10,6 @@ export default function Home() {
       <div className="fullLogo">
           <img src={require("./background.png")} alt="Logo" />
         </div>
-        <h2 className="tagline"> Cluster observability with ease</h2>
     </div>
     </>
   );

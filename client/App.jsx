@@ -15,7 +15,7 @@ const App = () => {
   const [clusterStatus, setClusterStatus] = useState("unknown");
   const [clusterVersion, setClusterVersion] = useState("unknown");
   const [clusterDate, setClusterDate] = useState("unknown");
-  const [nodeNumber, setnodeNumber] = useState(3);
+  const [nodeNumber, setnodeNumber] = useState(15);
 
   return (
     <BrowserRouter>
