@@ -7,8 +7,30 @@ import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
   const navigate = useNavigate();
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const handleLoginClick = () => {
-    navigate("/AddCluster");
+    fetch('http://localhost:3000/user/signin', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({username, password})
+  })
+  .then(async (data)=> {
+    if(data.ok) return data.json()
+    const log = await data.json()
+  console.log(log)
+  })
+.then((user)=> {
+  if(user) {
+    setUsername(user.username)
+    navigate('/selectcluster')
+  }
+  setUsername('')
+  setPassword('')
+
+})
   };
 
   return (
@@ -17,11 +39,11 @@ export default function LoginForm() {
         <h1 className="title">Login to Kubilyze</h1>
         <div className="formGroup">
           <label htmlFor="username">Username:</label>
-          <input type="text" id="username" name="username" />
+          <input type="text" id="username" value={username} name="username" onChange={(e)=> setUsername(e.target.value)} />
         </div>
         <div className="formGroup">
           <label htmlFor="password">Password:</label>
-          <input type="text" id="password" name="password" />
+          <input type="text" id="password" value ={password} name="password" onChange={(e)=> setPassword(e.target.value)} />
         </div>
         <div className="submit">
           <button onClick={handleLoginClick}>Submit</button>
