@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar.jsx";
+
 
 // import { useNavigate } from "react-router-dom";
 // import "../styles.css";
@@ -12,6 +14,8 @@ export default function LoginForm() {
   };
 
   return (
+    <>
+    <Navbar/>
     <div className="loginContainer">
       <div id="loginform">
         <h1 className="title">Login to Kubilyze</h1>
@@ -32,6 +36,7 @@ export default function LoginForm() {
         </Link>
       </div>
     </div>
+    </>
   );
 }
 

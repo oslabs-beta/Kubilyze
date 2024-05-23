@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import {Graphs} from './widgets/Graphs.jsx';
 import { useNavigate } from "react-router-dom";
 import SideBar from './SideBar.jsx';
+import NavbarDash from "../NavbarDash.jsx";
+
 
 export default function ClusterDashboard() {
   const navigate = useNavigate();
@@ -10,6 +12,7 @@ export default function ClusterDashboard() {
   };
   return (
     <div id="page">
+      <NavbarDash/>
       <SideBar/>
       <div id='cluster-dashboard' className="dashboard">
         <h1>This is your Node dashboard</h1>

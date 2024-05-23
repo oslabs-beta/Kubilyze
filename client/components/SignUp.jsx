@@ -1,5 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar.jsx";
+
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -8,6 +10,8 @@ export default function SignUp() {
   };
 
   return (
+    <>
+    <Navbar/>
     <div className="loginContainer">
       <div id="loginform">
         <h1 className="title">Create your Kubilyze Account</h1>
@@ -28,5 +32,6 @@ export default function SignUp() {
         </div>
       </div>
     </div>
+    </>
   );
 }
