@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import NavbarDash from "./NavbarDash.jsx";
+
 
 // import { useNavigate } from "react-router-dom";
 // import "../styles.css";
@@ -10,6 +12,8 @@ export default function AddCluster() {
     navigate("/selectcluster");
   };
   return (
+    <>
+    <NavbarDash/>
     <div className="loginContainer">
       <div id="loginform">
         <h1 className="title">Add Your EKS Cluster</h1>
@@ -26,5 +30,6 @@ export default function AddCluster() {
         </div>
       </div>
     </div>
+    </>
   );
 }
