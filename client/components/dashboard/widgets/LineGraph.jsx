@@ -46,8 +46,8 @@ export const LineGraph = ({xData, yData, type}) => {
         },
       },
       y: {
-        min:0.0745,
-        max:0.0775,     
+        // min:0.0745,
+        // max:0.0775,     
         display: true,
         title: {
           display: true,

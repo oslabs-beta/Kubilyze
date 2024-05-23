@@ -21,10 +21,10 @@ export const ClusterCircle = ({clusterName,
       return res.json();
     })
     .then(data => {
-      setClusterName(data[0].name);
-      setClusterStatus(data[0].status);
-      setClusterVersion(data[0].version);
-      setClusterDate(data[0].createdAt);    
+      setClusterName(data.clusters[0].name);
+      setClusterStatus(data.clusters[0].status);
+      setClusterVersion(data.clusters[0].version);
+      setClusterDate(data.clusters[0].createdAt);    
     })
     .catch(err => console.log("err:", err))
   }, [])
