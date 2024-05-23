@@ -38,10 +38,14 @@ export const Graphs = () => {
     <>      
  
               <div id="graph">
+                {/* <div> */}
               <LineGraph xData={data.cpu.xData} yData={data.cpu.yData} type='CPU Utilization'/>
+              {/* </div> */}
               </div>
               <div id="graph">
-              {/* <LineGraph xData={data.mem.xData} yData={data.mem.yData} type='Memory Utilization'/> */}
+              {/* <div> */}
+              <LineGraph xData={data.mem.xData} yData={data.mem.yData} type='Memory Utilization'/>
+              {/* </div> */}
               </div>           
            
     </>

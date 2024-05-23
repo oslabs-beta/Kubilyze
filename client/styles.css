@@ -328,10 +328,15 @@ margin-bottom:20px;
 }
 .dashboard-title {
   display: flex;
-  align-content: end;
+  align-items: baseline;
   }
 .dashboard-title h1{
  margin-right: 20px;
+
+  }
+.dashboard-title h4{
+  margin-right: 20px;
+  color: hsl(0, 0%, 50%);
   }
 .widget-container{
   display: grid;
@@ -401,12 +406,22 @@ margin-bottom:20px;
 }
 #graph-area{
   width: 100%;
+  /* background-color: hsl(0, 0%, 100%); */
   display:flex;
   justify-content: space-around;
+  border-radius: 10px;
+  background-color: hsl(0, 0%, 100%);
+
+  box-shadow: 0 2px 6px 0 hsla(0,0%,0%,0.2);
+
 }
 #graphs{
-  width: 50%
+  display:flex;
+  flex-direction:column;
+  width: 50%;
+
 }
 canvas {width:600px; }
+
 
 
