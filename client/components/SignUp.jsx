@@ -45,16 +45,17 @@ export default function SignUp() {
 
 
   return (
+    <>
+    <Navbar/>
+    <div className="entirepage">
     <div className="loginContainer">
       <div id="loginform">
-        <h1 className="title">Create your Kubilyze Account</h1>
+        <h1 className="title">Create your  Account</h1>
         <div className="formGroup">
-          <label htmlFor="username">Username:</label>
-          <input type="text" id="username" value={username} name="username" onChange={(e)=> setUsername(e.target.value)}/>
+          <input type="text" id="username" placeholder="Username" value={username} name="username" onChange={(e)=> setUsername(e.target.value)}/>
         </div>
         <div className="formGroup">
-          <label htmlFor="password">Password:</label>
-          <input type="text" id="password" value={password} name="password" onChange={(e)=> setPassword(e.target.value)} />
+          <input type="text" id="password" placeholder="Password" value={password} name="password" onChange={(e)=> setPassword(e.target.value)} />
         </div>
         <div className="formGroup">
           <label htmlFor="password">Confirm Password:</label>
@@ -65,5 +66,7 @@ export default function SignUp() {
         </div>
       </div>
     </div>
+    </div>
+    </>
   );
 }

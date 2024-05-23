@@ -38,9 +38,10 @@ export default function LoginForm() {
   return (
     <>
     <Navbar/>
+    <div className='entirepage'>
     <div className="loginContainer">
       <div id="loginform">
-        <h1 className="title">Login to Kubilyze</h1>
+        <h1 className="title">Sign in to Kubilyze</h1>
         <div className="formGroup">
           {/* <label htmlFor="username">Username:</label> */}
           <input type="text" id="username" placeholder="Username" value={username} name="username" onChange={(e)=> setUsername(e.target.value)} />
@@ -53,10 +54,12 @@ export default function LoginForm() {
           <button onClick={handleLoginClick}>Submit</button>
         </div>
         <h3 className="account"> Don't have an account?</h3>
+        <br></br>
         <Link to="/SignUp" className="signup">
           Sign Up
         </Link>
       </div>
+    </div>
     </div>
     </>
   );

@@ -10,51 +10,54 @@ export default function ClusterDashboard({
     clusterStatus,      
     clusterVersion,
     clusterDate,
-    nodeNumber
+    nodes,
+    setSelectedNode
   })   {
+
   //routing upon button click  
   const navigate = useNavigate();
-  const handleLoginClick = () => {
+  const handleLoginClick = (index) => {
+    setSelectedNode(index);
     navigate("/nodedashboard");
   };
 
   //node array
-  const nodes = Array.from({length: nodeNumber}, (_, i) => i + 1)
-  console.log(nodes)
+  const nodeNums = Array.from({length: nodes.length}, (_, i) => i + 1)
+  // console.log(nodes)
  
-
   //rendered elements to be returned
   return (
     <>
-    <NavbarDash/>
+    <NavbarDash />
       <div id="page">
-        <SideBar/>
+        <SideBar clusterName={clusterName}/>
 
         <div id='cluster-dashboard' className="dashboard">
 
           <div className="dashboard-title">
             <h1>Dashboard</h1> 
-            <h3>Cluster Name:  {"  "+ clusterName}</h3>           
+            <h4 style={{ color: 'black'}}>Cluster:  {"  "+ clusterName}</h4>           
           </div>
           
-
           <div className="widget-container">         
               <SmallWidget type={'Status'} metric={clusterStatus}/>
               <SmallWidget type={'Created'}  metric={clusterDate}/>
               <SmallWidget type={'Version'}  metric={clusterVersion}/>          
           </div>
+
           <div  className="nodes-div">
-          <h2>Cluster Nodes</h2>
+            <h2>Cluster Nodes</h2>
             <div className="node-container">
-                {nodes.map((button, index) => (
-                  <button key={index} className="node-circle" onClick={handleLoginClick}>
-                  Node{" "+ (index+1)}
-                  </button> 
-                ))}
+              {nodeNums.map((button, index) => (
+                <button key={index} className="node-circle" onClick={()=>handleLoginClick(index)}>
+                  <h2>Node{" "+ (index+1)}</h2>
+                  <h6>{nodes[index].name}</h6>               
+                </button> 
+              ))}
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </>
   );
