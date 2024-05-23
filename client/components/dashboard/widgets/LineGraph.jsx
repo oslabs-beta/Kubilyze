@@ -42,8 +42,12 @@ export const LineGraph = ({xData, yData, type}) => {
         display: true,
         title: {
           display: true,
-          text: 'Days Running (hours)'
+          text: 'Days Running'
         },
+        ticks:{
+          autoSkip: true,
+          maxTicksLimit:4
+        }
       },
       y: {
         // min:0.0745,

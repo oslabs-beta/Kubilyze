@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
 import {Graphs} from './widgets/Graphs.jsx';
 import { useNavigate } from "react-router-dom";
 import SideBar from './SideBar.jsx';
@@ -16,7 +16,7 @@ export default function ClusterDashboard({clusterName, nodes, selectedNode, pods
 
   //upon render of page fetch node metrics and set pods
   // useEffect(() => {
-  //   fetch("http://localhost:3000/api/clusters", {
+  //   fetch("http://localhost:3000/api/metrics/first-cluster/test", {
   //     method: "GET",
   //     headers: {
   //       "Content-Type": "application/json",
@@ -26,15 +26,16 @@ export default function ClusterDashboard({clusterName, nodes, selectedNode, pods
   //       return res.json();
   //     })
   //     .then((data) => {
-  //       setPods(data.clusters[0].name);
+  //       console.log(data[data.length-1].Values[0])
+  //       setPods(data[data.length-1].Values[0]);
   //     })
   //     .catch((err) => console.log("err:", err));
   // }, []);
-
+ 
 
   //pod array
-  const podNums = Array.from({length: pods.length}, (_, i) => i + 1)
-  
+  const podNums = Array.from({length: pods}, (_, i) => i + 1)
+  console.log("pod" + podNums)
   //rendered elements to be returned
   return (
     <>
@@ -64,7 +65,7 @@ export default function ClusterDashboard({clusterName, nodes, selectedNode, pods
               <h2>Node Pods</h2>
               <div className="node-container">
                   {podNums.map((button, index) => (
-                    <button key={index} className="node-circle" onClick={()=>handleLoginClick(index)}>
+                    <button key={index} className="pod-circle" onClick={()=>handleLoginClick(index)}>
                       <h2>Pod{" "+ (index+1)}</h2>
                       {/* <h6>{pods[index]}</h6> */}                
                     </button> 

@@ -5,7 +5,7 @@ import NavbarDash from "../NavbarDash.jsx";
 import {SmallWidget} from './widgets/SmallWidget.jsx';
 
 export default function PodDashboard({pods, selectedPod, selectedNode, clusterName, nodes}) {
-
+  console.log("pods"+ pods);
   //rendered elements to be returned
   return (
     <>

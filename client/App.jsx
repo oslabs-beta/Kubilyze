@@ -67,10 +67,12 @@ const [pods, setPods] = useState([{},{}]);
               clusterDate={clusterDate}          
               nodes={nodes}
               setSelectedNode={setSelectedNode}
+              pods={pods} 
+              setPods={setPods} 
             />
           }
         />
-        <Route path="/nodedashboard" element={<NodeDashboard   clusterName={clusterName} nodes={nodes} selectedNode={selectedNode} pods={pods} setPods={setPods} setSelectedPod={setSelectedPod} />} />
+        <Route path="/nodedashboard" element={<NodeDashboard clusterName={clusterName} nodes={nodes} selectedNode={selectedNode} pods={pods} setPods={setPods} setSelectedPod={setSelectedPod} />} />
         <Route path="/poddashboard" element={<PodDashboard clusterName={clusterName} pods={pods} nodes={nodes} selectedNode={selectedNode} selectedPod={selectedPod} />} />
       </Routes>
     </BrowserRouter>
