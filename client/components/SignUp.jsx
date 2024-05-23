@@ -59,7 +59,7 @@ export default function SignUp() {
           <input type="text" id="password" placeholder="Password" value={password} name="password" onChange={(e)=> setPassword(e.target.value)} />
         </div>
         <div className="formGroup">
-          <input type="text" id="password" placeholder="Password" value={cPassword} name="password" onChange={(e)=> setCpassword(e.target.value)}/>
+          <input type="text" id="password" placeholder="Confirm Password" value={cPassword} name="password" onChange={(e)=> setCpassword(e.target.value)}/>
         </div>
         <div className="submit">
           <button onClick={handleLoginClick}>Submit</button>
