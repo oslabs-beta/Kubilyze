@@ -42,12 +42,12 @@ export default function LoginForm() {
       <div id="loginform">
         <h1 className="title">Login to Kubilyze</h1>
         <div className="formGroup">
-          <label htmlFor="username">Username:</label>
-          <input type="text" id="username" value={username} name="username" onChange={(e)=> setUsername(e.target.value)} />
+          {/* <label htmlFor="username">Username:</label> */}
+          <input type="text" id="username" placeholder="Username" value={username} name="username" onChange={(e)=> setUsername(e.target.value)} />
         </div>
         <div className="formGroup">
-          <label htmlFor="password">Password:</label>
-          <input type="text" id="password" value ={password} name="password" onChange={(e)=> setPassword(e.target.value)} />
+          {/* <label htmlFor="password">Password:</label> */}
+          <input type="text" id="password" placeholder="Password"value ={password} name="password" onChange={(e)=> setPassword(e.target.value)} />
         </div>
         <div className="submit">
           <button onClick={handleLoginClick}>Submit</button>

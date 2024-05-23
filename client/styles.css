@@ -34,7 +34,6 @@ body {
 
 .fullLogo img{
   width: 100%;
-  opacity: 0.75;
 }
 
 .logo{
@@ -99,7 +98,7 @@ body {
 .nav-links {
   display: flex;
   gap: 20px;
-  margin-left: 100px;
+  margin-left: 40px;
 
 }
 
@@ -135,15 +134,14 @@ body {
 
 /* ----------LOGIN PAGE ----------*/
 #loginform {
-  background-color: #68abd8;
+  background-color: #fcfcfc;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: fit-content;
   padding: 40px;
-  border: 1px solid #ccc;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(56, 56, 56, 0.1);
   margin-top: 150px;
 }
 
@@ -151,7 +149,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  background-color: hsl(0, 0%, 94%);
+
 }
 
 .title {
@@ -163,6 +162,22 @@ body {
   margin-bottom: 15px;
 }
 
+#username {
+  width: 250px;
+  background-color: #DFE5F6;
+  border-radius: 10px;
+  border: none;
+  padding: 15px;
+}
+
+#password {
+  width: 250px;
+  background-color: #DFE5F6;
+  border-radius: 10px;
+  border: none;
+  padding: 15px;
+}
+
 .account {
   margin-top: 40px;
   margin-bottom: 5px;
@@ -172,12 +187,12 @@ body {
 .signup {
   margin-top: 5px;
   text-decoration: none;
-  color: rgb(248, 248, 248); /* Adjust color as needed */
+  color: #343940; /* Adjust color as needed */
 }
 
 .submit button{
   margin-top: 10px;
-  background-color: #4CAF50; /* Change the button color as needed */
+  background-color: #3C4756; /* Change the button color as needed */
   color: white;
   border: none;
   padding: 10px 20px;

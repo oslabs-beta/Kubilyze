@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import NavbarDash from "./NavbarDash.jsx";
 
-
 export const ClusterCircle = ({
   clusterName,
   setClusterName,
@@ -30,10 +29,11 @@ export const ClusterCircle = ({
         return res.json();
       })
       .then((data) => {
-        setClusterName(data[0].name);
-        setClusterStatus(data[0].status);
-        setClusterVersion(data[0].version);
-        setClusterDate(data[0].createdAt);
+        console.log(data);
+        setClusterName(data.clusters[0].name);
+        setClusterStatus(data.clusters[0].status);
+        setClusterVersion(data.clusters[0].version);
+        setClusterDate(data.clusters[0].createdAt);
       })
       .catch((err) => console.log("err:", err));
   }, []);
@@ -41,13 +41,9 @@ export const ClusterCircle = ({
   //rendered elements to be returned
   return (
     <>
-    <NavbarDash/>
+      <NavbarDash />
       <div id="cluster-area">
-        <button
-          
-          className="cluster-circle"
-          onClick={handleLoginClick}
-        >
+        <button className="cluster-circle" onClick={handleLoginClick}>
           {clusterName}
         </button>
       </div>
