@@ -4,13 +4,10 @@ import SideBar from "./dashboard/SideBar.jsx";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar.jsx";
 
-
-// import { useNavigate } from "react-router-dom";
-// import "../styles.css";
-
 export default function LoginForm({setUsername, username}) {
   const navigate = useNavigate();
   const [password, setPassword] = useState('')
+
   const handleLoginClick = () => {
     fetch('http://localhost:3000/user/signin', {
       method: "POST",
@@ -18,23 +15,27 @@ export default function LoginForm({setUsername, username}) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({username, password})
-  })
-  .then(async (data)=> {
-    if(data.ok) return data.json()
-    const log = await data.json()
-    console.log(log)
-    alert(log)
-  })
-.then((user)=> {
-  if(user) {
-    console.log(user.username)
-    setUsername(user.username)
-    navigate('/selectcluster')
-  }
-  setUsername('')
-  setPassword('')
-
-})
+    })
+    .then(async (data)=> {
+      //checking if response status is ok, continue to parse body of response object
+      if(data.ok) return data.json()
+        // if response status is not ok, parse body of response for the error 'String' and alert
+      // it to the screen
+      const log = await data.json()
+      console.log(log)
+      alert(log)
+    })
+    .then((user)=> {
+      // if user argument exist, then all previous checks passed and user from server 
+      // is passed in and page navigates to '/selectcluster' page
+      if(user) {
+        console.log(user.username)
+        setUsername(user.username)
+        navigate('/selectcluster')
+      }
+      setUsername('')
+      setPassword('')
+    })
   };
 
   return (

@@ -36,6 +36,7 @@ export default function ClusterDashboard({clusterName, nodes, selectedNode, pods
   //pod array
   const podNums = Array.from({length: pods.length}, (_, i) => i + 1)
   console.log("pod" + podNums)
+  console.log("Test"+pods);
   //rendered elements to be returned
   return (
     <>
