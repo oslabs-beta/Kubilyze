@@ -29,9 +29,8 @@ export default function LoginForm({setUsername, username}) {
       // if user argument exist, then all previous checks passed and user from server 
       // is passed in and page navigates to '/selectcluster' page
       if(user) {
-        console.log(user.username)
         setUsername(user.username)
-        navigate('/selectcluster')
+        navigate('/selectcluster', {state: {username: username}})
       }
       setUsername('')
       setPassword('')

@@ -10,7 +10,7 @@ export default function NavbarDash({ username }) {
     console.log(username)
     navigate("/login");
   };
-
+  console.log("nav" + username)
   return (
     <>
       <div id="navbar">
