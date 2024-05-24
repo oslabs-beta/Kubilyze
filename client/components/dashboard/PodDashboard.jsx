@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {Graphs} from './widgets/Graphs.jsx';
-import SideBar from './SideBar.jsx';
+import SideBarPods2 from './SideBarPods2.jsx';
 import NavbarDash from "../NavbarDash.jsx";
 import {SmallWidget} from './widgets/SmallWidget.jsx';
 
@@ -11,7 +11,7 @@ export default function PodDashboard({pods, selectedPod, selectedNode, clusterNa
     <>
       <NavbarDash/>
         <div id="page">
-          <SideBar/>
+          <SideBarPods2/>
 
           <div id='cluster-dashboard' className="dashboard">
 

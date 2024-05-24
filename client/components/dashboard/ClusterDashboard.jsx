@@ -13,7 +13,8 @@ export default function ClusterDashboard({
     nodes,
     setSelectedNode,
     pods,
-    setPods
+    setPods, 
+    username
   })   {
 
   //routing upon button click  
@@ -46,21 +47,21 @@ export default function ClusterDashboard({
   //rendered elements to be returned
   return (
     <>
-    <NavbarDash />
+    <NavbarDash username={username}/>
       <div id="page">
         <SideBar clusterName={clusterName}/>
 
         <div id='cluster-dashboard' className="dashboard">
 
           <div className="dashboard-title">
-            <h1>Dashboard</h1> 
-            <h4 style={{ color: 'black'}}>Cluster:  {"  "+ clusterName}</h4>           
+            <h1>Cluster Dashboard</h1> 
+            <h4 style={{ color: 'grey'}}>{"  "+ clusterName}</h4>                     
           </div>
           
           <div className="widget-container">         
-              <SmallWidget type={'Status'} metric={clusterStatus}/>
-              <SmallWidget type={'Created'}  metric={clusterDate}/>
-              <SmallWidget type={'Version'}  metric={clusterVersion}/>          
+              <SmallWidget type={'Status:'} metric={clusterStatus}/>
+              <SmallWidget type={'Created:'}  metric={clusterDate}/>
+              <SmallWidget type={'Version:'}  metric={clusterVersion}/>          
           </div>
 
           <div  className="nodes-div">

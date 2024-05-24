@@ -28,10 +28,10 @@ userController.signIn = (req, res, next)=> {
                 res.locals.user = data
                 return next()
             }
-         res.status(400).json('password is wrong')
+         res.status(400).json('Password is incorrect')
         })}
         else{
-            res.status(400).json('username doesnt exist')
+            res.status(400).json('Username does not exist')
         }
     })
     .catch((e)=> {

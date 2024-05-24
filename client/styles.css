@@ -1,3 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+.roboto-thin {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.roboto-light {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.roboto-regular {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-medium {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-bold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.roboto-black {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.roboto-thin-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.roboto-light-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.roboto-regular-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.roboto-medium-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.roboto-bold-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.roboto-black-italic {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+
 /* Reset some default browser styles */
 * {
   margin: 0;
@@ -7,7 +83,7 @@
 
 body {
   margin: 0;
-  font-family: Roboto-regular, sans-serif;
+  font-family: "Roboto", sans-serif;
   
 }
 /* ----------HOMEPAGE ----------*/
@@ -74,7 +150,7 @@ body {
   /* justify-content: space-between; */
 
   align-items: center;
-  background-color: #2087cb; /* You can change the background color as needed */
+  background-color: #19648D; /* You can change the background color as needed */
   padding: 20px 50px;
   position: fixed;
   top: 0;
@@ -102,6 +178,10 @@ body {
   justify-content: right;
 }
 
+.rightside a{
+  color: #efefef;
+}
+
 .nav-links {
   display: flex;
   gap: 20px;
@@ -110,7 +190,7 @@ body {
 }
 
 .nav-links a {
-  color: rgb(0, 0, 0);
+  color: #efefef;
   text-decoration: none;
   padding: 7px;
 
@@ -118,6 +198,7 @@ body {
 
 .nav-links a:hover {
   background-color: #e1e1e1; /* Change the hover color as needed */
+  color: rgb(48, 48, 48);
   border-radius: 4px;
 }
 
@@ -213,7 +294,7 @@ body {
 
 .signup:hover{
   color: #1F87CA;
-  border: 1px solid #1F87CA;
+  border: 1px solid #19648D;
 
 }
 
@@ -229,7 +310,7 @@ body {
 }
 
 .submit button:hover {
-  background-color: #1F87CA; /* Change the button color as needed */
+  background-color:  #19648D; /* Change the button color as needed */
 }
 
 /* ----------METRIC PAGES----------*/
@@ -239,7 +320,7 @@ body {
   top:75px;
   display: flex;
   /* height should ideally based on media query */
-  height: 800px;
+  height: auto;
   background-color:  hsl(210, 5%, 93%);
 
 }
@@ -277,9 +358,11 @@ body {
   float: left;
   overflow: hidden;
   background-color: none;
-  position: relative;
+  /* position: relative; */
   border-radius: 10px;
-
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 
 }
 /* Dropdown button */
@@ -297,7 +380,7 @@ body {
 
 /* Add a  background color to navbar links on hover */
 .sidebarMenu a:hover, .dropdown:hover .dropbtn {
-  background-color: #1F87CA;
+  background-color: #19648C;
   color: white;
   width: 100%;
   text-align: left;
@@ -325,7 +408,7 @@ body {
 
 /* Add a grey background color to dropdown links on hover */
 .dropdown-content a:hover {
-  background-color: rgb(217, 148, 229);
+  background-color: #19648C;
 }
 
 /* Show the dropdown menu on hover */
@@ -350,6 +433,7 @@ margin-bottom:20px;
 } */
 .dashboard h2, h4{
   color: hsl(0, 0%, 31%);
+  font-size: medium;
   margin-bottom: 10px;
   font-weight: bolder;
 }
@@ -383,9 +467,11 @@ margin-bottom:20px;
 .widget{
   display:flex;
   flex-direction:column;
+  align-items: center;
+  justify-content: center;
   /* justify-content: space-around; */
   padding:15px;
-  margin-top: 20px;
+  margin-top: 10px;
   border-radius: 5px;
   background-color: hsl(0, 0%, 100%);
   height: 150px;
@@ -429,7 +515,7 @@ margin-bottom:20px;
   background-color:  #e8f5ee;
   margin: 0 auto;
   border: 3px solid #31a870;
-  box-shadow: 0 2px 6px 0 hsla(0,0%,0%,0.2);
+  box-shadow: 0 4px 6px 0 hsla(0,0%,0%,0.2);
   color: hsl(0, 0%, 25%) ;
   font-size: large;
 
@@ -458,20 +544,23 @@ margin-bottom:20px;
   width: 100%;
   /* background-color: hsl(0, 0%, 100%); */
   display:flex;
+  margin-top: 20px;
   justify-content: space-around;
   border-radius: 10px;
   background-color: hsl(0, 0%, 100%);
-
   box-shadow: 0 2px 6px 0 hsla(0,0%,0%,0.2);
-
+  padding: 30px;
 }
 #graphs{
   display:flex;
   flex-direction:column;
-  width: 50%;
+  width:100%;
 
 }
-canvas {width:600px; }
+canvas {width:500px; }
+
+
+
 
 
 

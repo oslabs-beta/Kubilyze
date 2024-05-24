@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {Graphs} from './widgets/Graphs.jsx';
 import { useNavigate } from "react-router-dom";
-import SideBar from './SideBar.jsx';
+import SideBarPods from './SideBarPods.jsx';
 import NavbarDash from "../NavbarDash.jsx";
 import {SmallWidget} from './widgets/SmallWidget.jsx';
 
@@ -36,19 +36,20 @@ export default function ClusterDashboard({clusterName, nodes, selectedNode, pods
   //pod array
   const podNums = Array.from({length: pods.length}, (_, i) => i + 1)
   console.log("pod" + podNums)
+  console.log("Test"+pods);
   //rendered elements to be returned
   return (
     <>
       <NavbarDash/>
         <div id="page">
-          <SideBar/>
+          <SideBarPods/>
 
           <div id='node-dashboard' className="dashboard">
 
             <div className="dashboard-title">
-              <h1>Dashboard</h1> 
+              <h1>Node Dashboard</h1> 
               <h4>Cluster:  {"  "+ clusterName}</h4> 
-              <h4 style={{ color: 'black'}} >Node:  {"  "+ nodes[selectedNode].name}</h4>                     
+              <h4 style={{ color: 'grey'}}>  Node:  {"  "+ nodes[selectedNode].name}</h4>                     
             </div>
 
             <div id="graph-area">
@@ -56,9 +57,9 @@ export default function ClusterDashboard({clusterName, nodes, selectedNode, pods
             </div>
 
             <div className="widget-container">         
-                <SmallWidget type={'Status'} metric={nodes[selectedNode].state}/>
-                <SmallWidget type={'Created'}  metric={nodes[selectedNode].launchTime}/>
-                <SmallWidget type={'Instance'}  metric={nodes[selectedNode].instanceId}/>      
+                <SmallWidget type={'Status:'} metric={nodes[selectedNode].state}/>
+                <SmallWidget type={'Created:'}  metric={nodes[selectedNode].launchTime}/>
+                <SmallWidget type={'Instance:'}  metric={nodes[selectedNode].instanceId}/>      
             </div>
 
             <div  className="nodes-div">
