@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import NavbarDash from "./NavbarDash.jsx";
 
 export const ClusterCircle = ({
@@ -8,14 +8,19 @@ export const ClusterCircle = ({
   setClusterStatus,
   setClusterVersion,
   setClusterDate,
-  setNodes,
-  username
+  setNodes
+ 
 }) => {
   //routing upon button click
   const navigate = useNavigate();
   const handleLoginClick = () => {
     navigate("/clusterdashboard");
   };
+  const location = useLocation();
+  const {state} = location;
+  let username = state.username;
+  
+  // console.log("circle comp" + username)
 
   //temporarily turn off fetching and hard code data in
   //fetch request to server for cluster metrics
