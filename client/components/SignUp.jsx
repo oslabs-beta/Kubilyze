@@ -2,16 +2,16 @@ import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar.jsx"
 
-export default function SignUp() {
+export default function SignUp({setUsername}) {
   const navigate = useNavigate();
-  const handleLoginClick = () => {
+  const handleSignUpClick = () => {
     if(password === cPassword){
     fetch('http://localhost:3000/user/signup', {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({username, password})
+      body: JSON.stringify({username: inputUser, password})
   })
   .then((res)=> {
     if(res.ok) return res.json()
@@ -23,8 +23,9 @@ export default function SignUp() {
       setUsername(data.username)
       navigate("/AddCluster");
     } 
-    setUsername('')
+    setInputUser('')
     setPassword('')
+    setCpassword('')
   })
   .catch((e)=> {
     console.log(e)
@@ -33,14 +34,14 @@ export default function SignUp() {
   }
   else{
     alert("Password's don't match")
-    setUsername('')
+    setInputUser('')
     setPassword('')
     setCpassword('')
   }
 
 };
 
-  const [username, setUsername] = useState('');
+  const [inputUser, setInputUser] = useState('');
   const [password, setPassword] = useState('');
   const [cPassword, setCpassword] = useState('');
 
@@ -54,7 +55,7 @@ export default function SignUp() {
       <div id="loginform">
         <h1 className="title">Create your  Account</h1>
         <div className="formGroup">
-          <input type="text" id="username" placeholder="Username" value={username} name="username" onChange={(e)=> setUsername(e.target.value)}/>
+          <input type="text" id="username" placeholder="Username" value={inputUser} name="username" onChange={(e)=> setInputUser(e.target.value)}/>
         </div>
         <div className="formGroup">
           <input type="password" id="password" placeholder="Password" value={password} name="password" onChange={(e)=> setPassword(e.target.value)} />
@@ -63,7 +64,7 @@ export default function SignUp() {
           <input type="password" id="password" placeholder="Confirm Password" value={cPassword} name="password" onChange={(e)=> setCpassword(e.target.value)}/>
         </div>
         <div className="submit">
-          <button onClick={handleLoginClick}>Submit</button>
+          <button onClick={handleSignUpClick}>Submit</button>
         </div>
       </div>
     </div>

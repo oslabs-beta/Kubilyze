@@ -4,17 +4,19 @@ import SideBar from "./dashboard/SideBar.jsx";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar.jsx";
 
-export default function LoginForm({setUsername, username}) {
+export default function LoginForm({setUsername}) {
   const navigate = useNavigate();
   const [password, setPassword] = useState('')
+  const [inputUser, setInputuser] = useState('')
 
   const handleLoginClick = () => {
+    console.log(inputUser)
     fetch('http://localhost:3000/user/signin', {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({username, password})
+      body: JSON.stringify({username: inputUser, password})
     })
     .then(async (data)=> {
       //checking if response status is ok, continue to parse body of response object
@@ -29,10 +31,11 @@ export default function LoginForm({setUsername, username}) {
       // if user argument exist, then all previous checks passed and user from server 
       // is passed in and page navigates to '/selectcluster' page
       if(user) {
+        console.log(user, 'here')
         setUsername(user.username)
-        navigate('/selectcluster', {state: {username: username}})
+        navigate('/selectcluster')
       }
-      setUsername('')
+      setInputuser('')
       setPassword('')
     })
   };
@@ -47,7 +50,7 @@ export default function LoginForm({setUsername, username}) {
         <h1 className="title">Sign in to Kubilyze</h1>
         <div className="formGroup">
           {/* <label htmlFor="username">Username:</label> */}
-          <input type="text" id="username" placeholder="Username" value={username} name="username" onChange={(e)=> setUsername(e.target.value)} />
+          <input type="text" id="username" placeholder="Username" value={inputUser} name="username" onChange={(e)=> setInputuser(e.target.value)} />
         </div>
         <div className="formGroup">
           {/* <label htmlFor="password">Password:</label> */}

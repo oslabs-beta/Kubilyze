@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function NavbarDash({ username }) {
   const navigate = useNavigate();
 
-  const handleLoginClick = () => {
+  const handleLogOutClick = () => {
     console.log(username)
     navigate("/login");
   };
@@ -29,7 +29,7 @@ export default function NavbarDash({ username }) {
           <a>Welcome, {username} </a>
           <div className="nav-links"></div>
           <div className="auth-button">
-            <button onClick={handleLoginClick}>Sign Out</button>
+            <button onClick={handleLogOutClick}>Sign Out</button>
           </div>
         </div>
       </div>

@@ -126,6 +126,7 @@ const App = () => {
   }
   
   ]);
+  console.log(username)
 
   //Returning all of our routes for our application
   //At each route rendering components 
@@ -134,9 +135,9 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<LoginForm setUsername={setUsername} username={username}/>} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/addcluster" element={<AddCluster />} />
+        <Route path="/login" element={<LoginForm setUsername={setUsername}/>} />
+        <Route path="/signup" element={<SignUp  setUsername={setUsername}/>} />
+        <Route path="/addcluster" element={<AddCluster username={username} />} />
         <Route
           path="/selectcluster"
           element={

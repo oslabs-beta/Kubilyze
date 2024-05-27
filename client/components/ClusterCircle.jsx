@@ -8,9 +8,11 @@ export const ClusterCircle = ({
   setClusterStatus,
   setClusterVersion,
   setClusterDate,
-  setNodes
+  setNodes,
+  username
  
 }) => {
+  console.log(username, 'here')
   //routing upon button click
   const navigate = useNavigate();
   const handleLoginClick = () => {
@@ -18,7 +20,7 @@ export const ClusterCircle = ({
   };
   const location = useLocation();
   const {state} = location;
-  let username = state.username;
+  // let username = state.username;
   
   // console.log("circle comp" + username)
 
