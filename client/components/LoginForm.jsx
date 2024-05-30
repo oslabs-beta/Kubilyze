@@ -6,20 +6,23 @@ import Navbar from "./Navbar.jsx";
 
 export default function LoginForm({setUsername}) {
   const navigate = useNavigate();
-  const [password, setPassword] = useState('')
-  const [inputUser, setInputuser] = useState('')
+  const [userInput, setUserInput] = useState({username: '', password: ''});
 
+  // this handle function handles all input fileds.
+  const handleUserInput = (e)=> {
+    setUserInput({...userInput, [e.target.name]: e.target.value})
+  }
   const handleLoginClick = () => {
-    console.log(inputUser)
+    console.log(userInput)
     fetch('http://localhost:3000/user/signin', {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({username: inputUser, password})
+      body: JSON.stringify(userInput)
     })
     .then(async (data)=> {
-      //checking if response status is ok, continue to parse body of response object
+      //checking if response status is ok, if so continue to parse body of response object and return user
       if(data.ok) return data.json()
         // if response status is not ok, parse body of response for the error 'String' and alert
       // it to the screen
@@ -31,12 +34,11 @@ export default function LoginForm({setUsername}) {
       // if user argument exist, then all previous checks passed and user from server 
       // is passed in and page navigates to '/selectcluster' page
       if(user) {
-        console.log(user, 'here')
         setUsername(user.username)
         navigate('/selectcluster')
       }
-      setInputuser('')
-      setPassword('')
+      // restting the input fields 
+     setUserInput({username: '', password: ''})
     })
   };
 
@@ -50,11 +52,11 @@ export default function LoginForm({setUsername}) {
         <h1 className="title">Sign in to Kubilyze</h1>
         <div className="formGroup">
           {/* <label htmlFor="username">Username:</label> */}
-          <input type="text" id="username" placeholder="Username" value={inputUser} name="username" onChange={(e)=> setInputuser(e.target.value)} />
+          <input type="text" id="username" placeholder="Username" value={userInput.username} name="username" onChange={handleUserInput} />
         </div>
         <div className="formGroup">
           {/* <label htmlFor="password">Password:</label> */}
-          <input type="password" id="password" placeholder="Password"value ={password} name="password" onChange={(e)=> setPassword(e.target.value)} />
+          <input type="password" id="password" placeholder="Password"value ={userInput.password} name="password" onChange={handleUserInput} />
         </div>
         <div className="submit">
           <button onClick={handleLoginClick}>Submit</button>
