@@ -4,20 +4,25 @@ import SideBar from "./dashboard/SideBar.jsx";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar.jsx";
 
-export default function LoginForm({setUsername, username}) {
+export default function LoginForm({setUsername}) {
   const navigate = useNavigate();
-  const [password, setPassword] = useState('')
+  const [userInput, setUserInput] = useState({username: '', password: ''});
 
+  // this handle function handles all input fileds.
+  const handleUserInput = (e)=> {
+    setUserInput({...userInput, [e.target.name]: e.target.value})
+  }
   const handleLoginClick = () => {
+    console.log(userInput)
     fetch('http://localhost:3000/user/signin', {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({username, password})
+      body: JSON.stringify(userInput)
     })
     .then(async (data)=> {
-      //checking if response status is ok, continue to parse body of response object
+      //checking if response status is ok, if so continue to parse body of response object and return user
       if(data.ok) return data.json()
         // if response status is not ok, parse body of response for the error 'String' and alert
       // it to the screen
@@ -30,10 +35,10 @@ export default function LoginForm({setUsername, username}) {
       // is passed in and page navigates to '/selectcluster' page
       if(user) {
         setUsername(user.username)
-        navigate('/selectcluster', {state: {username: username}})
+        navigate('/selectcluster')
       }
-      setUsername('')
-      setPassword('')
+      // restting the input fields 
+     setUserInput({username: '', password: ''})
     })
   };
 
@@ -47,11 +52,11 @@ export default function LoginForm({setUsername, username}) {
         <h1 className="title">Sign in to Kubilyze</h1>
         <div className="formGroup">
           {/* <label htmlFor="username">Username:</label> */}
-          <input type="text" id="username" placeholder="Username" value={username} name="username" onChange={(e)=> setUsername(e.target.value)} />
+          <input type="text" id="username" placeholder="Username" value={userInput.username} name="username" onChange={handleUserInput} />
         </div>
         <div className="formGroup">
           {/* <label htmlFor="password">Password:</label> */}
-          <input type="password" id="password" placeholder="Password"value ={password} name="password" onChange={(e)=> setPassword(e.target.value)} />
+          <input type="password" id="password" placeholder="Password"value ={userInput.password} name="password" onChange={handleUserInput} />
         </div>
         <div className="submit">
           <button onClick={handleLoginClick}>Submit</button>

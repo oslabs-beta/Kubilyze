@@ -6,14 +6,14 @@ import NavbarDash from "./NavbarDash.jsx";
 // import { useNavigate } from "react-router-dom";
 // import "../styles.css";
 
-export default function AddCluster() {
+export default function AddCluster({username}) {
   const navigate = useNavigate();
   const handleLoginClick = () => {
     navigate("/selectcluster");
   };
   return (
     <>
-    <NavbarDash/>
+    <NavbarDash username={username}/>
     <div className="entirepage">
     <div className="loginContainer">
       <div id="loginform">
