@@ -2,7 +2,10 @@ const AWS = require('../../config/aws-config');
 const cloudwatch = new AWS.CloudWatch({ region: process.env.AW_REGION });
 
 const cloudwatchController = {};
-//
+
+//From cloudwatch - 
+
+//Cluster Metrics : CPU/Memory utilization
 cloudwatchController.getMetrics = async (clusterName) => {
   console.log(clusterName);
   const params = {
@@ -12,7 +15,7 @@ cloudwatchController.getMetrics = async (clusterName) => {
         MetricStat: {
           Metric: {
             Namespace: 'ContainerInsights',
-            MetricName: 'container_cpu_utilization',
+            MetricName: 'container_cpu_utilization',//dimensions : necesary information to 
             Dimensions: [
               {
                 Name: 'ClusterName',
@@ -56,6 +59,7 @@ cloudwatchController.getMetrics = async (clusterName) => {
   }
 };
 
+//Node Metrics : CPU/Memory utilization, pod count
 cloudwatchController.getNodeMetrics = async (clusterName) => {
   const params = {
     MetricDataQueries: [

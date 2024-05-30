@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import Navbar from "./components/Navbar.jsx";
 import Home from "./components/Home.jsx";
 import LoginForm from "./components/LoginForm.jsx";
 import SignUp from "./components/SignUp.jsx";
@@ -10,8 +9,9 @@ import ClusterDashboard from "./components/dashboard/ClusterDashboard.jsx";
 import NodeDashboard from "./components/dashboard/NodeDashboard.jsx";
 import PodDashboard from "./components/dashboard/PodDashboard.jsx";
 
-//temporarily turn off fetching and hard code data in
+//
 const App = () => {
+  //To DO: temporarily turn off fetching and hard code data in
   const [clusterName, setClusterName] = useState("first-cluster");
   const [clusterStatus, setClusterStatus] = useState("ACTIVE");
   const [clusterVersion, setClusterVersion] = useState("1.29");
@@ -126,15 +126,18 @@ const App = () => {
   }
   
   ]);
+  console.log(username)
 
+  //Returning all of our routes for our application
+  //At each route rendering components 
+  //At each component passing down state as props
   return (
     <BrowserRouter>
-      {/* <Navbar /> */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<LoginForm setUsername={setUsername} username={username}/>} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/addcluster" element={<AddCluster />} />
+        <Route path="/login" element={<LoginForm setUsername={setUsername}/>} />
+        <Route path="/signup" element={<SignUp  setUsername={setUsername}/>} />
+        <Route path="/addcluster" element={<AddCluster username={username} />} />
         <Route
           path="/selectcluster"
           element={
@@ -162,7 +165,6 @@ const App = () => {
               pods={pods} 
               setPods={setPods} 
               username={username}
-
             />
           }
         />
@@ -177,7 +179,6 @@ const App = () => {
               setPods={setPods}
               setSelectedPod={setSelectedPod}
               username={username}
-
             />
           }
         />
@@ -191,7 +192,6 @@ const App = () => {
               selectedNode={selectedNode}
               selectedPod={selectedPod}
               username={username}
-
             />
           }
         />
