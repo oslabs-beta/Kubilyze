@@ -5,16 +5,15 @@ import SideBarPods from './SideBarPods.jsx';
 import NavbarDash from "../NavbarDash.jsx";
 import {SmallWidget} from './widgets/SmallWidget.jsx';
 
-
 export default function ClusterDashboard({clusterName, nodes, selectedNode, pods, setPods, setSelectedPod}) {
-  //routing upon button click  
+  //Routing upon button click  
   const navigate = useNavigate();
   const handleLoginClick = (index) => {
     setSelectedPod(index);
     navigate("/poddashboard");
   };
 
-  //upon render of page fetch node metrics and set pods
+  //Upon click fetch pod metrics 
   // useEffect(() => {
   //   fetch("http://localhost:3000/api/metrics/first-cluster/test", {
   //     method: "GET",
@@ -32,36 +31,29 @@ export default function ClusterDashboard({clusterName, nodes, selectedNode, pods
   //     .catch((err) => console.log("err:", err));
   // }, []);
  
-
-  //pod array
+  //Node array to map from
   const podNums = Array.from({length: pods.length}, (_, i) => i + 1)
-  console.log("pod" + podNums)
-  console.log("Test"+pods);
-  //rendered elements to be returned
+
+  //Rendered elements to be returned
   return (
     <>
       <NavbarDash/>
         <div id="page">
           <SideBarPods/>
-
           <div id='node-dashboard' className="dashboard">
-
             <div className="dashboard-title">
               <h1>Node Dashboard</h1> 
               <h4>Cluster:  {"  "+ clusterName}</h4> 
               <h4 style={{ color: 'grey'}}>  Node:  {"  "+ nodes[selectedNode].name}</h4>                     
             </div>
-
             <div id="graph-area">
-              <Graphs level={"node"}/>           
+              <Graphs level={"node"}/>          
             </div>
-
             <div className="widget-container">         
                 <SmallWidget type={'Status:'} metric={nodes[selectedNode].state}/>
                 <SmallWidget type={'Created:'}  metric={nodes[selectedNode].launchTime}/>
                 <SmallWidget type={'Instance:'}  metric={nodes[selectedNode].instanceId}/>      
             </div>
-
             <div  className="nodes-div">
               <h2>Node Pods</h2>
               <div className="node-container">
@@ -73,7 +65,6 @@ export default function ClusterDashboard({clusterName, nodes, selectedNode, pods
                   ))}
               </div>
             </div>
-
           </div>
         </div>  
     </>

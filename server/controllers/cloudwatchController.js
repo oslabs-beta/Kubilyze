@@ -124,7 +124,7 @@ cloudwatchController.getNodeMetrics = async (clusterName) => {
 
   try {
     const data = await cloudwatch.getMetricData(params).promise();
-    console.log('Metrics data:', JSON.stringify(data, null, 2));
+    // console.log('Metrics data:', JSON.stringify(data, null, 2));
     return data.MetricDataResults;
   } catch (err) {
     console.error('Error fetching metrics:', err);

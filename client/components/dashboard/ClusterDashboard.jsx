@@ -4,66 +4,59 @@ import SideBar from './SideBar.jsx';
 import {SmallWidget} from './widgets/SmallWidget.jsx';
 import NavbarDash from "../NavbarDash.jsx";
 
-
 export default function ClusterDashboard({
     clusterName,  
     clusterStatus,      
     clusterVersion,
     clusterDate,
     nodes,
-    setSelectedNode,
-    pods,
+    setSelectedNode,    
     setPods, 
     username
-  })   {
+  }) {
 
-  //routing upon button click  
+  //Routing upon button click  
   const navigate = useNavigate();
   const handleLoginClick = (index) => {
     setSelectedNode(index);
     navigate("/nodedashboard");
-   //fetch node metrics and set pods
-      fetch("http://localhost:3000/api/metrics/first-cluster/test", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          // console.log(data[data.length-1].Values[0])
-          setPods(data[data.length-1].Values[0]);
-        })
-        .catch((err) => console.log("err:", err));
-    
+
+  //->To DO: uncomment when fetch request can be made per specific node
+  //  //Upon click fetch node metrics and get number of pods
+  //     fetch("http://localhost:3000/api/metrics/first-cluster/test", {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     })
+  //       .then((res) => {
+  //         return res.json();
+  //       })
+  //       .then((data) => {
+  //         setPods(data[data.length-1].Values[0]);
+  //       })
+  //       .catch((err) => console.log("err:", err));    
   };
 
-  //node array
+  //Node array to map from
   const nodeNums = Array.from({length: nodes.length}, (_, i) => i + 1)
-  // console.log(nodes)
  
-  //rendered elements to be returned
+  //Rendered elements to be returned
   return (
     <>
     <NavbarDash username={username}/>
       <div id="page">
         <SideBar clusterName={clusterName}/>
-
         <div id='cluster-dashboard' className="dashboard">
-
           <div className="dashboard-title">
             <h1>Cluster Dashboard</h1> 
             <h4 style={{ color: 'grey'}}>{"  "+ clusterName}</h4>                     
-          </div>
-          
+          </div>          
           <div className="widget-container">         
               <SmallWidget type={'Status:'} metric={clusterStatus}/>
               <SmallWidget type={'Created:'}  metric={clusterDate}/>
               <SmallWidget type={'Version:'}  metric={clusterVersion}/>          
           </div>
-
           <div  className="nodes-div">
             <h2>Cluster Nodes</h2>
             <div className="node-container">
@@ -75,7 +68,6 @@ export default function ClusterDashboard({
               ))}
             </div>
           </div>
-
         </div>
       </div>
     </>

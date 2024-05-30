@@ -11,7 +11,7 @@ import PodDashboard from "./components/dashboard/PodDashboard.jsx";
 
 //
 const App = () => {
-  //To DO: temporarily turn off fetching and hard code data in
+  //->To DO: remove hard coded data when fetch requests are properly working
   const [clusterName, setClusterName] = useState("first-cluster");
   const [clusterStatus, setClusterStatus] = useState("ACTIVE");
   const [clusterVersion, setClusterVersion] = useState("1.29");
@@ -161,8 +161,7 @@ const App = () => {
               clusterVersion={clusterVersion}
               clusterDate={clusterDate}
               nodes={nodes}
-              setSelectedNode={setSelectedNode}
-              pods={pods} 
+              setSelectedNode={setSelectedNode}       
               setPods={setPods} 
               username={username}
             />
