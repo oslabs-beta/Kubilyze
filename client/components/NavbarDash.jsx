@@ -7,7 +7,7 @@ export default function NavbarDash({ username }) {
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
-    console.log(username)
+    // console.log(username)
     navigate("/login");
   };
 
@@ -26,7 +26,7 @@ export default function NavbarDash({ username }) {
           </Link>
         </div>
         <div className="rightside">
-          <a>Welcome, {username} </a>
+          <a>Welcome, Amy </a>
           <div className="nav-links"></div>
           <div className="auth-button">
             <button onClick={handleLoginClick}>Sign Out</button>

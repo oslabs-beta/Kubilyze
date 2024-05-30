@@ -342,6 +342,8 @@ body {
   flex-direction: column;
   width: 75%;
   margin-top: 50px;
+    text-align: left;
+
 
 }
 .sidebarMenu a {
@@ -376,6 +378,8 @@ body {
   background-color: inherit;
   font-family: inherit; /* Important for vertical align on mobile phones */
   margin: 0; /* Important for vertical align on mobile phones */
+  text-align: left;
+
 }
 
 /* Add a  background color to navbar links on hover */

@@ -19,7 +19,7 @@ export default function PodDashboard({pods, selectedPod, selectedNode, clusterNa
               <h1>Dashboard</h1> 
               <h4>Cluster:  {"  "+ clusterName}</h4> 
               <h4>Node:  {"  "+ nodes[selectedNode].name}</h4>
-              <h4 style={{ color: 'black'}} >Pod:  {"  "+ pods[selectedNode].name}</h4>                        
+              <h4 style={{ color: 'grey'}} >Pod:  {"  "+ pods[selectedNode].name}</h4>                        
             </div>
 
             <div id="graph-area">

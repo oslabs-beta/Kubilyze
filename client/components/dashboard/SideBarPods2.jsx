@@ -13,10 +13,9 @@ export default function SideBarPods({ clusterName, nodeNumber }) {
     <div className="sidebar">
       <div class="sidebarMenu">
         <a href="/selectcluster">Cluster first-cluster</a>
-        <a href="/nodedashboard">Node 2</a>
         <div class="dropdown">
         <button class="dropbtn">
-            Node 5
+            Node 2
             <i class="fa fa-caret-down" style={{ marginLeft: "5px" }}></i>
           </button>
           <div class="dropdown-content">
