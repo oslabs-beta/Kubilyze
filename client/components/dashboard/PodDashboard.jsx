@@ -4,7 +4,15 @@ import SideBarPods2 from './SideBarPods2.jsx';
 import NavbarDash from "../NavbarDash.jsx";
 import {SmallWidget} from './widgets/SmallWidget.jsx';
 
-export default function PodDashboard({pods, selectedPod, selectedNode, clusterName, nodes}) {
+export default function PodDashboard({
+  username,
+  clusterName, 
+  nodes,
+  selectedNode,
+  pods,
+  selectedPod, 
+  podData
+}) {
  
   //Rendered elements to be returned
   return (

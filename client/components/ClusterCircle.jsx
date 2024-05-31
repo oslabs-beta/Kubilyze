@@ -3,23 +3,20 @@ import { useNavigate, useLocation } from "react-router-dom";
 import NavbarDash from "./NavbarDash.jsx";
 
 export const ClusterCircle = ({
+  username,
   clusterName,
   setClusterName,
-  setClusterStatus,
-  setClusterVersion,
-  setClusterDate,
+  setClusters,
+  setSelectedCluster,
   setNodes,
-  username
- 
 }) => {
-  //routing upon button click
+  //Routing upon button click
   const navigate = useNavigate();
   const handleLoginClick = () => {
     navigate("/clusterdashboard");
   };
-
-  //temporarily turn off fetching and hard code data in
-  //Fetch request to server for cluster metrics
+  
+  //Upon full page load, fetch cluster info and node identities for rendering on next page, PodDashboard
   useEffect(() => {
     fetch("http://localhost:3000/api/clusters", {
       method: "GET",
@@ -32,9 +29,8 @@ export const ClusterCircle = ({
       })
       .then((data) => {
         setClusterName(data.clusters[0].name);
-        setClusterStatus(data.clusters[0].status);
-        setClusterVersion(data.clusters[0].version);
-        setClusterDate(data.clusters[0].createdAt);
+    
+        setClusters(data.clusters);
         setNodes(data.nodes[0].nodes);       
       })
       .catch((err) => console.log("err:", err));

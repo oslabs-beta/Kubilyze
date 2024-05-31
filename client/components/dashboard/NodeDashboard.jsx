@@ -5,7 +5,16 @@ import SideBarPods from './SideBarPods.jsx';
 import NavbarDash from "../NavbarDash.jsx";
 import {SmallWidget} from './widgets/SmallWidget.jsx';
 
-export default function ClusterDashboard({clusterName, nodes, selectedNode, pods, setPods, setSelectedPod, nodeData}) {
+export default function NodeDashboard({
+  username,
+  clusterName, 
+  nodes, 
+  selectedNode,
+  nodeData, 
+  pods,  
+  setSelectedPod, 
+  setPodData
+}) {
   //Routing upon button click  
   const navigate = useNavigate();
   const handleLoginClick = (index) => {
@@ -13,7 +22,7 @@ export default function ClusterDashboard({clusterName, nodes, selectedNode, pods
     navigate("/poddashboard");
   };
 
-  //Upon click fetch pod metrics 
+  //Upon click, fetch podData for graphs for rendering on next page, PodDashboard 
   // useEffect(() => {
   //   fetch("http://localhost:3000/api/metrics/first-cluster/test", {
   //     method: "GET",

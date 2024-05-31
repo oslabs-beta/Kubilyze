@@ -15,10 +15,8 @@ const App = () => {
   const [username, setUsername] = useState('');
   //State related to Clusters
   const [clusterName, setClusterName] = useState("");
-  const [clusterStatus, setClusterStatus] = useState("");
-  const [clusterVersion, setClusterVersion] = useState("");
-  const [clusterDate, setClusterDate] = useState("");
-
+  const [clusters, setClusters] = useState([]);
+  const [selectedCluster, setSelectedCluster] = useState(0);
   //State related to Nodes
   const [nodes, setNodes] = useState([]);
   const [selectedNode, setSelectedNode] = useState(0);
@@ -70,6 +68,7 @@ const App = () => {
   
   ]);
   const [selectedPod, setSelectedPod] = useState(0);
+  const [podData, setPodData] = useState(); 
 
   //Returning all of our routes for our application
   //At each route rendering components 
@@ -85,13 +84,12 @@ const App = () => {
           path="/selectcluster"
           element={
             <ClusterCircle
+              username={username}
               clusterName={clusterName}
               setClusterName={setClusterName}
-              setClusterStatus={setClusterStatus}
-              setClusterVersion={setClusterVersion}
-              setClusterDate={setClusterDate}
+              setClusters={setClusters}
+              setSelectedCluster={setSelectedCluster}
               setNodes={setNodes}
-              username={username}
             />
           }
         />
@@ -99,16 +97,13 @@ const App = () => {
           path="/clusterdashboard"
           element={
             <ClusterDashboard
-              clusterName={clusterName}
-              clusterStatus={clusterStatus}
-              clusterVersion={clusterVersion}
-              clusterDate={clusterDate}
-              nodes={nodes}
-              setSelectedNode={setSelectedNode}       
-              setPods={setPods} 
               username={username}
-              setNodeData={setNodeData}     
-              nodeData={nodeData}     
+              clusterName={clusterName}
+              clusters={clusters}
+              nodes={nodes}
+              setSelectedNode={setSelectedNode}
+              setNodeData={setNodeData}        
+              setPods={setPods}              
             />
           }
         />
@@ -116,14 +111,14 @@ const App = () => {
           path="/nodedashboard"
           element={
             <NodeDashboard
+              username={username}
               clusterName={clusterName}
               nodes={nodes}
               selectedNode={selectedNode}
-              pods={pods}
-              setPods={setPods}
-              setSelectedPod={setSelectedPod}
-              username={username}
               nodeData={nodeData}
+              pods={pods}
+              setSelectedPod={setSelectedPod}
+              setPodData={setPodData}   
             />
           }
         />
@@ -131,12 +126,13 @@ const App = () => {
           path="/poddashboard"
           element={
             <PodDashboard
+              username={username}
               clusterName={clusterName}
-              pods={pods}
               nodes={nodes}
               selectedNode={selectedNode}
+              pods={pods}
               selectedPod={selectedPod}
-              username={username}
+              podData={podData}
             />
           }
         />

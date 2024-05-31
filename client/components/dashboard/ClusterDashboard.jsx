@@ -5,16 +5,13 @@ import {SmallWidget} from './widgets/SmallWidget.jsx';
 import NavbarDash from "../NavbarDash.jsx";
 
 export default function ClusterDashboard({
-    clusterName,  
-    clusterStatus,      
-    clusterVersion,
-    clusterDate,
+    username,
+    clusterName, 
+    clusters,
     nodes,
     setSelectedNode,    
-    setPods, 
-    username,
-    setNodeData,
-    nodeData
+    setNodeData, 
+    setPods,   
   }) {
 
   //Routing upon button click  
@@ -22,9 +19,8 @@ export default function ClusterDashboard({
   const handleLoginClick = (index) => {
     setSelectedNode(index);
     
-
-  //->To DO: uncomment when fetch request can be made per specific node
-   //Upon click fetch node metrics and get number of pods
+    //->ToDo: backend edit api request to get podData
+    //Upon click, fetch nodeData for graphs and pod identities for rendering on next page, NodeDashboard
       fetch(`http://localhost:3000/api/metrics/${clusterName}/${nodes[index].instanceId}/${nodes[index].name}`, {
         method: "GET",
         headers: {
@@ -58,9 +54,9 @@ export default function ClusterDashboard({
             <h4 style={{ color: 'grey'}}>{"  "+ clusterName}</h4>                     
           </div>          
           <div className="widget-container">         
-              <SmallWidget type={'Status:'} metric={clusterStatus}/>
-              <SmallWidget type={'Created:'}  metric={clusterDate}/>
-              <SmallWidget type={'Version:'}  metric={clusterVersion}/>          
+              <SmallWidget type={'Status:'} metric={clusters[0].status}/>
+              <SmallWidget type={'Created:'}  metric={clusters[0].createdAt}/>
+              <SmallWidget type={'Version:'}  metric={clusters[0].version}/>    
           </div>
           <div  className="nodes-div">
             <h2>Cluster Nodes</h2>
