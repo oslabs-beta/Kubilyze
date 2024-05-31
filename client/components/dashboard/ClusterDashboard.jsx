@@ -7,7 +7,7 @@ import NavbarDash from "../NavbarDash.jsx";
 export default function ClusterDashboard({
     username,
     clusterName, 
-    clusters,
+    cluster,
     nodes,
     setSelectedNode,    
     setNodeData, 
@@ -54,9 +54,9 @@ export default function ClusterDashboard({
             <h4 style={{ color: 'grey'}}>{"  "+ clusterName}</h4>                     
           </div>          
           <div className="widget-container">         
-              <SmallWidget type={'Status:'} metric={clusters[0].status}/>
-              <SmallWidget type={'Created:'}  metric={clusters[0].createdAt}/>
-              <SmallWidget type={'Version:'}  metric={clusters[0].version}/>    
+              <SmallWidget type={'Status:'} metric={cluster[0].status}/>
+              <SmallWidget type={'Created:'}  metric={cluster[0].createdAt}/>
+              <SmallWidget type={'Version:'}  metric={cluster[0].version}/>    
           </div>
           <div  className="nodes-div">
             <h2>Cluster Nodes</h2>

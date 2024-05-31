@@ -15,8 +15,7 @@ const App = () => {
   const [username, setUsername] = useState('');
   //State related to Clusters
   const [clusterName, setClusterName] = useState("");
-  const [clusters, setClusters] = useState([]);
-  const [selectedCluster, setSelectedCluster] = useState(0);
+  const [cluster, setCluster] = useState([]);
   //State related to Nodes
   const [nodes, setNodes] = useState([]);
   const [selectedNode, setSelectedNode] = useState(0);
@@ -87,8 +86,7 @@ const App = () => {
               username={username}
               clusterName={clusterName}
               setClusterName={setClusterName}
-              setClusters={setClusters}
-              setSelectedCluster={setSelectedCluster}
+              setCluster={setCluster}
               setNodes={setNodes}
             />
           }
@@ -99,7 +97,7 @@ const App = () => {
             <ClusterDashboard
               username={username}
               clusterName={clusterName}
-              clusters={clusters}
+              cluster={cluster}
               nodes={nodes}
               setSelectedNode={setSelectedNode}
               setNodeData={setNodeData}        

@@ -40,7 +40,7 @@ export default function NodeDashboard({
   //     .catch((err) => console.log("err:", err));
   // }, []);
  
-  //Node array to map from
+  //Pod array to map from
   const podNums = Array.from({length: pods.length}, (_, i) => i + 1)
 
   //Rendered elements to be returned

@@ -6,8 +6,7 @@ export const ClusterCircle = ({
   username,
   clusterName,
   setClusterName,
-  setClusters,
-  setSelectedCluster,
+  setCluster,
   setNodes,
 }) => {
   //Routing upon button click
@@ -28,15 +27,15 @@ export const ClusterCircle = ({
         return res.json();
       })
       .then((data) => {
-        setClusterName(data.clusters[0].name);
-    
-        setClusters(data.clusters);
+        setClusterName(data.clusters[0].name);    
+        setCluster(data.clusters);
         setNodes(data.nodes[0].nodes);       
       })
       .catch((err) => console.log("err:", err));
   }, []);
 
-  //rendered elements to be returned
+
+  //Rendered elements to be returned
   return (
     <>
       <NavbarDash username={username}/>
