@@ -7,11 +7,7 @@ const { newContexts } = require('@kubernetes/client-node/dist/config_types');
 const metricsRouter = express.Router();
 
 // Cluster Metrics Slide : from EKS Controllers
-metricsRouter.get(
-  '/clusters',
-  eks.describeClusters,
-  eks.describeNodes,
-  (req, res, next) => {
+metricsRouter.get('/clusters',eks.describeClusters,eks.describeNodes, (req, res, next) => {
     res.status(200).json({
       clusters: res.locals.clusterInfo,
       nodes: res.locals.nodeGroupsDetails,
@@ -31,18 +27,30 @@ metricsRouter.get('/metrics/:clusterName', async (req, res, next) => {
   }
 });
 
-metricsRouter.get('/metrics/:clusterName/test', async (req, res, next) => {
-  try {
-    const { clusterName } = req.params;
-    const metrics = await cloudwatch.getNodeMetrics(clusterName);
-    res.status(200).json(metrics);
+// //metricsRouter.get('/metrics/:clusterName/test', async (req, res, next) => {
+//   try {
+//     const { clusterName } = req.params;
+//     const metrics = await cloudwatch.getNodeMetrics(clusterName);
+//     res.status(200).json(metrics);
+//   } catch (err) {
+//     console.error('Error fetching metrics:', err);
+//     next({ log: err });
+//     res.status(500).send('Error fetching metrics');
+//   }
+// });
+
+
+metricsRouter.get('/metrics/:clustername/:instanceId/:nodeName', async (req, res, next) => {
+  try{
+    const {clustername, instanceId, nodeName} = req.params;
+    const metrics = await cloudwatch.getNodeMetrics(clustername,instanceId, nodeName); //inside of controller save var 'metrics' in res.locals
+    res.status(200).json(metrics); 
   } catch (err) {
-    console.error('Error fetching metrics:', err);
-    next({ log: err });
+    console.log('Error fetching metrics');
+    next({log:err});
     res.status(500).send('Error fetching metrics');
   }
 });
-
 //create route based on nodeID
 
 module.exports = metricsRouter;
@@ -63,3 +71,13 @@ Line 10 - Cluster Metrics slide: for the bottom of the page (the node section) w
 Line 12 - Node Metrics Slide: Same as 'Line 10' but for the pods 
 
 */
+
+
+
+//first-cluster
+
+
+//id
+//i-09d10f65bb4092a9f
+
+//ip-192-168-13-219.ec2.internal
