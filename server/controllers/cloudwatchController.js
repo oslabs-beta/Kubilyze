@@ -2,7 +2,8 @@ const AWS = require('../../config/aws-config');
 const cloudwatch = new AWS.CloudWatch({ region: process.env.AW_REGION });
 
 const cloudwatchController = {};
-//
+
+// To Do: Delete this route. It is not needed. It only has been used for testing
 cloudwatchController.getMetrics = async (clusterName) => {
   console.log(clusterName);
   const params = {
@@ -56,7 +57,8 @@ cloudwatchController.getMetrics = async (clusterName) => {
   }
 };
 
-cloudwatchController.getNodeMetrics = async (clusterName) => {
+// To Do: Delete this route. It is not needed. It only gets one node,it doesn't get all the node's metrics
+cloudwatchController.getNodeMetricsDepracated = async (clusterName) => {
   const params = {
     MetricDataQueries: [
       {
@@ -127,6 +129,76 @@ cloudwatchController.getNodeMetrics = async (clusterName) => {
     throw err;
   }
 };
+
+cloudwatchController.getNodeMetrics = async (clusterName, instanceId, nodeName) => {
+  const params = {
+    MetricDataQueries: [
+      {
+        Id: 'm1',
+        MetricStat: {
+          Metric: {
+            Namespace: 'ContainerInsights',
+            MetricName: 'node_cpu_utilization',
+            Dimensions: [
+              { Name: 'ClusterName', Value: clusterName },
+              { Name: 'InstanceId', Value: instanceId },
+              { Name: 'NodeName', Value: nodeName },
+            ],
+          },
+          Period: 300, // 5 minutes period
+          Stat: 'Average',
+        },
+        ReturnData: true,
+      },
+      {
+        Id: 'm2',
+        MetricStat: {
+          Metric: {
+            Namespace: 'ContainerInsights',
+            MetricName: 'node_memory_utilization',
+            Dimensions: [
+              { Name: 'ClusterName', Value: clusterName },
+              { Name: 'InstanceId', Value: instanceId },
+              { Name: 'NodeName', Value: nodeName },
+            ],
+          },
+          Period: 300, // 5 minutes period
+          Stat: 'Average',
+        },
+        ReturnData: true,
+      },
+      {
+        Id: 'm3',
+        MetricStat: {
+          Metric: {
+            Namespace: 'ContainerInsights',
+            MetricName: 'node_number_of_running_pods',
+            Dimensions: [
+              { Name: 'ClusterName', Value: clusterName },
+              { Name: 'InstanceId', Value: instanceId },
+              { Name: 'NodeName', Value: nodeName },
+            ],
+          },
+          Period: 300, // 5 minutes period
+          Stat: 'Average',
+        },
+        ReturnData: true,
+      },
+    ],
+    StartTime: new Date(Date.now() - 7 * 24 * 3600 * 1000), // Start time 7 days ago
+    EndTime: new Date(), // End time now
+  };
+
+  try {
+    const data = await cloudwatch.getMetricData(params).promise();
+    console.log('Metrics data:', JSON.stringify(data, null, 2));
+    return data.MetricDataResults;
+  } catch (err) {
+    console.error('Error fetching metrics:', err);
+    throw err;
+  }
+};
+
 
 module.exports = cloudwatchController;
 // MAY 21
