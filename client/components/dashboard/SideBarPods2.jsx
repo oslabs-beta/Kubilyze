@@ -11,15 +11,15 @@ export default function SideBarPods({ clusterName, nodeNumber }) {
 
   return (
     <div className="sidebar">
-      <div class="sidebarMenu">
+      <div className="sidebarMenu">
         <a href="/selectcluster">Cluster first-cluster</a>
         <a href="/nodedashboard">Node 2</a>
-        <div class="dropdown">
-        <button class="dropbtn">
+        <div className="dropdown">
+        <button className="dropbtn">
             Node 5
-            <i class="fa fa-caret-down" style={{ marginLeft: "5px" }}></i>
+            <i className="fa fa-caret-down" style={{ marginLeft: "5px" }}></i>
           </button>
-          <div class="dropdown-content">
+          <div className="dropdown-content">
             {/* <a href="/">Node 2</a> */}
             <a href="/nodedashboard">Node 1</a>
             <a href="/nodedashboard">Node 2</a>
@@ -32,11 +32,11 @@ export default function SideBarPods({ clusterName, nodeNumber }) {
             <a href="/nodedashboard">Node 9</a>
             <a href="/nodedashboard">Node 10</a>
           </div>
-          <button class="dropbtn">
+          <button className="dropbtn">
             Pod 5
-            <i class="fa fa-caret-down" style={{ marginLeft: "5px" }}></i>
+            <i className="fa fa-caret-down" style={{ marginLeft: "5px" }}></i>
           </button>
-          <div class="dropdown-content">
+          <div className="dropdown-content">
             {/* <a href="/">Node 2</a> */}
             <a href="/poddashboard">Pod 1</a>
             <a href="/poddashboard">Pod 2</a>

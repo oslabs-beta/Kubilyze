@@ -17,31 +17,29 @@ export const ClusterCircle = ({
   const handleLoginClick = () => {
     navigate("/clusterdashboard");
   };
-  // const location = useLocation();
-  // const {state} = location;
 
   //temporarily turn off fetching and hard code data in
   //Fetch request to server for cluster metrics
-  // useEffect(() => {
-  //   fetch("http://localhost:3000/api/clusters", {
-  //     method: "GET",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((data) => {
-  //       setClusterName(data.clusters[0].name);
-  //       setClusterStatus(data.clusters[0].status);
-  //       setClusterVersion(data.clusters[0].version);
-  //       setClusterDate(data.clusters[0].createdAt);
-  //       setNodes(data.nodes[0].nodes);
+  useEffect(() => {
+    fetch("http://localhost:3000/api/clusters", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setClusterName(data.clusters[0].name);
+        setClusterStatus(data.clusters[0].status);
+        setClusterVersion(data.clusters[0].version);
+        setClusterDate(data.clusters[0].createdAt);
+        setNodes(data.nodes[0].nodes);
 
-  //     })
-  //     .catch((err) => console.log("err:", err));
-  // }, []);
+      })
+      .catch((err) => console.log("err:", err));
+  }, []);
 
   //rendered elements to be returned
   return (

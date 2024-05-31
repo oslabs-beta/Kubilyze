@@ -21,7 +21,7 @@ export default function ClusterDashboard({
   const navigate = useNavigate();
   const handleLoginClick = (index) => {
     setSelectedNode(index);
-    navigate("/nodedashboard");
+  
 
   //->To DO: uncomment when fetch request can be made per specific node
    //Upon click fetch node metrics and get number of pods
@@ -38,6 +38,7 @@ export default function ClusterDashboard({
           setNodeData(data);
           // console.log(nodeData);
           console.log(data);
+          navigate("/nodedashboard");
         })
         .catch((err) => console.log("err:", err));    
   };

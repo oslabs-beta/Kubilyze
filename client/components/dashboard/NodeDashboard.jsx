@@ -12,7 +12,7 @@ export default function ClusterDashboard({clusterName, nodes, selectedNode, pods
     setSelectedPod(index);
     navigate("/poddashboard");
   };
-console.log("fetchedData" + nodeData)
+
   //Upon click fetch pod metrics 
   // useEffect(() => {
   //   fetch("http://localhost:3000/api/metrics/first-cluster/test", {
