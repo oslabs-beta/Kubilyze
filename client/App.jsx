@@ -18,6 +18,7 @@ const App = () => {
   const [clusterStatus, setClusterStatus] = useState("");
   const [clusterVersion, setClusterVersion] = useState("");
   const [clusterDate, setClusterDate] = useState("");
+
   //State related to Nodes
   const [nodes, setNodes] = useState([]);
   const [selectedNode, setSelectedNode] = useState(0);

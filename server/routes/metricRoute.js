@@ -43,6 +43,7 @@ metricsRouter.get('/metrics/:clusterName', async (req, res, next) => {
 metricsRouter.get('/metrics/:clustername/:instanceId/:nodeName', async (req, res, next) => {
   try{
     const {clustername, instanceId, nodeName} = req.params;
+    console.log("nodename "+nodeName)
     const metrics = await cloudwatch.getNodeMetrics(clustername,instanceId, nodeName); //inside of controller save var 'metrics' in res.locals
     res.status(200).json(metrics); 
   } catch (err) {

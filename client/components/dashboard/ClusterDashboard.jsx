@@ -21,11 +21,11 @@ export default function ClusterDashboard({
   const navigate = useNavigate();
   const handleLoginClick = (index) => {
     setSelectedNode(index);
-  
+    
 
   //->To DO: uncomment when fetch request can be made per specific node
    //Upon click fetch node metrics and get number of pods
-      fetch("http://localhost:3000/api/metrics/first-cluster/test", {
+      fetch(`http://localhost:3000/api/metrics/${clusterName}/${nodes[index].instanceId}/${nodes[index].name}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

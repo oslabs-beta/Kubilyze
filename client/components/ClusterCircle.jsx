@@ -35,8 +35,7 @@ export const ClusterCircle = ({
         setClusterStatus(data.clusters[0].status);
         setClusterVersion(data.clusters[0].version);
         setClusterDate(data.clusters[0].createdAt);
-        setNodes(data.nodes[0].nodes);
-
+        setNodes(data.nodes[0].nodes);       
       })
       .catch((err) => console.log("err:", err));
   }, []);
