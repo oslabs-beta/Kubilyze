@@ -7,10 +7,8 @@ export default function NavbarDash({ username }) {
   const navigate = useNavigate();
 
   const handleLogOutClick = () => {
-    console.log(username)
-    navigate("/login");
+     navigate("/login");
   };
-  console.log("nav" + username)
   return (
     <>
       <div id="navbar">

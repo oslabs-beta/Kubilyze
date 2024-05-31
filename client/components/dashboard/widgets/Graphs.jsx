@@ -1,11 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {LineGraph} from './LineGraph.jsx';
-import {results} from './SampleData.js';
+// import {results} from './SampleData.js';
 
-//Preprocessing of fetched data to prepare for correct format for chartJS
-//Iterate through each metric object in the results array
-const data = {};
-results.forEach((obj)=>{
+export const Graphs = ({results}) => {
+  console.log("Grapphs")
+  console.log(results)
+
+  const data = {
+    cpu:{xData:[], yData:[]},
+    mem:{xData:[], yData:[]}
+  };
+
+  if(results){
+    //Preprocessing of fetched data to prepare for correct format for chartJS
+  //Iterate through each metric object in the results array
+// useEffect(()=>{
+  results.forEach((obj)=>{
     //Check object's metric query label for data type
     let metric = '';
     if(obj.Label === 'container_cpu_utilization') metric = 'cpu';
@@ -29,14 +39,14 @@ results.forEach((obj)=>{
     });
   
   //->ToDo: determine how to populate x data values with only occuring day
-    // let seen = new Set();
-        // xData.forEach((value, index) => {
-    //   if (seen.has(value)) {
-    //     xData[index] = "test";
-    //   } else {
-    //     seen.add(value);
-    //   }
-    // });  
+    let seen = new Set();
+        xData.forEach((value, index) => {
+      if (seen.has(value)) {
+        xData[index] = "";
+      } else {
+        seen.add(value);
+      }
+    });  
     
     //Process array of Values, y axis data
     const valArr = obj.Values.toReversed();
@@ -47,10 +57,12 @@ results.forEach((obj)=>{
       xData: xData,
       yData: yData
     };      
-})
-
-export const Graphs = () => {
-  
+  })
+// },[results])
+// console.log(data.mem.xData)
+// console.log(data.mem.yData)
+  }
+ 
   return (
     <>      
       <div id="graph">     

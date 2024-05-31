@@ -12,20 +12,16 @@ export const ClusterCircle = ({
   username
  
 }) => {
-  console.log(username, 'here')
   //routing upon button click
   const navigate = useNavigate();
   const handleLoginClick = () => {
     navigate("/clusterdashboard");
   };
-  const location = useLocation();
-  const {state} = location;
-  // let username = state.username;
-  
-  // console.log("circle comp" + username)
+  // const location = useLocation();
+  // const {state} = location;
 
   //temporarily turn off fetching and hard code data in
-  //fetch request to server for cluster metrics
+  //Fetch request to server for cluster metrics
   // useEffect(() => {
   //   fetch("http://localhost:3000/api/clusters", {
   //     method: "GET",
@@ -55,8 +51,7 @@ export const ClusterCircle = ({
       <div id="cluster-area">
         <button className="cluster-circle" onClick={handleLoginClick}>
           <h2>Cluster 1</h2>
-          <h4>{clusterName}</h4>
-          
+          <h4>{clusterName}</h4>          
         </button>
       </div>
 

@@ -19,6 +19,7 @@ const App = () => {
   const [selectedNode, setSelectedNode] = useState(0);
   const [selectedPod, setSelectedPod] = useState(0);
   const [username, setUsername] = useState('')
+  const [nodeData, setNodeData] = useState()
   const [nodes, setNodes] = useState([
     {
       instanceId: "i-0b0deb6bb775b06c7",
@@ -164,6 +165,8 @@ const App = () => {
               setSelectedNode={setSelectedNode}       
               setPods={setPods} 
               username={username}
+              setNodeData={setNodeData}     
+              nodeData={nodeData}     
             />
           }
         />
@@ -178,6 +181,7 @@ const App = () => {
               setPods={setPods}
               setSelectedPod={setSelectedPod}
               username={username}
+              nodeData={nodeData}
             />
           }
         />

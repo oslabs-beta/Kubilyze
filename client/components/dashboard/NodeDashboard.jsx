@@ -5,14 +5,14 @@ import SideBarPods from './SideBarPods.jsx';
 import NavbarDash from "../NavbarDash.jsx";
 import {SmallWidget} from './widgets/SmallWidget.jsx';
 
-export default function ClusterDashboard({clusterName, nodes, selectedNode, pods, setPods, setSelectedPod}) {
+export default function ClusterDashboard({clusterName, nodes, selectedNode, pods, setPods, setSelectedPod, nodeData}) {
   //Routing upon button click  
   const navigate = useNavigate();
   const handleLoginClick = (index) => {
     setSelectedPod(index);
     navigate("/poddashboard");
   };
-
+console.log("fetchedData" + nodeData)
   //Upon click fetch pod metrics 
   // useEffect(() => {
   //   fetch("http://localhost:3000/api/metrics/first-cluster/test", {
@@ -47,7 +47,7 @@ export default function ClusterDashboard({clusterName, nodes, selectedNode, pods
               <h4 style={{ color: 'grey'}}>  Node:  {"  "+ nodes[selectedNode].name}</h4>                     
             </div>
             <div id="graph-area">
-              <Graphs level={"node"}/>          
+              <Graphs level={"node"} results={nodeData}/>          
             </div>
             <div className="widget-container">         
                 <SmallWidget type={'Status:'} metric={nodes[selectedNode].state}/>

@@ -76,7 +76,7 @@ cloudwatchController.getNodeMetrics = async (clusterName) => {
               },
             ],
           },
-          Period: 60,
+          Period: 14400, // 4 hours
           Stat: 'Average',
         },
         ReturnData: true,
@@ -94,7 +94,7 @@ cloudwatchController.getNodeMetrics = async (clusterName) => {
               },
             ],
           },
-          Period: 60,
+          Period: 14400, // 4 hours
           Stat: 'Average',
         },
         ReturnData: true,
@@ -118,7 +118,7 @@ cloudwatchController.getNodeMetrics = async (clusterName) => {
         ReturnData: true,
       },
     ],
-    StartTime: new Date(Date.now() - 24 * 3600 * 1000), // Start time 24 hours ago
+    StartTime: new Date('2024-05-16T01:12:14.143Z'), // When Cluster was created
     EndTime: new Date(), // End time now
   };
 

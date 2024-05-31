@@ -47,9 +47,13 @@ export const LineGraph = ({xData, yData, type}) => {
           display: true,
           text: 'Days Running'
         },
+        drawTicks: true,
         ticks:{
-          autoSkip: true,
-          maxTicksLimit:7
+          autoSkip: false,
+          // maxTicksLimit:7
+        },
+        grid: {
+          drawTicks: false,
         }
       },
       y: {

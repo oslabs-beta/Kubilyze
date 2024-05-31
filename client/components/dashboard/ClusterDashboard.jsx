@@ -12,7 +12,9 @@ export default function ClusterDashboard({
     nodes,
     setSelectedNode,    
     setPods, 
-    username
+    username,
+    setNodeData,
+    nodeData
   }) {
 
   //Routing upon button click  
@@ -22,20 +24,22 @@ export default function ClusterDashboard({
     navigate("/nodedashboard");
 
   //->To DO: uncomment when fetch request can be made per specific node
-  //  //Upon click fetch node metrics and get number of pods
-  //     fetch("http://localhost:3000/api/metrics/first-cluster/test", {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     })
-  //       .then((res) => {
-  //         return res.json();
-  //       })
-  //       .then((data) => {
-  //         setPods(data[data.length-1].Values[0]);
-  //       })
-  //       .catch((err) => console.log("err:", err));    
+   //Upon click fetch node metrics and get number of pods
+      fetch("http://localhost:3000/api/metrics/first-cluster/test", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          setNodeData(data);
+          // console.log(nodeData);
+          console.log(data);
+        })
+        .catch((err) => console.log("err:", err));    
   };
 
   //Node array to map from
