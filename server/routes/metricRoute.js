@@ -7,7 +7,7 @@ const { newContexts } = require('@kubernetes/client-node/dist/config_types');
 const metricsRouter = express.Router();
 
 // Cluster Metrics Slide : from EKS Controllers
-metricsRouter.get('/clusters',eks.describeClusters,eks.describeNodes, (req, res, next) => {
+metricsRouter.get('/clusters',eks.describeClusters,eks.describePods, eks.describeNodes, (req, res, next) => {
     res.status(200).json({
       clusters: res.locals.clusterInfo,
       nodes: res.locals.nodeGroupsDetails,
