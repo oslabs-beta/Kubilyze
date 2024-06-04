@@ -22,18 +22,18 @@ export default function PodDashboard({
           <SideBarPods2/>
           <div id='cluster-dashboard' className="dashboard">
             <div className="dashboard-title">
-              {/* <h1>Dashboard</h1> 
+              <h1>Dashboard</h1> 
               <h4>Cluster:  {"  "+ clusterName}</h4> 
               <h4>Node:  {"  "+ nodes[selectedNode].name}</h4>
-              <h4 style={{ color: 'black'}} >Pod:  {"  "+ pods[selectedNode].name}</h4>                         */}
+              <h4 style={{ color: 'black'}} >Pod:  {"  "+ pods[selectedPod].name}</h4>                        
             </div>
             <div id="graph-area">
               <Graphs level={"pod"} results={podData}/>           
             </div>
             <div className="widget-container">         
-            {/* <SmallWidget type={'Status'} metric={pods[selectedNode].state}/>
-                <SmallWidget type={'Created'}  metric={pods[selectedNode].launchTime}/>
-                <SmallWidget type={'Instance'}  metric={pods[selectedNode].instanceId}/>  */}
+            {/* <SmallWidget type={'Status'} metric={pods[selectedPod].state}/>
+                <SmallWidget type={'Created'}  metric={pods[selectedPod].launchTime}/>
+                <SmallWidget type={'Instance'}  metric={pods[selectedPod].instanceId}/>  */}
             </div>
           </div>
         </div>  

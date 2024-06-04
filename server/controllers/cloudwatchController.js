@@ -212,7 +212,7 @@ cloudwatchController.getAllPodMetrics = async (clusterName) => {
             Dimensions: [
               { Name: 'ClusterName', Value: clusterName },
               { Name: 'Namespace', Value: 'amazon-cloudwatch' },
-              { Name: 'Service', Value: 'cloudwatch-agent-headless' },
+              { Name: 'Service', Value: 'cloudwatch-agent' },
             ],
           },
           Period: 14400, // 4 hours
@@ -229,7 +229,7 @@ cloudwatchController.getAllPodMetrics = async (clusterName) => {
             Dimensions: [
               { Name: 'ClusterName', Value: clusterName },
               { Name: 'Namespace', Value: 'amazon-cloudwatch' },
-              { Name: 'Service', Value: 'cloudwatch-agent-headless' },
+              { Name: 'Service', Value: 'cloudwatch-agent' },
             ],
           },
           Period: 14400, // 4 hours

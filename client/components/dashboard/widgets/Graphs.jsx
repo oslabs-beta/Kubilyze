@@ -12,12 +12,12 @@ export const Graphs = ({results}) => {
     if(results){
       //Preprocessing of fetched data to prepare for correct format for chartJS
     //Iterate through each metric object in the results array
-
+console.log(results)
     results.forEach((obj)=>{
       //Check object's metric query label for data type
       let metric = '';
-      if(obj.Label === 'node_cpu_utilization') metric = 'cpu';
-      if(obj.Label === 'node_memory_utilization') metric = 'mem';
+      if(obj.Label.includes('cpu')) metric = 'cpu';
+      if(obj.Label.includes('memory')) metric = 'mem';
 
       //Process array of timestamps, x axis data
       const timeArr = obj.Timestamps.toReversed();    
