@@ -3,6 +3,7 @@ const express = require('express');
 const cloudwatch = require('../controllers/cloudwatchController');
 const eks = require('../controllers/eksController');
 const { newContexts } = require('@kubernetes/client-node/dist/config_types');
+const cloudwatchController = require('../controllers/cloudwatchController');
 
 const metricsRouter = express.Router();
 
@@ -15,50 +16,13 @@ metricsRouter.get('/clusters',eks.describeClusters,eks.describeNodes, (req, res,
   }
 );
 
-//Node Metrics Slide : from CloudWatch Controllers
-metricsRouter.get('/metrics/:clusterName', async (req, res, next) => {
-  //update
-  try {
-    const metrics = await cloudwatch.getMetrics(req.params.clusterName);
-    res.json(metrics);
-  } catch (err) {
-    next({ log: err });
-    res.status(500).send('Error fetching metrics');
-  }
+// Node Metrics Slide : from Cloudwatch Controllers
+metricsRouter.get('/metrics/:clustername/:instanceId/:nodeName', cloudwatchController.getNodeMetrics, (req, res, next) => {
+  const metrics = res.locals.metrics;
+  res.status(200).json(metrics);
 });
-
-// //metricsRouter.get('/metrics/:clusterName/test', async (req, res, next) => {
-//   try {
-//     const { clusterName } = req.params;
-//     const metrics = await cloudwatch.getNodeMetrics(clusterName);
-//     res.status(200).json(metrics);
-//   } catch (err) {
-//     console.error('Error fetching metrics:', err);
-//     next({ log: err });
-//     res.status(500).send('Error fetching metrics');
-//   }
-// });
-
-
-metricsRouter.get('/metrics/:clustername/:instanceId/:nodeName', async (req, res, next) => {
-  try{
-    const {clustername, instanceId, nodeName} = req.params;
-    console.log("nodename "+nodeName)
-    const metrics = await cloudwatch.getNodeMetrics(clustername,instanceId, nodeName); //inside of controller save var 'metrics' in res.locals
-    res.status(200).json(metrics); 
-  } catch (err) {
-    console.log('Error fetching metrics');
-    next({log:err});
-    res.status(500).send('Error fetching metrics');
-  }
-});
-//create route based on nodeID
 
 module.exports = metricsRouter;
-
-// VERIFY :
-//        Update routes to use controller as middleware
-
 /*
 Updates : 
 

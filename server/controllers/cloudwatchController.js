@@ -13,7 +13,7 @@ cloudwatchController.getMetrics = async (clusterName) => {
         MetricStat: {
           Metric: {
             Namespace: 'ContainerInsights',
-            MetricName: 'container_cpu_utilization',//dimensions : necesary information to 
+            MetricName: 'container_cpu_utilization',
             Dimensions: [
               {
                 Name: 'ClusterName',
@@ -57,8 +57,9 @@ cloudwatchController.getMetrics = async (clusterName) => {
   }
 };
 
-// To Do: Delete this route. It is not needed. It only gets one node,it doesn't get all the node's metrics
-cloudwatchController.getNodeMetricsDepracated = async (clusterName) => {
+cloudwatchController.getNodeMetrics = async (req, res, next) => {
+  const { clustername, instanceId, nodeName } = req.params;
+
   const params = {
     MetricDataQueries: [
       {
@@ -68,13 +69,12 @@ cloudwatchController.getNodeMetricsDepracated = async (clusterName) => {
             Namespace: 'ContainerInsights',
             MetricName: 'node_cpu_utilization',
             Dimensions: [
-              {
-                Name: 'ClusterName',
-                Value: clusterName,
-              },
+              { Name: 'ClusterName', Value: clustername },
+              { Name: 'InstanceId', Value: instanceId },
+              { Name: 'NodeName', Value: nodeName },
             ],
           },
-          Period: 14400, // 4 hours
+          Period: 300, // 5 minutes period
           Stat: 'Average',
         },
         ReturnData: true,
@@ -86,13 +86,12 @@ cloudwatchController.getNodeMetricsDepracated = async (clusterName) => {
             Namespace: 'ContainerInsights',
             MetricName: 'node_memory_utilization',
             Dimensions: [
-              {
-                Name: 'ClusterName',
-                Value: clusterName,
-              },
+              { Name: 'ClusterName', Value: clustername },
+              { Name: 'InstanceId', Value: instanceId },
+              { Name: 'NodeName', Value: nodeName },
             ],
           },
-          Period: 14400, // 4 hours
+          Period: 300, // 5 minutes period
           Stat: 'Average',
         },
         ReturnData: true,
@@ -104,98 +103,29 @@ cloudwatchController.getNodeMetricsDepracated = async (clusterName) => {
             Namespace: 'ContainerInsights',
             MetricName: 'node_number_of_running_pods',
             Dimensions: [
-              {
-                Name: 'ClusterName',
-                Value: clusterName,
-              },
+              { Name: 'ClusterName', Value: clustername },
+              { Name: 'InstanceId', Value: instanceId },
+              { Name: 'NodeName', Value: nodeName },
             ],
           },
-          Period: 60,
+          Period: 300, // 5 minutes period
           Stat: 'Average',
         },
         ReturnData: true,
       },
     ],
-    StartTime: new Date(Date.now() - 24 * 3600 * 1000), // Start time 24 hours ago
+    StartTime: new Date(Date.now() - 7 * 24 * 3600 * 1000), // Start time 7 days ago
     EndTime: new Date(), // End time now
   };
 
   try {
     const data = await cloudwatch.getMetricData(params).promise();
     console.log('Metrics data:', JSON.stringify(data, null, 2));
-    return data.MetricDataResults;
+    res.locals.metrics = data.MetricDataResults; // Save metrics in res.locals
+    return next();
   } catch (err) {
     console.error('Error fetching metrics:', err);
-    throw err;
-  }
-};
-
-cloudwatchController.getNodeMetrics = async (clusterName, instanceId, nodeName) => {
-  const params = {
-    MetricDataQueries: [
-      {
-        Id: 'm1',
-        MetricStat: {
-          Metric: {
-            Namespace: 'ContainerInsights',
-            MetricName: 'node_cpu_utilization',
-            Dimensions: [
-              { Name: 'ClusterName', Value: clusterName },
-              { Name: 'InstanceId', Value: instanceId },
-              { Name: 'NodeName', Value: nodeName },
-            ],
-          },
-          Period: 14400, // 4 hours
-          Stat: 'Average',
-        },
-        ReturnData: true,
-      },
-      {
-        Id: 'm2',
-        MetricStat: {
-          Metric: {
-            Namespace: 'ContainerInsights',
-            MetricName: 'node_memory_utilization',
-            Dimensions: [
-              { Name: 'ClusterName', Value: clusterName },
-              { Name: 'InstanceId', Value: instanceId },
-              { Name: 'NodeName', Value: nodeName },
-            ],
-          },
-          Period: 14400, // 4 hours
-          Stat: 'Average',
-        },
-        ReturnData: true,
-      },
-      {
-        Id: 'm3',
-        MetricStat: {
-          Metric: {
-            Namespace: 'ContainerInsights',
-            MetricName: 'node_number_of_running_pods',
-            Dimensions: [
-              { Name: 'ClusterName', Value: clusterName },
-              { Name: 'InstanceId', Value: instanceId },
-              { Name: 'NodeName', Value: nodeName },
-            ],
-          },
-          Period: 86400, // 5 minutes period
-          Stat: 'Average',
-        },
-        ReturnData: true,
-      },
-    ],
-    StartTime: new Date('2024-05-16T01:12:14.143Z'), // When Cluster was created
-    EndTime: new Date(), // End time now
-  };
-
-  try {
-    const data = await cloudwatch.getMetricData(params).promise();
-    // console.log('Metrics data:', JSON.stringify(data, null, 2));
-    return data.MetricDataResults;
-  } catch (err) {
-    console.error('Error fetching metrics:', err);
-    throw err;
+    return next({ log: err, status: 500, message: 'Error fetching metrics' });
   }
 };
 
