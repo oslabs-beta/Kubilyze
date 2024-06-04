@@ -14,8 +14,8 @@ eksController.describeClusters = async (req, res, next) => {
     // Fetch detailed information for each cluster
     const clusterDetailsPromises = clusterNames.map(async (clusterName) => {
       const clusterData = await eks
-        .describeCluster({ name: clusterName })
-        .promise();
+      .describeCluster({ name: clusterName })
+      .promise();
       const nodeGroupsData = await eks
         .listNodegroups({ clusterName })
         .promise();
@@ -41,7 +41,7 @@ eksController.describeClusters = async (req, res, next) => {
     next();
   } catch (err) {
     console.error('Error fetching cluster details:', err);
-    next(err); // Call next with error to handle it properly
+    next({ log: err }); // Call next with error to handle it properly
   }
 };
 
@@ -100,7 +100,7 @@ eksController.describeNodes = async (req, res, next) => {
     next();
   } catch (err) {
     console.error('Error fetching node details:', err);
-    next(err); // Pass the error to the next middleware
+    next({ log: err }); // Pass the error to the next middleware
   }
 };
 
