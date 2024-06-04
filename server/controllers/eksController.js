@@ -4,18 +4,9 @@ const eks = new AWS.EKS();
 const ec2 = new AWS.EC2();
 const autoscaling = new AWS.AutoScaling();
 
-//Aissata test
-const k8s = require('@kubernetes/client-node');
 const eksController = {};
 
-//Aissata test
-
-
-
-
 eksController.describeClusters = async (req, res, next) => {
-  
-
   try {
     const data = await eks.listClusters().promise();
     const clusterNames = data.clusters;
@@ -52,45 +43,6 @@ eksController.describeClusters = async (req, res, next) => {
     console.error('Error fetching cluster details:', err);
     next({ log: err }); // Call next with error to handle it properly
   }
-};
-
-eksController.describePods = async (req, res, next) => {
-
-  const kc = new k8s.KubeConfig();
-  kc.loadFromDefault();
-  
-  const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
-
-  k8sApi.listNamespace()
-  .then(res => {
-    const namespaces = res.body.items.map(ns => ns.metadata.name);
-    console.log('Namespaces:', namespaces);
-    return next();
-  })
-  .catch(err => {
-    console.error('Error listing namespaces:', err);
-    next({ log: err });
-  });
-
-
-
-// const kc = new k8s.KubeConfig();
-// kc.loadFromDefault();
-
-// const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
-
-// const main = async () => {
-//     try {
-//         const podsRes = await k8sApi.listNamespacedPod('default');
-//         console.log(podsRes.body);
-//         return next();
-//     } catch (err) {
-//       console.error('Error fetching pod details:', err);
-//       next({ log: err }); // Pass the error to the next middleware
-//     }
-// };
-
-// main();
 };
 
 eksController.describeNodes = async (req, res, next) => {
