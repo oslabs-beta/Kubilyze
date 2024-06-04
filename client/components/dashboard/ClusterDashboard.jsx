@@ -14,6 +14,16 @@ export default function ClusterDashboard({
     setPods,   
   }) {
 
+    const podGenerator = (num) => {
+      const arr =[];
+      for( let i =0; i < num; i++){
+        arr.push({
+          name: " "
+        })
+      }
+      return arr;
+    };
+
   //Routing upon button click  
   const navigate = useNavigate();
   const handleLoginClick = (index) => {
@@ -33,8 +43,9 @@ export default function ClusterDashboard({
         .then((data) => {
           setNodeData(data);
           // console.log(nodeData);
-          console.log(data);
-          navigate("/nodedashboard");
+          console.log(data[2].Values[0]);
+          setPods(podGenerator(data[2].Values[0]));  
+          navigate("/nodedashboard");     
         })
         .catch((err) => console.log("err:", err));    
   };

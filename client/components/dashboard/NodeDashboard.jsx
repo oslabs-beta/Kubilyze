@@ -19,27 +19,23 @@ export default function NodeDashboard({
   const navigate = useNavigate();
   const handleLoginClick = (index) => {
     setSelectedPod(index);
-    navigate("/poddashboard");
+     //Upon click, fetch podData for graphs for rendering on next page, PodDashboard 
+     fetch(`http://localhost:3000/api/metrics/${clusterName}/allpods`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {       
+        setPodData(data);
+        navigate("/poddashboard");
+      })
+      .catch((err) => console.log("err:", err));
   };
 
-  //Upon click, fetch podData for graphs for rendering on next page, PodDashboard 
-  // useEffect(() => {
-  //   fetch("http://localhost:3000/api/metrics/first-cluster/test", {
-  //     method: "GET",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((data) => {
-  //       console.log(data[data.length-1].Values[0])
-  //       setPods(data[data.length-1].Values[0]);
-  //     })
-  //     .catch((err) => console.log("err:", err));
-  // }, []);
- 
   //Pod array to map from
   const podNums = Array.from({length: pods.length}, (_, i) => i + 1)
 
