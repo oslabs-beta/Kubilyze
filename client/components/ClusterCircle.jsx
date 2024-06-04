@@ -18,10 +18,11 @@ export const ClusterCircle = ({
   //Upon full page load, fetch cluster info and node identities for rendering on next page, PodDashboard
   useEffect(() => {
     fetch("http://localhost:3000/api/clusters", {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({username})
     })
       .then((res) => {
         return res.json();

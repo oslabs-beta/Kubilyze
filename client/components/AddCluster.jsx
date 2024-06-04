@@ -14,7 +14,7 @@ export default function AddCluster({username}) {
     setAccessInfo({...accessInfo, [e.target.name]: e.target.value})
   }
 
-  const handleLoginClick = () => {
+  const addCredentials = () => {
     fetch('http://localhost:3000/user/credentials', {
       method: 'POST',
       headers: {
@@ -52,7 +52,7 @@ export default function AddCluster({username}) {
           <input type="text" id="password" placeholder="Session Token" name="sessiontoken" onChange={handleUserInput} />
         </div>
         <div className="submit">
-          <button onClick={handleLoginClick}>Submit</button>
+          <button onClick={addCredentials}>Submit</button>
         </div>
       </div>
     </div>

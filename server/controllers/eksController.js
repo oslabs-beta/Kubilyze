@@ -1,5 +1,6 @@
 const { node } = require('webpack');
-const AWS = require('../../config/aws-config');
+const AWS = require('aws-sdk');
+const db  = require('../models/userModel');
 const eks = new AWS.EKS();
 const ec2 = new AWS.EC2();
 const autoscaling = new AWS.AutoScaling();
@@ -8,6 +9,13 @@ const eksController = {};
 
 eksController.describeClusters = async (req, res, next) => {
   try {
+    const {username} = req.body
+   const user = await db.findOne({username})
+   AWS.config.update({
+    region: process.env.AWS_REGION,
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  });
     const data = await eks.listClusters().promise();
     const clusterNames = data.clusters;
 
