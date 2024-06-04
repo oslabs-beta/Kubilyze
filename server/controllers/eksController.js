@@ -1,9 +1,9 @@
 const { node } = require('webpack');
 const AWS = require('aws-sdk');
 const db  = require('../models/userModel');
-const eks = new AWS.EKS();
-const ec2 = new AWS.EC2();
-const autoscaling = new AWS.AutoScaling();
+// const eks = new AWS.EKS();
+// const ec2 = new AWS.EC2();
+// const autoscaling = new AWS.AutoScaling();
 
 const eksController = {};
 
@@ -12,10 +12,14 @@ eksController.describeClusters = async (req, res, next) => {
     const {username} = req.body
    const user = await db.findOne({username})
    AWS.config.update({
-    region: process.env.AWS_REGION,
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    region: user.region,
+    accessKeyId: user.accesskey,
+    secretAccessKey: user.secretkey,
+    sessionToken: user.sessiontoken
   });
+    res.locals.AWS = AWS
+    const eks = new AWS.EKS()
+    res.locals.eks = eks
     const data = await eks.listClusters().promise();
     const clusterNames = data.clusters;
 
@@ -59,13 +63,14 @@ eksController.describeNodes = async (req, res, next) => {
       (cluster) =>
         cluster.nodeGroupNames.map(async (nodeGroupName) => {
           const clusterName = cluster.name;
-          const nodeGroupData = await eks
+          const nodeGroupData = await res.locals.eks
             .describeNodegroup({ clusterName, nodegroupName: nodeGroupName })
             .promise();
           const autoScalingGroupName =
             nodeGroupData.nodegroup.resources.autoScalingGroups[0].name;
 
           // List instances in the Auto Scaling group
+          const autoscaling = new res.locals.AWS.AutoScaling()
           const autoScalingGroupData = await autoscaling
             .describeAutoScalingGroups({
               AutoScalingGroupNames: [autoScalingGroupName],
@@ -78,6 +83,7 @@ eksController.describeNodes = async (req, res, next) => {
             );
 
           // Fetch detailed information for each instance
+          const ec2 = new res.locals.AWS.EC2()
           const instanceData = await ec2
             .describeInstances({
               InstanceIds: instanceIds,

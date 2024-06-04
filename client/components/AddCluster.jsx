@@ -7,7 +7,7 @@ import NavbarDash from "./NavbarDash.jsx";
 // import "../styles.css";
 
 export default function AddCluster({username}) {
-  const [accessInfo, setAccessInfo] = useState({accesskey: '', secretkey: '', sessiontoken: ''})
+  const [accessInfo, setAccessInfo] = useState({accesskey: '', secretkey: '', sessiontoken: '', region: ''})
   const navigate = useNavigate();
 
   const handleUserInput = (e) => {
@@ -50,6 +50,9 @@ export default function AddCluster({username}) {
         </div>
         <div className="formGroup">
           <input type="text" id="password" placeholder="Session Token" name="sessiontoken" onChange={handleUserInput} />
+        </div>
+        <div className="formGroup">
+          <input type="text" id="password" placeholder="Region" name="region" onChange={handleUserInput} />
         </div>
         <div className="submit">
           <button onClick={addCredentials}>Submit</button>

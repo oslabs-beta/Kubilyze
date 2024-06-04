@@ -25,9 +25,11 @@ export const ClusterCircle = ({
       body: JSON.stringify({username})
     })
       .then((res) => {
+        console.log(res)
         return res.json();
       })
       .then((data) => {
+        console.log(data)
         setClusterName(data.clusters[0].name);    
         setCluster(data.clusters);
         setNodes(data.nodes[0].nodes);       

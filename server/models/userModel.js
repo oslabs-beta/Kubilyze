@@ -14,7 +14,8 @@ const userSchema = new mongoose.Schema({
     password: {type: String, required: true},
     accesskey: String,
     secretkey: String,
-    sessiontoken: String
+    sessiontoken: String,
+    region: String
 })
 
 /* .pre method with 'save' as the first argumemt, allows this function to run whenever

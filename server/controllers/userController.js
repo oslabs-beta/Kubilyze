@@ -46,8 +46,8 @@ userController.signIn = (req, res, next)=> {
 }
 
 userController.addCredentials = (req, res, next)=> {
-    const {username, accesskey, secretkey, sessiontoken} = req.body
-    db.findOneAndUpdate({username}, {accesskey, secretkey, sessiontoken}, {new: true})
+    const {username, accesskey, secretkey, sessiontoken, region} = req.body
+    db.findOneAndUpdate({username}, {accesskey, secretkey, sessiontoken, region}, {new: true})
     .then((data)=> {
         console.log(data)
         res.locals.user = data
