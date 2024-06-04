@@ -11,7 +11,6 @@ import PodDashboard from "./components/dashboard/PodDashboard.jsx";
 
 //
 const App = () => {
-  //->To DO: remove hard coded data when fetch requests are properly working
   const [username, setUsername] = useState('');
   //State related to Clusters
   const [clusterName, setClusterName] = useState("");

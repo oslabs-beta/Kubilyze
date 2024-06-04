@@ -130,7 +130,10 @@ const cloudwatchController = {};
 //   }
 // };
 
-cloudwatchController.getNodeMetrics = async (clusterName, instanceId, nodeName) => {
+cloudwatchController.getNodeMetrics = async (clusterName, instanceId, nodeName, startdate) => {
+  let secondsPassed = ((new Date() - new Date(startdate)) / 1000);
+  let period = Math.round((secondsPassed / 2) / 60) * 60;
+  //define params for cloudwatch api metric request
   const params = {
     MetricDataQueries: [
       {
@@ -145,7 +148,7 @@ cloudwatchController.getNodeMetrics = async (clusterName, instanceId, nodeName) 
               { Name: 'NodeName', Value: nodeName },
             ],
           },
-          Period: 14400, // 4 hours
+          Period: 12600, 
           Stat: 'Average',
         },
         ReturnData: true,
@@ -162,7 +165,7 @@ cloudwatchController.getNodeMetrics = async (clusterName, instanceId, nodeName) 
               { Name: 'NodeName', Value: nodeName },
             ],
           },
-          Period: 14400, // 4 hours
+          Period: 12600, 
           Stat: 'Average',
         },
         ReturnData: true,
@@ -179,13 +182,13 @@ cloudwatchController.getNodeMetrics = async (clusterName, instanceId, nodeName) 
               { Name: 'NodeName', Value: nodeName },
             ],
           },
-          Period: 86400, // 5 minutes period
+          Period: period, 
           Stat: 'Average',
         },
         ReturnData: true,
       },
     ],
-    StartTime: new Date('2024-05-16T01:12:14.143Z'), // When Cluster was created
+    StartTime: new Date(Date.now() - 7 * 24 * 3600 * 1000), //Past 7 days
     EndTime: new Date(), // End time now
   };
 
@@ -215,7 +218,7 @@ cloudwatchController.getAllPodMetrics = async (clusterName) => {
               { Name: 'Service', Value: 'cloudwatch-agent' },
             ],
           },
-          Period: 14400, // 4 hours
+          Period: 12600, 
           Stat: 'Average',
         },
         ReturnData: true,
@@ -232,13 +235,13 @@ cloudwatchController.getAllPodMetrics = async (clusterName) => {
               { Name: 'Service', Value: 'cloudwatch-agent' },
             ],
           },
-          Period: 14400, // 4 hours
+          Period: 12600, 
           Stat: 'Average',
         },
         ReturnData: true,
       },
     ],
-    StartTime: new Date('2024-05-16T01:12:14.143Z'), // When Cluster was created
+    StartTime: new Date(Date.now() - 7 * 24 * 3600 * 1000), //Past 7 days
     EndTime: new Date(), // End time now
   };
 

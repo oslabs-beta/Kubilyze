@@ -20,10 +20,9 @@ console.log(results)
       if(obj.Label.includes('memory')) metric = 'mem';
 
       //Process array of timestamps, x axis data
-      const timeArr = obj.Timestamps.toReversed();    
-      const xData = timeArr.map((el) => {
+      const timeArr = obj.Timestamps;    
+      let xData = timeArr.map((el) => {
         let currDate = new Date(el);
-        let lastDate = new Date(timeArr[timeArr.length-1]);  
         
         //Reformat dates in XX/XX/XX format
         const yyyy = currDate.getFullYear();
@@ -32,11 +31,11 @@ console.log(results)
         let dd = currDate.getDate();
         if (dd < 10) dd = '0' + dd;
         if (mm < 10) mm = '0' + mm;       
-        let dif = mm + '/' + dd +  '/' + yy;  
-        return dif;
+        let formattedDate = mm + '/' + dd +  '/' + yy;  
+        return formattedDate;
       });
     
-    //->ToDo: determine how to populate x data values with only occuring day
+      //Show date only once along x axes
       let seen = new Set();
           xData.forEach((value, index) => {
         if (seen.has(value)) {
@@ -44,10 +43,11 @@ console.log(results)
         } else {
           seen.add(value);
         }
-      });  
+      }); 
+      xData=xData.toReversed();//flip order to plot older dates first
 
       //Process array of Values, y axis data
-      const valArr = obj.Values.toReversed();
+      const valArr = obj.Values.toReversed();//flip order to plot older dates first
       const yData = valArr.map((el) => el.toFixed(3))  
       
       //Data object to be passed to LineGraph

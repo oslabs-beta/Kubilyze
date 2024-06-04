@@ -27,7 +27,8 @@ export const ClusterCircle = ({
         return res.json();
       })
       .then((data) => {
-        setClusterName(data.clusters[0].name);    
+        setClusterName(data.clusters[0].name);
+        data.clusters[0].daysRunning =5;    
         setCluster(data.clusters);
         setNodes(data.nodes[0].nodes);       
       })

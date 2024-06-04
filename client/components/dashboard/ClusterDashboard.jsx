@@ -31,7 +31,7 @@ export default function ClusterDashboard({
     
     //->ToDo: backend edit api request to get podData
     //Upon click, fetch nodeData for graphs and pod identities for rendering on next page, NodeDashboard
-      fetch(`http://localhost:3000/api/metrics/${clusterName}/${nodes[index].instanceId}/${nodes[index].name}`, {
+      fetch(`http://localhost:3000/api/metrics/${clusterName}/${nodes[index].instanceId}/${nodes[index].name}/${cluster[0].createdAt}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -42,8 +42,6 @@ export default function ClusterDashboard({
         })
         .then((data) => {
           setNodeData(data);
-          // console.log(nodeData);
-          console.log(data[2].Values[0]);
           setPods(podGenerator(data[2].Values[0]));  
           navigate("/nodedashboard");     
         })
@@ -62,7 +60,7 @@ export default function ClusterDashboard({
         <div id='cluster-dashboard' className="dashboard">
           <div className="dashboard-title">
             <h1>Cluster Dashboard</h1> 
-            <h4 style={{ color: 'grey'}}>{"  "+ clusterName}</h4>                     
+            <h4 style={{ color: 'black'}}> Cluster 1:  {"  "+ clusterName}</h4>      
           </div>          
           <div className="widget-container">         
               <SmallWidget type={'Status:'} metric={cluster[0].status}/>

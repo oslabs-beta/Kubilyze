@@ -48,8 +48,8 @@ export default function NodeDashboard({
           <div id='node-dashboard' className="dashboard">
             <div className="dashboard-title">
               <h1>Node Dashboard</h1> 
-              <h4>Cluster:  {"  "+ clusterName}</h4> 
-              <h4 style={{ color: 'grey'}}>  Node:  {"  "+ nodes[selectedNode].name}</h4>                     
+              <h4>Cluster 1:  {"  "+ clusterName}</h4> 
+              <h4 style={{ color: 'black'}}>  Node  {(selectedNode + 1) + ":" + "  "+ nodes[selectedNode].name}</h4>                     
             </div>
             <div id="graph-area">
               <Graphs level={"node"} results={nodeData}/>          

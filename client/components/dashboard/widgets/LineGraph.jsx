@@ -45,7 +45,7 @@ export const LineGraph = ({xData, yData, type}) => {
         display: true,
         title: {
           display: true,
-          text: 'Days Running'
+          text: 'Past 7 Days'
         },
         drawTicks: true,
         ticks:{

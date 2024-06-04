@@ -41,11 +41,11 @@ metricsRouter.get('/clusters',eks.describeClusters,eks.describeNodes, (req, res,
 // });
 
 
-metricsRouter.get('/metrics/:clustername/:instanceId/:nodeName', async (req, res, next) => {
+metricsRouter.get('/metrics/:clustername/:instanceId/:nodeName/:startdate', async (req, res, next) => {
   try{
-    const {clustername, instanceId, nodeName} = req.params;
+    const {clustername, instanceId, nodeName, startdate} = req.params;
     console.log("nodename "+nodeName)
-    const metrics = await cloudwatch.getNodeMetrics(clustername,instanceId, nodeName); //inside of controller save var 'metrics' in res.locals
+    const metrics = await cloudwatch.getNodeMetrics(clustername,instanceId, nodeName, startdate); //inside of controller save var 'metrics' in res.locals
     res.status(200).json(metrics); 
   } catch (err) {
     console.log('Error fetching metrics');
