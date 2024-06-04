@@ -2,46 +2,56 @@ import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar.jsx"
 
-export default function SignUp() {
+export default function SignUp({setUsername}) {
   const navigate = useNavigate();
-  const handleLoginClick = () => {
-    if(password === cPassword){
+  const [userInput, setUserInput] = useState({username: '', password: '', confirm: ''})
+
+  // this handle function handles all input fileds.
+  const handleUserInput = (e)=> {
+    setUserInput({...userInput, [e.target.name]: e.target.value})
+  }
+
+  const handleSignUpClick = () => {
+    // we are checking if the two inputs match each other, for password accuracy before we send a fetch request
+    if(userInput.password === userInput.confirm){
     fetch('http://localhost:3000/user/signup', {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({username, password})
+      body: JSON.stringify(userInput)
   })
   .then((res)=> {
+    // if response status is ok we know we can continue to parse the response body with .json()
     if(res.ok) return res.json()
-    console.log('server error')
+    // console.log('Username is taken')
+  // if we hit this line, an alert will be displayed on the sceen telling the client the username entered is taken
+    alert('Username is taken')
   })
   .then((data)=> {
+    // if data exist, this means the response body was parsed from json to javascript and this data is the user from the server
     if(data){
       setUsername(data.username)
       navigate("/AddCluster");
     } 
-    setUsername('')
-    setPassword('')
+    // resetting the input fields 
+    setUserInput({username: '', password: '', confirm: ''})
   })
   .catch((e)=> {
     console.log(e)
   })
     
   }
+  // if the two input passwords do not match, we do not send the request and alert the client
   else{
     alert("Password's don't match")
-    setUsername('')
-    setPassword('')
-    setCpassword('')
+    // resetting input fileds
+    setUserInput({username: '', password: '', confirm: ''})
   }
 
 };
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [cPassword, setCpassword] = useState('');
+  
 
 
 
@@ -53,16 +63,16 @@ export default function SignUp() {
       <div id="loginform">
         <h1 className="title">Create your  Account</h1>
         <div className="formGroup">
-          <input type="text" id="username" placeholder="Username" value={username} name="username" onChange={(e)=> setUsername(e.target.value)}/>
+          <input type="text" id="username" placeholder="Username" value={userInput.username} name="username" onChange={handleUserInput}/>
         </div>
         <div className="formGroup">
-          <input type="text" id="password" placeholder="Password" value={password} name="password" onChange={(e)=> setPassword(e.target.value)} />
+          <input type="password" id="password" placeholder="Password" value={userInput.password} name="password" onChange={handleUserInput} />
         </div>
         <div className="formGroup">
-          <input type="text" id="password" placeholder="Confirm Password" value={cPassword} name="password" onChange={(e)=> setCpassword(e.target.value)}/>
+          <input type="password" id="password" placeholder="Confirm Password" value={userInput.confirm} name="confirm" onChange={handleUserInput}/>
         </div>
         <div className="submit">
-          <button onClick={handleLoginClick}>Submit</button>
+          <button onClick={handleSignUpClick}>Submit</button>
         </div>
       </div>
     </div>
