@@ -45,6 +45,19 @@ userController.signIn = (req, res, next)=> {
     })
 }
 
+userController.addCredentials = (req, res, next)=> {
+    const {username, accesskey, secretkey, sessiontoken} = req.body
+    db.findOneAndUpdate({username}, {accesskey, secretkey, sessiontoken}, {new: true})
+    .then((data)=> {
+        console.log(data)
+        res.locals.user = data
+        return next()
+    })
+    .catch(e=> {
+        next({log: e})
+    })
+}
+
 
 
 
