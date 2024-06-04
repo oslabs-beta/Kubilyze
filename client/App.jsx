@@ -19,7 +19,7 @@ const App = () => {
   //State related to Nodes
   const [nodes, setNodes] = useState([]);
   const [selectedNode, setSelectedNode] = useState(0);
-  const [nodeData, setNodeData] = useState(); 
+  const [nodeData, setNodeData] = useState(''); 
   //State related to Pods
   const [pods, setPods] = useState([
     {
@@ -67,7 +67,7 @@ const App = () => {
   
   ]);
   const [selectedPod, setSelectedPod] = useState(0);
-  const [podData, setPodData] = useState(); 
+  const [podData, setPodData] = useState(''); 
 
   //Returning all of our routes for our application
   //At each route rendering components 
@@ -78,7 +78,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginForm setUsername={setUsername}/>} />
         <Route path="/signup" element={<SignUp  setUsername={setUsername}/>} />
-        <Route path="/addcluster" element={<AddCluster username={username} />} />
+        <Route path="/addcluster" element={<AddCluster username={username} setClusterName={setClusterName} setCluster={setCluster} setNodes={setNodes}/>} />
         <Route
           path="/selectcluster"
           element={
@@ -99,6 +99,9 @@ const App = () => {
               clusterName={clusterName}
               cluster={cluster}
               nodes={nodes}
+              setClusterName={setClusterName} 
+              setCluster={setCluster} 
+              setNodes={setNodes}
               setSelectedNode={setSelectedNode}
               setNodeData={setNodeData}        
               setPods={setPods}              
@@ -112,6 +115,9 @@ const App = () => {
               username={username}
               clusterName={clusterName}
               nodes={nodes}
+              setClusterName={setClusterName} 
+              setCluster={setCluster} 
+              setNodes={setNodes}
               selectedNode={selectedNode}
               nodeData={nodeData}
               pods={pods}

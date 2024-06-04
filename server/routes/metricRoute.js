@@ -1,14 +1,13 @@
 const express = require('express');
 
-const cloudwatch = require('../controllers/cloudwatchController');
+// const cloudwatch = require('../controllers/cloudwatchController');
 const eks = require('../controllers/eksController');
-const { newContexts } = require('@kubernetes/client-node/dist/config_types');
 const cloudwatchController = require('../controllers/cloudwatchController');
 
 const metricsRouter = express.Router();
 
 // Cluster Metrics Slide : from EKS Controllers
-metricsRouter.get('/clusters',eks.describeClusters,eks.describeNodes, (req, res, next) => {
+metricsRouter.post('/clusters',eks.describeClusters, eks.describeNodes, (req, res) => {
     res.status(200).json({
       clusters: res.locals.clusterInfo,
       nodes: res.locals.nodeGroupsDetails,
@@ -17,7 +16,7 @@ metricsRouter.get('/clusters',eks.describeClusters,eks.describeNodes, (req, res,
 );
 
 // Node Metrics Slide : from Cloudwatch Controllers
-metricsRouter.get('/metrics/:clustername/:instanceId/:nodeName', cloudwatchController.getNodeMetrics, (req, res, next) => {
+metricsRouter.post('/metrics/:clustername/:instanceId/:nodeName', cloudwatchController.getNodeMetrics, (req, res, next) => {
   const metrics = res.locals.metrics;
   res.status(200).json(metrics);
 });

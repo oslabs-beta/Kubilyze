@@ -6,8 +6,6 @@ require('dotenv').config();
 const express = require('express');
 const metricRouter = require('./routes/metricRoute');
 const userRouter = require('./routes/userRoute.js')
-const eksController = require('./controllers/eksController');
-const cloudwatchController = require('./controllers/cloudwatchController');
 
 const app = express();
 const port = 3000;

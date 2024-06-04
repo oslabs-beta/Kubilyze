@@ -1,5 +1,5 @@
-const AWS = require('../../config/aws-config');
-const cloudwatch = new AWS.CloudWatch({ region: process.env.AW_REGION });
+const AWS = require('aws-sdk');
+const db = require('../models/userModel.js')
 
 const cloudwatchController = {};
 
@@ -49,6 +49,15 @@ cloudwatchController.getMetrics = async (clusterName) => {
     EndTime: new Date(),
   };
   try {
+    const {username} = req.body
+    const user = await db.findOne({username})
+    AWS.config.update({
+     region: user.region,
+     accessKeyId: user.accesskey,
+     secretAccessKey: user.secretkey,
+     sessionToken: user.sessiontoken
+   });
+    const cloudwatch = new AWS.CloudWatch()
     const data = await cloudwatch.getMetricData(params).promise();
     return data.MetricDataResults;
   } catch (err) {
@@ -119,6 +128,15 @@ cloudwatchController.getNodeMetrics = async (req, res, next) => {
   };
 
   try {
+    const {username} = req.body
+    const user = await db.findOne({username})
+    AWS.config.update({
+     region: user.region,
+     accessKeyId: user.accesskey,
+     secretAccessKey: user.secretkey,
+     sessionToken: user.sessiontoken
+   });
+    const cloudwatch = new AWS.CloudWatch()
     const data = await cloudwatch.getMetricData(params).promise();
     console.log('Metrics data:', JSON.stringify(data, null, 2));
     res.locals.metrics = data.MetricDataResults; // Save metrics in res.locals
