@@ -6,7 +6,7 @@ import NavbarDash from "./NavbarDash.jsx";
 // import { useNavigate } from "react-router-dom";
 // import "../styles.css";
 
-export default function AddCluster({username}) {
+export default function AddCluster({username, setClusterName, setCluster, setNodes}) {
   const [accessInfo, setAccessInfo] = useState({accesskey: '', secretkey: '', sessiontoken: '', region: ''})
   const navigate = useNavigate();
 
@@ -37,7 +37,7 @@ export default function AddCluster({username}) {
   };
   return (
     <>
-    <NavbarDash username={username}/>
+    <NavbarDash username={username} setClusterName={setClusterName} setCluster={setCluster} setNodes={setNodes}/>
     <div className="entirepage">
     <div className="loginContainer">
       <div id="loginform">

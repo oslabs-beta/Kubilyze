@@ -1,15 +1,12 @@
-const { node } = require('webpack');
 const AWS = require('aws-sdk');
 const db  = require('../models/userModel');
-// const eks = new AWS.EKS();
-// const ec2 = new AWS.EC2();
-// const autoscaling = new AWS.AutoScaling();
+const e = require('express');
 
 const eksController = {};
 
 eksController.describeClusters = async (req, res, next) => {
   try {
-    const {username} = req.body
+   const {username} = req.body
    const user = await db.findOne({username})
    AWS.config.update({
     region: user.region,
@@ -52,8 +49,11 @@ eksController.describeClusters = async (req, res, next) => {
     res.locals.clusterInfo = clustersInfo;
     next();
   } catch (err) {
-    console.error('Error fetching cluster details:', err);
-    next({ log: err }); // Call next with error to handle it properly
+    if(err.message === 'The security token included in the request is expired') {
+      res.status(400).json('Token Expired')}
+      else {
+        next({log:err})
+      }
   }
 };
 

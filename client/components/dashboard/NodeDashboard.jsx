@@ -11,7 +11,10 @@ export default function NodeDashboard({
   nodes, 
   selectedNode,
   nodeData, 
-  pods,  
+  pods,
+  setClusterName,
+  setCluster,
+  setNodes,  
   setSelectedPod, 
   setPodData
 }) {
@@ -46,7 +49,7 @@ export default function NodeDashboard({
   //Rendered elements to be returned
   return (
     <>
-      <NavbarDash/>
+      <NavbarDash username={username} setClusterName={setClusterName} setCluster={setCluster} setNodes={setNodes} />
         <div id="page">
           <SideBarPods/>
           <div id='node-dashboard' className="dashboard">

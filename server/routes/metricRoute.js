@@ -16,7 +16,7 @@ metricsRouter.post('/clusters',eks.describeClusters, eks.describeNodes, (req, re
 );
 
 // Node Metrics Slide : from Cloudwatch Controllers
-metricsRouter.get('/metrics/:clustername/:instanceId/:nodeName', cloudwatchController.getNodeMetrics, (req, res, next) => {
+metricsRouter.post('/metrics/:clustername/:instanceId/:nodeName', cloudwatchController.getNodeMetrics, (req, res, next) => {
   const metrics = res.locals.metrics;
   res.status(200).json(metrics);
 });

@@ -25,14 +25,22 @@ export const ClusterCircle = ({
       body: JSON.stringify({username})
     })
       .then((res) => {
-        console.log(res)
-        return res.json();
+        if(res.ok) return res.json();
       })
       .then((data) => {
+        if(data) {
         console.log(data)
         setClusterName(data.clusters[0].name);    
         setCluster(data.clusters);
-        setNodes(data.nodes[0].nodes);       
+        setNodes(data.nodes[0].nodes);      
+        }
+        else {
+          navigate('/addcluster')
+          alert('Credentials Expired, Please Re-enter')
+        }
+       
+        
+         
       })
       .catch((err) => console.log("err:", err));
   }, []);
@@ -41,7 +49,7 @@ export const ClusterCircle = ({
   //Rendered elements to be returned
   return (
     <>
-      <NavbarDash username={username}/>
+      <NavbarDash username={username} setClusterName={setClusterName} setNodes={setNodes} setCluster={setCluster} />
       <h3 className="clustit">Select your cluster below to view your metrics dashboard</h3>
       <div id="cluster-area">
         <button className="cluster-circle" onClick={handleLoginClick}>
