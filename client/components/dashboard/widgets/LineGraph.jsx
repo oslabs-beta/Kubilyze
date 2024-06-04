@@ -2,11 +2,10 @@ import React from 'react';
 import {Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler} from 'chart.js';
 import {Line} from 'react-chartjs-2';
 
-
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
 export const LineGraph = ({xData, yData, type}) => {
-  console.log(xData.length)
-console.log(yData.length)
+
+  //Chart JS data object to be passed as props
   const data = {
     labels: xData,
     datasets: [
@@ -19,6 +18,8 @@ console.log(yData.length)
       }
     ]
   };  
+
+  //Chart JS propsobject to be passed as props
   const options = {
     responsive: true,
     plugins: {
@@ -46,9 +47,13 @@ console.log(yData.length)
           display: true,
           text: 'Days Running'
         },
+        drawTicks: true,
         ticks:{
-          autoSkip: true,
-          maxTicksLimit:7
+          autoSkip: false,
+          // maxTicksLimit:7
+        },
+        grid: {
+          drawTicks: false,
         }
       },
       y: {
@@ -63,13 +68,11 @@ console.log(yData.length)
     }
   }
 
-
-
   return (
     <>
       <Line options={options} data={data} height={null} width={null} />  
     </>
   );
 };
-// 
+
 
