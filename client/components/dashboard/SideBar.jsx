@@ -11,7 +11,7 @@ export default function SideBar({ clusterName, nodeNumber }) {
 
   return (
     <div className="sidebar">
-      <div class="sidebarMenu">
+      <div className="sidebarMenu">
         <a href="/selectcluster">Cluster {"  " + clusterName}</a>
         <div class="dropdown">
           <button class="dropbtn">
