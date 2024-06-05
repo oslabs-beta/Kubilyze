@@ -1,15 +1,12 @@
 const AWS = require('aws-sdk');
-const db = require('../models/userModel.js')
-
+const db = require('../models/userModel.js');
 const cloudwatchController = {};
-
-
 
 cloudwatchController.getNodeMetrics = async (req, res, next) => {
   const { clustername, instanceId, nodeName, startdate } = req.params;
   let secondsPassed = ((new Date() - new Date(startdate)) / 1000);
   let period = Math.round((secondsPassed / 2) / 60) * 60;
-  console.log("in get node metrics");
+
   //define params for cloudwatch api metric request
   const params = {
     MetricDataQueries: [
@@ -87,8 +84,6 @@ cloudwatchController.getNodeMetrics = async (req, res, next) => {
   }
 };
 
-
-
   cloudwatchController.getAllPodMetrics = async (req, res, next) => {
     const {clustername} = req.params;
   const params = {
@@ -143,7 +138,6 @@ cloudwatchController.getNodeMetrics = async (req, res, next) => {
    });
     const cloudwatch = new AWS.CloudWatch()
     const data = await cloudwatch.getMetricData(params).promise();
-    console.log('Metrics data:', JSON.stringify(data, null, 2));
     res.locals.metrics = data.MetricDataResults; // Save metrics in res.locals
     return next();
   } catch (err) {

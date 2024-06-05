@@ -12,8 +12,6 @@ const port = 3000;
 
 app.use(cors());
 app.use(express.json());
-console.log(process.env.AWS_ACCESS_KEY_ID);
-console.log(process.env.AWS_SECRET_ACCESS_KEY);
 
 //Serve files
 app.use(express.static(path.resolve(__dirname, '../dist')));

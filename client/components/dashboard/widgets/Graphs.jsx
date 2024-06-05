@@ -9,10 +9,9 @@ export const Graphs = ({results}) => {
     mem:{xData:[], yData:[]}
   };
 
-    if(results){
-      //Preprocessing of fetched data to prepare for correct format for chartJS
+  if(results){
+    //Preprocessing of fetched data to prepare for correct format for chartJS
     //Iterate through each metric object in the results array
-console.log(results)
     results.forEach((obj)=>{
       //Check object's metric query label for data type
       let metric = '';

@@ -6,7 +6,6 @@ userController.signUp = (req, res, next)=> {
     const{username, password} = req.body
     db.create({username, password})
     .then((data)=> {
-        console.log(data)
         res.locals.user = data
         return next();
     })
@@ -20,7 +19,6 @@ userController.signIn = (req, res, next)=> {
     const {username, password} = req.body;
     db.findOne({username}) // check the database for the username
     .then(data=> {
-        console.log(data)
         // if the the query comes back with a user, we now compare that users hashed password with the password they inputed and sent to the server
         if(data) {
         bcrypt.compare(password, data.password)
@@ -49,7 +47,6 @@ userController.addCredentials = (req, res, next)=> {
     const {username, accesskey, secretkey, sessiontoken, region} = req.body
     db.findOneAndUpdate({username}, {accesskey, secretkey, sessiontoken, region}, {new: true})
     .then((data)=> {
-        console.log(data)
         res.locals.user = data
         return next()
     })

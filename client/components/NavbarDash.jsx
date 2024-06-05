@@ -10,9 +10,9 @@ export default function NavbarDash({ username, setClusterName, setNodes, setClus
   const handleLogOutClick = (e) => {
     if(e.target.alt) {
       setClusterName('')
-     setNodes('')
-     setCluster('')
-     navigate('/')
+      setNodes('')
+      setCluster('')
+      navigate('/')
     }
     else{
       setClusterName('')

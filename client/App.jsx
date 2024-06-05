@@ -52,10 +52,10 @@ const App = () => {
             <ClusterDashboard
               username={username}
               clusterName={clusterName}
-              cluster={cluster}
-              nodes={nodes}
               setClusterName={setClusterName} 
+              cluster={cluster}
               setCluster={setCluster} 
+              nodes={nodes}
               setNodes={setNodes}
               setSelectedNode={setSelectedNode}
               setNodeData={setNodeData}        
@@ -87,7 +87,10 @@ const App = () => {
             <PodDashboard
               username={username}
               clusterName={clusterName}
+              setClusterName={setClusterName} 
+              setCluster={setCluster} 
               nodes={nodes}
+              setNodes={setNodes}
               selectedNode={selectedNode}
               pods={pods}
               selectedPod={selectedPod}

@@ -6,8 +6,11 @@ import {SmallWidget} from './widgets/SmallWidget.jsx';
 
 export default function PodDashboard({
   username,
-  clusterName, 
+  clusterName,
+  setClusterName,
+  setCluster, 
   nodes,
+  setNodes,
   selectedNode,
   pods,
   selectedPod, 
@@ -17,7 +20,7 @@ export default function PodDashboard({
   //Rendered elements to be returned
   return (
     <>
-      <NavbarDash/>
+      <NavbarDash username={username} setClusterName={setClusterName} setCluster={setCluster} setNodes={setNodes} />
         <div id="page">
           <SideBarPods2/>
           <div id='cluster-dashboard' className="dashboard">
