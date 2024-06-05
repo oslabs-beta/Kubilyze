@@ -18,19 +18,29 @@ export const ClusterCircle = ({
   //Upon full page load, fetch cluster info and node identities for rendering on next page, PodDashboard
   useEffect(() => {
     fetch("http://localhost:3000/api/clusters", {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({username})
     })
       .then((res) => {
-        return res.json();
+        if(res.ok) return res.json();
       })
       .then((data) => {
-        setClusterName(data.clusters[0].name);
-        data.clusters[0].daysRunning =5;    
+        if(data) {
+        console.log(data)
+        setClusterName(data.clusters[0].name);    
         setCluster(data.clusters);
-        setNodes(data.nodes[0].nodes);       
+        setNodes(data.nodes[0].nodes);      
+        }
+        else {
+          navigate('/addcluster')
+          alert('Credentials Expired, Please Re-enter')
+        }
+       
+        
+         
       })
       .catch((err) => console.log("err:", err));
   }, []);
@@ -39,7 +49,7 @@ export const ClusterCircle = ({
   //Rendered elements to be returned
   return (
     <>
-      <NavbarDash username={username}/>
+      <NavbarDash username={username} setClusterName={setClusterName} setNodes={setNodes} setCluster={setCluster} />
       <h3 className="clustit">Select your cluster below to view your metrics dashboard</h3>
       <div id="cluster-area">
         <button className="cluster-circle" onClick={handleLoginClick}>

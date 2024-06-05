@@ -1,13 +1,13 @@
 const express = require('express');
 
-const cloudwatch = require('../controllers/cloudwatchController');
+// const cloudwatch = require('../controllers/cloudwatchController');
 const eks = require('../controllers/eksController');
-const { newContexts } = require('@kubernetes/client-node/dist/config_types');
+const cloudwatchController = require('../controllers/cloudwatchController');
 
 const metricsRouter = express.Router();
 
 // Cluster Metrics Slide : from EKS Controllers
-metricsRouter.get('/clusters',eks.describeClusters,eks.describeNodes, (req, res, next) => {
+metricsRouter.post('/clusters',eks.describeClusters, eks.describeNodes, (req, res) => {
     res.status(200).json({
       clusters: res.locals.clusterInfo,
       nodes: res.locals.nodeGroupsDetails,
@@ -15,43 +15,10 @@ metricsRouter.get('/clusters',eks.describeClusters,eks.describeNodes, (req, res,
   }
 );
 
-//not used
-// //Node Metrics Slide : from CloudWatch Controllers
-// metricsRouter.get('/metrics/:clusterName', async (req, res, next) => {
-//   //update
-//   try {
-//     const metrics = await cloudwatch.getMetrics(req.params.clusterName);
-//     res.json(metrics);
-//   } catch (err) {
-//     next({ log: err });
-//     res.status(500).send('Error fetching metrics');
-//   }
-// });
-
-// //metricsRouter.get('/metrics/:clusterName/test', async (req, res, next) => {
-//   try {
-//     const { clusterName } = req.params;
-//     const metrics = await cloudwatch.getNodeMetrics(clusterName);
-//     res.status(200).json(metrics);
-//   } catch (err) {
-//     console.error('Error fetching metrics:', err);
-//     next({ log: err });
-//     res.status(500).send('Error fetching metrics');
-//   }
-// });
-
-
-metricsRouter.get('/metrics/:clustername/:instanceId/:nodeName/:startdate', async (req, res, next) => {
-  try{
-    const {clustername, instanceId, nodeName, startdate} = req.params;
-    console.log("nodename "+nodeName)
-    const metrics = await cloudwatch.getNodeMetrics(clustername,instanceId, nodeName, startdate); //inside of controller save var 'metrics' in res.locals
-    res.status(200).json(metrics); 
-  } catch (err) {
-    console.log('Error fetching metrics');
-    next({log:err});
-    res.status(500).send('Error fetching metrics');
-  }
+// Node Metrics Slide : from Cloudwatch Controllers
+metricsRouter.post('/metrics/:clustername/:instanceId/:nodeName/:startdate', cloudwatchController.getNodeMetrics, (req, res, next) => {
+  const metrics = res.locals.metrics;
+  res.status(200).json(metrics);
 });
 //create route based on nodeID
 
@@ -69,10 +36,6 @@ metricsRouter.get('/metrics/:clustername/allpods', async (req, res, next) => {
 
 
 module.exports = metricsRouter;
-
-// VERIFY :
-//        Update routes to use controller as middleware
-
 /*
 Updates : 
 

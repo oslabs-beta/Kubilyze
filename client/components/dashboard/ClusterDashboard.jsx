@@ -9,6 +9,9 @@ export default function ClusterDashboard({
     clusterName, 
     cluster,
     nodes,
+    setCluster,
+    setClusterName,
+    setNodes,
     setSelectedNode,    
     setNodeData, 
     setPods,   
@@ -32,10 +35,11 @@ export default function ClusterDashboard({
     //->ToDo: backend edit api request to get podData
     //Upon click, fetch nodeData for graphs and pod identities for rendering on next page, NodeDashboard
       fetch(`http://localhost:3000/api/metrics/${clusterName}/${nodes[index].instanceId}/${nodes[index].name}/${cluster[0].createdAt}`, {
-        method: "GET",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify({username})
       })
         .then((res) => {
           return res.json();
@@ -54,7 +58,7 @@ export default function ClusterDashboard({
   //Rendered elements to be returned
   return (
     <>
-    <NavbarDash username={username}/>
+    <NavbarDash username={username} setCluster={setCluster} setClusterName={setClusterName} setNodes={setNodes}/>
       <div id="page">
         <SideBar clusterName={clusterName}/>
         <div id='cluster-dashboard' className="dashboard">
