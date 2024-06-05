@@ -29,7 +29,6 @@ export const ClusterCircle = ({
       })
       .then((data) => {
         if(data) {
-        console.log(data)
         setClusterName(data.clusters[0].name);    
         setCluster(data.clusters);
         setNodes(data.nodes[0].nodes);      
@@ -37,10 +36,7 @@ export const ClusterCircle = ({
         else {
           navigate('/addcluster')
           alert('Credentials Expired, Please Re-enter')
-        }
-       
-        
-         
+        }             
       })
       .catch((err) => console.log("err:", err));
   }, []);
@@ -57,7 +53,6 @@ export const ClusterCircle = ({
           <h4>{clusterName}</h4>          
         </button>
       </div>
-
     </>
   );
 };

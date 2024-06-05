@@ -11,7 +11,6 @@ import PodDashboard from "./components/dashboard/PodDashboard.jsx";
 
 //
 const App = () => {
-  //->To DO: remove hard coded data when fetch requests are properly working
   const [username, setUsername] = useState('');
   //State related to Clusters
   const [clusterName, setClusterName] = useState("");
@@ -21,51 +20,7 @@ const App = () => {
   const [selectedNode, setSelectedNode] = useState(0);
   const [nodeData, setNodeData] = useState(''); 
   //State related to Pods
-  const [pods, setPods] = useState([
-    {
-        "instanceId": "i-0b0deb6bb775b068j",
-        "name": "ip-192-168-38-71.ec2.internal",
-        "state": "running",
-        "launchTime": "2024-05-16T01:25:04.000Z"
-    },
-    {
-        "instanceId": "i-09d10f65bb4092a1t",
-        "name": "ip-192-168-13-219.ec2.internal",
-        "state": "running",
-        "launchTime": "2024-05-16T01:25:04.000Z"
-    },
-      {
-        "instanceId": "i-09d10f65bb4092a15",
-        "name": "ip-192-168-13-219.ec2.internal",
-        "state": "running",
-        "launchTime": "2024-05-16T01:25:04.000Z"
-    },
-    {
-      "instanceId": "i-0b0deb6bb775b0681",
-      "name": "ip-192-168-38-71.ec2.internal",
-      "state": "running",
-      "launchTime": "2024-05-16T01:25:04.000Z"
-  },
-  {
-      "instanceId": "i-09d10f65bb4092a8j",
-      "name": "ip-192-168-13-219.ec2.internal",
-      "state": "running",
-      "launchTime": "2024-05-16T01:25:04.000Z"
-  },
-    {
-      "instanceId": "i-09d10f65bb4092a4w",
-      "name": "ip-192-168-13-219.ec2.internal",
-      "state": "running",
-      "launchTime": "2024-05-16T01:25:04.000Z"
-  },
-  {
-    "instanceId": "i-09d10f65bb4092a3f",
-    "name": "ip-192-168-13-219.ec2.internal",
-    "state": "running",
-    "launchTime": "2024-05-16T01:25:04.000Z"
-  }
-  
-  ]);
+  const [pods, setPods] = useState([]);
   const [selectedPod, setSelectedPod] = useState(0);
   const [podData, setPodData] = useState(''); 
 
@@ -97,10 +52,10 @@ const App = () => {
             <ClusterDashboard
               username={username}
               clusterName={clusterName}
-              cluster={cluster}
-              nodes={nodes}
               setClusterName={setClusterName} 
+              cluster={cluster}
               setCluster={setCluster} 
+              nodes={nodes}
               setNodes={setNodes}
               setSelectedNode={setSelectedNode}
               setNodeData={setNodeData}        
@@ -132,7 +87,10 @@ const App = () => {
             <PodDashboard
               username={username}
               clusterName={clusterName}
+              setClusterName={setClusterName} 
+              setCluster={setCluster} 
               nodes={nodes}
+              setNodes={setNodes}
               selectedNode={selectedNode}
               pods={pods}
               selectedPod={selectedPod}
@@ -147,71 +105,3 @@ const App = () => {
 
 export default App;
 
-
-//Hard -Coded Initialized State
-// const [clusterName, setClusterName] = useState("first-cluster");
-// const [clusterStatus, setClusterStatus] = useState("ACTIVE");
-// const [clusterVersion, setClusterVersion] = useState("1.29");
-// const [clusterDate, setClusterDate] = useState("2024-05-16T01:12:14.143Z");
-// const [nodes, setNodes] = useState([
-//   {
-//     instanceId: "i-0b0deb6bb775b06c7",
-//     name: "ip-192-168-56-043.ec2.internal",
-//     state: "running",
-//     launchTime: "2024-05-16T01:25:04.000Z",
-//   },
-//   {
-//     instanceId: "i-09d10f65bb4092a9f",
-//     name: "ip-192-168-234-789.ec2.internal",
-//     state: "running",
-//     launchTime: "2024-05-16T01:25:04.000Z",
-//   },
-//   {
-//     instanceId: "i-0b0deb6bb775b06c7",
-//     name: "ip-192-168-546-12.ec2.internal",
-//     state: "running",
-//     launchTime: "2024-05-16T01:25:04.000Z",
-//   },
-//   {
-//     instanceId: "i-09d10f65bb4092a9f",
-//     name: "ip-192-168-93-457.ec2.internal",
-//     state: "running",
-//     launchTime: "2024-05-16T01:25:04.000Z",
-//   },
-//   {
-//     instanceId: "i-0b0deb6bb775b06c7",
-//     name: "ip-192-168-394-581.ec2.internal",
-//     state: "running",
-//     launchTime: "2024-05-16T01:25:04.000Z",
-//   },
-//   {
-//     instanceId: "i-09d10f65bb4092a9f",
-//     name: "ip-192-168-024-12.ec2.internal",
-//     state: "running",
-//     launchTime: "2024-05-16T01:25:04.000Z",
-//   },
-//   {
-//     instanceId: "i-0b0deb6bb775b06c7",
-//     name: "ip-192-168-81-91.ec2.internal",
-//     state: "running",
-//     launchTime: "2024-05-16T01:25:04.000Z",
-//   },
-//   {
-//     instanceId: "i-09d10f65bb4092a9f",
-//     name: "ip-192-246-13-34.ec2.internal",
-//     state: "running",
-//     launchTime: "2024-05-16T01:25:04.000Z",
-//   },
-//   {
-//     instanceId: "i-0b0deb6bb775b06c7",
-//     name: "ip-192-168-67-047.ec2.internal",
-//     state: "running",
-//     launchTime: "2024-05-16T01:25:04.000Z",
-//   },
-//   {
-//     instanceId: "i-09d10f65bb4092a9f",
-//     name: "ip-192-168-91-845.ec2.internal",
-//     state: "running",
-//     launchTime: "2024-05-16T01:25:04.000Z",
-//   },
-// ]);
