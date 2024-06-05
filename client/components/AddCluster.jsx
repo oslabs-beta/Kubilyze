@@ -2,12 +2,35 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavbarDash from "./NavbarDash.jsx";
 
-export default function AddCluster({ username }) {
-  const [modalOpen, setModalOpen] = useState(false);
+export default function AddCluster({username, setClusterName, setCluster, setNodes}) {
+  const [accessInfo, setAccessInfo] = useState({accesskey: '', secretkey: '', sessiontoken: '', region: ''})
   const navigate = useNavigate();
+  const [modalOpen, setModalOpen] = useState(false);
+  
+  const handleUserInput = (e) => {
+    setAccessInfo({...accessInfo, [e.target.name]: e.target.value})
+  }
 
-  const handleLoginClick = () => {
-    navigate("/selectcluster");
+  const addCredentials = () => {
+    fetch('http://localhost:3000/user/credentials', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({...accessInfo, username})
+    })
+    .then((response)=> {
+      if(response.ok) return response.json()
+        console.log('an error happened in the server')
+    })
+    .then(user=> {
+      if(user) {
+        console.log(user)
+        navigate("/selectcluster");
+      }
+      setAccessInfo({accesskey: '', secretkey: '', sessiontoken: ''})
+    })
+    .catch(e=> console.log(e))
   };
 
   const toggleModal = () => {
@@ -16,7 +39,7 @@ export default function AddCluster({ username }) {
 
   return (
     <>
-      <NavbarDash username={username} />
+    <NavbarDash username={username} setClusterName={setClusterName} setCluster={setCluster} setNodes={setNodes}/>
       <div className="entirepage">
         <div className="loginContainer">
           <div id="loginform">
@@ -27,6 +50,7 @@ export default function AddCluster({ username }) {
                 id="accessKeyId"
                 placeholder="Access Key ID"
                 name="accessKeyId"
+                onChange={handleUserInput}
               />
             </div>
             <div className="formGroup">
@@ -35,6 +59,7 @@ export default function AddCluster({ username }) {
                 id="secretAccessKey"
                 placeholder="Secret Access Key"
                 name="secretAccessKey"
+                onChange={handleUserInput}
               />
             </div>
             <div className="formGroup">
@@ -43,6 +68,7 @@ export default function AddCluster({ username }) {
                 id="sessionToken"
                 placeholder="Session Token"
                 name="sessionToken"
+                onChange={handleUserInput}
               />
             </div>
             <div className="formGroup">
@@ -51,6 +77,7 @@ export default function AddCluster({ username }) {
                 id="region"
                 placeholder="Region"
                 name="region"
+                onChange={handleUserInput}
               />
             </div>
             
@@ -58,7 +85,7 @@ export default function AddCluster({ username }) {
               <button onClick={toggleModal}>Read More</button>
             </div>
             <div className="submit">
-              <button onClick={handleLoginClick}>Submit</button>
+              <button onClick={addCredentials}>Submit</button>
             </div>
           </div>
         </div>
@@ -74,7 +101,7 @@ export default function AddCluster({ username }) {
               1- go to your AWS account
             </p>
             <p>
-              2- regret ever joining this field
+              2- step 1
             </p>
           </div>
         </div>

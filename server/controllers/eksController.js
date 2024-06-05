@@ -1,21 +1,30 @@
-const { node } = require('webpack');
-const AWS = require('../../config/aws-config');
-const eks = new AWS.EKS();
-const ec2 = new AWS.EC2();
-const autoscaling = new AWS.AutoScaling();
+const AWS = require('aws-sdk');
+const db  = require('../models/userModel');
+const e = require('express');
 
 const eksController = {};
 
 eksController.describeClusters = async (req, res, next) => {
   try {
+   const {username} = req.body
+   const user = await db.findOne({username})
+   AWS.config.update({
+    region: user.region,
+    accessKeyId: user.accesskey,
+    secretAccessKey: user.secretkey,
+    sessionToken: user.sessiontoken
+  });
+    res.locals.AWS = AWS
+    const eks = new AWS.EKS()
+    res.locals.eks = eks
     const data = await eks.listClusters().promise();
     const clusterNames = data.clusters;
 
     // Fetch detailed information for each cluster
     const clusterDetailsPromises = clusterNames.map(async (clusterName) => {
       const clusterData = await eks
-        .describeCluster({ name: clusterName })
-        .promise();
+      .describeCluster({ name: clusterName })
+      .promise();
       const nodeGroupsData = await eks
         .listNodegroups({ clusterName })
         .promise();
@@ -40,8 +49,11 @@ eksController.describeClusters = async (req, res, next) => {
     res.locals.clusterInfo = clustersInfo;
     next();
   } catch (err) {
-    console.error('Error fetching cluster details:', err);
-    next(err); // Call next with error to handle it properly
+    if(err.message === 'The security token included in the request is expired') {
+      res.status(400).json('Token Expired')}
+      else {
+        next({log:err})
+      }
   }
 };
 
@@ -51,13 +63,14 @@ eksController.describeNodes = async (req, res, next) => {
       (cluster) =>
         cluster.nodeGroupNames.map(async (nodeGroupName) => {
           const clusterName = cluster.name;
-          const nodeGroupData = await eks
+          const nodeGroupData = await res.locals.eks
             .describeNodegroup({ clusterName, nodegroupName: nodeGroupName })
             .promise();
           const autoScalingGroupName =
             nodeGroupData.nodegroup.resources.autoScalingGroups[0].name;
 
           // List instances in the Auto Scaling group
+          const autoscaling = new res.locals.AWS.AutoScaling()
           const autoScalingGroupData = await autoscaling
             .describeAutoScalingGroups({
               AutoScalingGroupNames: [autoScalingGroupName],
@@ -70,6 +83,7 @@ eksController.describeNodes = async (req, res, next) => {
             );
 
           // Fetch detailed information for each instance
+          const ec2 = new res.locals.AWS.EC2()
           const instanceData = await ec2
             .describeInstances({
               InstanceIds: instanceIds,
@@ -100,7 +114,7 @@ eksController.describeNodes = async (req, res, next) => {
     next();
   } catch (err) {
     console.error('Error fetching node details:', err);
-    next(err); // Pass the error to the next middleware
+    next({ log: err }); // Pass the error to the next middleware
   }
 };
 

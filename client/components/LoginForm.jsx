@@ -12,7 +12,7 @@ export default function LoginForm({setUsername}) {
     setUserInput({...userInput, [e.target.name]: e.target.value})
   }
   const handleLoginClick = () => {
-    console.log(userInput)
+    // console.log(userInput)
     fetch('http://localhost:3000/user/signin', {
       method: "POST",
       headers: {

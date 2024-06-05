@@ -4,66 +4,73 @@ import SideBar from './SideBar.jsx';
 import {SmallWidget} from './widgets/SmallWidget.jsx';
 import NavbarDash from "../NavbarDash.jsx";
 
-
 export default function ClusterDashboard({
-    clusterName,  
-    clusterStatus,      
-    clusterVersion,
-    clusterDate,
+    username,
+    clusterName, 
+    cluster,
     nodes,
-    setSelectedNode,
-    pods,
-    setPods, 
-    username
-  })   {
+    setCluster,
+    setClusterName,
+    setNodes,
+    setSelectedNode,    
+    setNodeData, 
+    setPods,   
+  }) {
 
-  //routing upon button click  
+    const podGenerator = (num) => {
+      const arr =[];
+      for( let i =0; i < num; i++){
+        arr.push({
+          name: " "
+        })
+      }
+      return arr;
+    };
+
+  //Routing upon button click  
   const navigate = useNavigate();
   const handleLoginClick = (index) => {
     setSelectedNode(index);
-    navigate("/nodedashboard");
-   //fetch node metrics and set pods
-      fetch("http://localhost:3000/api/metrics/first-cluster/test", {
-        method: "GET",
+    
+    //->ToDo: backend edit api request to get podData
+    //Upon click, fetch nodeData for graphs and pod identities for rendering on next page, NodeDashboard
+      fetch(`http://localhost:3000/api/metrics/${clusterName}/${nodes[index].instanceId}/${nodes[index].name}/${cluster[0].createdAt}`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify({username})
       })
         .then((res) => {
           return res.json();
         })
         .then((data) => {
-          // console.log(data[data.length-1].Values[0])
-          setPods(data[data.length-1].Values[0]);
+          setNodeData(data);
+          setPods(podGenerator(data[2].Values[0]));  
+          navigate("/nodedashboard");     
         })
-        .catch((err) => console.log("err:", err));
-    
+        .catch((err) => console.log("err:", err));    
   };
 
-  //node array
+  //Node array to map from
   const nodeNums = Array.from({length: nodes.length}, (_, i) => i + 1)
-  // console.log(nodes)
  
-  //rendered elements to be returned
+  //Rendered elements to be returned
   return (
     <>
-    <NavbarDash username={username}/>
+    <NavbarDash username={username} setCluster={setCluster} setClusterName={setClusterName} setNodes={setNodes}/>
       <div id="page">
         <SideBar clusterName={clusterName}/>
-
         <div id='cluster-dashboard' className="dashboard">
-
           <div className="dashboard-title">
             <h1>Cluster Dashboard</h1> 
-            <h4 style={{ color: 'grey'}}>{"  "+ clusterName}</h4>                     
-          </div>
-          
+            <h4 style={{ color: 'black'}}> Cluster 1:  {"  "+ clusterName}</h4>      
+          </div>          
           <div className="widget-container">         
-              <SmallWidget type={'Status:'} metric={clusterStatus}/>
-              <SmallWidget type={'Created:'}  metric={clusterDate}/>
-              <SmallWidget type={'Version:'}  metric={clusterVersion}/>          
+              <SmallWidget type={'Status:'} metric={cluster[0].status}/>
+              <SmallWidget type={'Created:'}  metric={cluster[0].createdAt}/>
+              <SmallWidget type={'Version:'}  metric={cluster[0].version}/>    
           </div>
-
           <div  className="nodes-div">
             <h2>Cluster Nodes</h2>
             <div className="node-container">
@@ -75,7 +82,6 @@ export default function ClusterDashboard({
               ))}
             </div>
           </div>
-
         </div>
       </div>
     </>

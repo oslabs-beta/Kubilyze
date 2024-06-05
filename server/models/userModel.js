@@ -11,7 +11,11 @@ const SALT_WORK_FACTOR = 10
  that are required to create a new document  */
 const userSchema = new mongoose.Schema({
     username: {type: String, required: true, unique: true},
-    password: {type: String, required: true}
+    password: {type: String, required: true},
+    accesskey: String,
+    secretkey: String,
+    sessiontoken: String,
+    region: String
 })
 
 /* .pre method with 'save' as the first argumemt, allows this function to run whenever

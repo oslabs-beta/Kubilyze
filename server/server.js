@@ -6,16 +6,12 @@ require('dotenv').config();
 const express = require('express');
 const metricRouter = require('./routes/metricRoute');
 const userRouter = require('./routes/userRoute.js')
-const eksController = require('./controllers/eksController');
-const cloudwatchController = require('./controllers/cloudwatchController');
 
 const app = express();
 const port = 3000;
 
 app.use(cors());
 app.use(express.json());
-console.log(process.env.AWS_ACCESS_KEY_ID);
-console.log(process.env.AWS_SECRET_ACCESS_KEY);
 
 //Serve files
 app.use(express.static(path.resolve(__dirname, '../dist')));

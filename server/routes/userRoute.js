@@ -12,6 +12,10 @@ userRouter.post('/signin', userController.signIn, (req, res)=> {
     res.status(200).json(res.locals.user)
 })
 
+userRouter.post('/credentials', userController.addCredentials, (req, res)=> {
+    res.status(200).json(res.locals.user)
+})
+
 
 
 

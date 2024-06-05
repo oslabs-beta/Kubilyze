@@ -23,8 +23,8 @@
   "dependencies": {
     "@kubernetes/client-node": "^0.21.0",
     "@reduxjs/toolkit": "^2.2.3",
+    "aws-sdk": "^2.1632.0",
     "bcryptjs": "^2.4.3",
-    "aws-sdk": "^2.1624.0",
     "chart.js": "^4.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
