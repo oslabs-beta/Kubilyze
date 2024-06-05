@@ -5,9 +5,11 @@ const cloudwatchController = {};
 
 
 
-cloudwatchController.getNodeMetrics = async (clusterName, instanceId, nodeName, startdate) => {
+cloudwatchController.getNodeMetrics = async (req, res, next) => {
+  const { clustername, instanceId, nodeName, startdate } = req.params;
   let secondsPassed = ((new Date() - new Date(startdate)) / 1000);
   let period = Math.round((secondsPassed / 2) / 60) * 60;
+  console.log("in get node metrics");
   //define params for cloudwatch api metric request
   const params = {
     MetricDataQueries: [
@@ -18,7 +20,7 @@ cloudwatchController.getNodeMetrics = async (clusterName, instanceId, nodeName, 
             Namespace: 'ContainerInsights',
             MetricName: 'node_cpu_utilization',
             Dimensions: [
-              { Name: 'ClusterName', Value: clusterName },
+              { Name: 'ClusterName', Value: clustername },
               { Name: 'InstanceId', Value: instanceId },
               { Name: 'NodeName', Value: nodeName },
             ],
@@ -35,7 +37,7 @@ cloudwatchController.getNodeMetrics = async (clusterName, instanceId, nodeName, 
             Namespace: 'ContainerInsights',
             MetricName: 'node_memory_utilization',
             Dimensions: [
-              { Name: 'ClusterName', Value: clusterName },
+              { Name: 'ClusterName', Value: clustername },
               { Name: 'InstanceId', Value: instanceId },
               { Name: 'NodeName', Value: nodeName },
             ],
@@ -52,7 +54,7 @@ cloudwatchController.getNodeMetrics = async (clusterName, instanceId, nodeName, 
             Namespace: 'ContainerInsights',
             MetricName: 'node_number_of_running_pods',
             Dimensions: [
-              { Name: 'ClusterName', Value: clusterName },
+              { Name: 'ClusterName', Value: clustername },
               { Name: 'InstanceId', Value: instanceId },
               { Name: 'NodeName', Value: nodeName },
             ],
@@ -77,7 +79,8 @@ cloudwatchController.getNodeMetrics = async (clusterName, instanceId, nodeName, 
    });
     const cloudwatch = new AWS.CloudWatch()
     const data = await cloudwatch.getMetricData(params).promise();
-    return data.MetricDataResults;
+    res.locals.metrics = data.MetricDataResults;
+    return next();
   } catch (err) {
     console.error('Error fetching CloudWatch metrics:', err);
     throw err;
@@ -85,7 +88,9 @@ cloudwatchController.getNodeMetrics = async (clusterName, instanceId, nodeName, 
 };
 
 
-cloudwatchController.getAllPodMetrics = async (clusterName) => {
+
+  cloudwatchController.getAllPodMetrics = async (req, res, next) => {
+    const {clustername} = req.params;
   const params = {
     MetricDataQueries: [
       {
@@ -95,7 +100,7 @@ cloudwatchController.getAllPodMetrics = async (clusterName) => {
             Namespace: 'ContainerInsights',
             MetricName: 'pod_cpu_utilization',
             Dimensions: [
-              { Name: 'ClusterName', Value: clusterName },
+              { Name: 'ClusterName', Value: clustername },
               { Name: 'Namespace', Value: 'amazon-cloudwatch' },
               { Name: 'Service', Value: 'cloudwatch-agent' },
             ],
@@ -112,7 +117,7 @@ cloudwatchController.getAllPodMetrics = async (clusterName) => {
             Namespace: 'ContainerInsights',
             MetricName: 'pod_memory_utilization',
             Dimensions: [
-              { Name: 'ClusterName', Value: clusterName },
+              { Name: 'ClusterName', Value: clustername },
               { Name: 'Namespace', Value: 'amazon-cloudwatch' },
               { Name: 'Service', Value: 'cloudwatch-agent' },
             ],
@@ -148,9 +153,3 @@ cloudwatchController.getAllPodMetrics = async (clusterName) => {
 };
 
 module.exports = cloudwatchController;
-// MAY 21
-//Update time range to :
-//       start time : since the first day the cluster was running
-//       end time   : now
-
-//           change : period to : two hour intervals

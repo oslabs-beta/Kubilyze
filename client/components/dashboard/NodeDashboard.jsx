@@ -24,10 +24,11 @@ export default function NodeDashboard({
     setSelectedPod(index);
      //Upon click, fetch podData for graphs for rendering on next page, PodDashboard 
      fetch(`http://localhost:3000/api/metrics/${clusterName}/allpods`, {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({username})
     })
       .then((res) => {
         return res.json();

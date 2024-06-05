@@ -42,6 +42,7 @@ export default function ClusterDashboard({
         body: JSON.stringify({username})
       })
         .then((res) => {
+          console.log("we get res")
           return res.json();
         })
         .then((data) => {
