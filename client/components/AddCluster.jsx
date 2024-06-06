@@ -22,8 +22,9 @@ export default function AddCluster({
   };
 
   const addCredentials = () => {
-    fetch("http://localhost:3000/user/credentials", {
-      method: "POST",
+
+    fetch('https://kubilyze-32a4b0d50531.herokuapp.com/user/credentials', {
+      method: 'POST',
       headers: {
         "Content-Type": "application/json",
       },

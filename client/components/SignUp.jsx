@@ -14,7 +14,7 @@ export default function SignUp({setUsername}) {
   const handleSignUpClick = () => {
     // we are checking if the two inputs match each other, for password accuracy before we send a fetch request
     if(userInput.password === userInput.confirm){
-    fetch('http://localhost:3000/user/signup', {
+    fetch('https://kubilyze-32a4b0d50531.herokuapp.com/user/signup', {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
