@@ -34,7 +34,7 @@ export default function ClusterDashboard({
     
     //->ToDo: backend edit api request to get podData
     //Upon click, fetch nodeData for graphs and pod identities for rendering on next page, NodeDashboard
-      fetch(`http://localhost:3000/api/metrics/${clusterName}/${nodes[index].instanceId}/${nodes[index].name}/${cluster[0].createdAt}`, {
+      fetch(`https://kubilyze-32a4b0d50531.herokuapp.com/api/metrics/${clusterName}/${nodes[index].instanceId}/${nodes[index].name}/${cluster[0].createdAt}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
