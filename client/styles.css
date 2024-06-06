@@ -244,6 +244,16 @@ body {
   margin-top: 150px;
 }
 
+/* Input Field Styles */
+#loginform input[type="text"] {
+  width: 250px;
+  background-color: #DFE5F6;
+  border-radius: 5px;
+  border: none;
+  padding: 15px;
+  /* margin-bottom: 15px; */
+}
+
 .loginContainer {
   display: flex;
   justify-content: center;
@@ -328,45 +338,46 @@ body {
 /* ----------SIDEBAR ----------*/
 /*sidebar css begins*/
 /* Links inside the sidebar */
-.sidebar{
-  background-color:  hsl(210, 50%, 97%);
-
-  min-width:20%;
+/* Sidebar Styles */
+.sidebar {
+  background-color: hsl(210, 50%, 97%);
+  min-width: 20%;
   display: flex;
   justify-content: center;
+  padding: 10px;
 }
+
 .sidebarMenu {
   overflow: hidden;
   font-family: Arial;
-  display:flex;
+  display: flex;
   flex-direction: column;
   width: 75%;
   margin-top: 50px;
-
 }
+
 .sidebarMenu a {
-  float: left;
   font-size: 16px;
   color: rgb(38, 38, 38);
   text-align: left;
   padding: 14px 16px;
   text-decoration: none;
   border-radius: 10px;
+  display: block; /* Ensure the links are block elements */
 }
-/* The dropdown container */
-.dropdown {
-  float: left;
-  overflow: hidden;
-  background-color: none;
-  /* position: relative; */
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
 
+.sidebarMenu a:hover {
+  background-color: #19648C;
+  color: white;
 }
-/* Dropdown button */
-.dropdown .dropbtn {
+
+/* Dropdown Styles */
+.dropdown {
+  position: relative; /* Ensure the dropdown content is positioned correctly */
+  width: 100%;
+}
+
+.dropbtn {
   font-size: 16px;
   border: none;
   outline: none;
@@ -376,29 +387,25 @@ body {
   background-color: inherit;
   font-family: inherit; /* Important for vertical align on mobile phones */
   margin: 0; /* Important for vertical align on mobile phones */
-}
-
-/* Add a  background color to navbar links on hover */
-.sidebarMenu a:hover, .dropdown:hover .dropbtn {
-  background-color: #19648C;
-  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
-  text-align: left;
-
+  text-align: left; /* Align text to the left */
 }
-/* Dropdown content (hidden by default) */
+
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 160px;
-  /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+  min-width: 100%; /* Ensure the dropdown matches the width of the button */
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  border-radius: 10px;
+  left: 0;
 }
 
-/* Links inside the dropdown */
-.dropdown-content a{
-  float: none;
+.dropdown-content a {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
@@ -406,15 +413,20 @@ body {
   text-align: left;
 }
 
-/* Add a grey background color to dropdown links on hover */
 .dropdown-content a:hover {
   background-color: #19648C;
+  color: white;
 }
 
-/* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+.dropdown:hover .dropbtn {
+  background-color: #19648C;
+  color: white;
+}
+
 
 
 /* ----------DASHBOARD ----------*/
@@ -520,7 +532,7 @@ margin-bottom:20px;
   font-size: large;
 
 }
-.cluster-circle:hover, .node-circle:hover{
+.cluster-circle:hover, .node-circle:hover .pod-circle:hover{
   background-color:  #31a870;
 }
 .cluster-circle{
@@ -564,3 +576,82 @@ canvas {width:500px; }
 
 
 
+/* AddCluster Modal Styles */
+.modal {
+  display: flex;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background-color: #fff;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 10px;
+}
+
+.modalContent h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.modalContent p {
+  color: #666;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+
+}
+.closeButton {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.closeButton:hover,
+.closeButton:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+
+/* Read More Button Styles */
+.readMore button {
+  /* margin-bottom: 10px;
+  background-color: #5d6a7c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 150px; */
+
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #343940; /* Adjust color as needed */
+  font-size: small;
+  border: 1px solid #5d6a7c;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.readMore button:hover {
+  color: #1F87CA;
+  border: 1px solid #19648D;
+}
