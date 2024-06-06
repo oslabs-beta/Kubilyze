@@ -1,8 +1,8 @@
 # Kubilyze
 
-**Kubilyze** is an all-in-one visualizing and monitoring tool designed for AWS EKS Clusters. It provides real-time metrics that give insight into specific nodes and pods by targeting their instance IDs, from the node level down to individualized pods. Key benefits include:
+**Kubilyze** is an all-in-one visualizing and monitoring tool designed for AWS EKS Clusters. It provides real-time metrics that give insight into specific nodes and pods by targeting their instance IDs, from the node level down to individualized pods.
 
-##Features
+## Features
 
 ### Real-Time Insights
 Monitor the health and performance of your clusters in real-time, ensuring immediate detection and resolution of issues.
@@ -23,6 +23,7 @@ Leverage historical data and trends to predict future issues and take proactive 
 Integrate effortlessly with other AWS services like CloudWatch for comprehensive monitoring, alerting, and cross-service visibility.
 
 Kubilyze empowers developers and operations teams to effectively manage and optimize their AWS EKS clusters, enhancing reliability, performance, and cost-efficiency.
+
 
 ## Table of Contents
 
