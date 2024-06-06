@@ -7,17 +7,17 @@ require('dotenv').config();
 const express = require('express');
 const metricRouter = require('./routes/metricRoute');
 const userRouter = require('./routes/userRoute.js');
-const Server = require('socket.io').Server;
-const http = require('htttp');
+// const Server = require('socket.io').Server;
+// const http = require('http');
 
 const app = express();
 const port = process.env.port || 3000;
-const server = http.createserver(app);
-const io = new Server(server, {
-  cors: {
-    origin: "*"
-  }
-})
+// const server = http.createserver(app);
+// const io = new Server(server, {
+//   cors: {
+//     origin: "*"
+//   }
+// })
 
 // app.use(cors());
 app.use(express.json());
@@ -47,8 +47,7 @@ app.use((err, req, res, next) => {
   return res.status(errorObj.status).json(errorObj.message);
 });
 
-server.listen(port, () =>
+module.exports = app.listen(port, () =>
   console.log(`Listening on port ${port}`)
 );
-
 
