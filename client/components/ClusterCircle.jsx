@@ -17,7 +17,7 @@ export const ClusterCircle = ({
   
   //Upon full page load, fetch cluster info and node identities for rendering on next page, PodDashboard
   useEffect(() => {
-    fetch("http://localhost:3000/api/clusters", {
+    fetch("https://kubilyze-32a4b0d50531.herokuapp.com/api/clusters", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
