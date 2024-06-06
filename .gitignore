@@ -1,0 +1,38 @@
+# dependencies
+node_modules/
+
+#General
+.env
+#aws deployment
+*.zip
+
+#jest coverage
+.vscode/
+coverage/
+
+#webpack output
+dist/
+
+#logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+.npm
+lib-cov
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+#secrets
+confidential.js
+*.env
+
+.DS_Store
+
+package-lock.json
