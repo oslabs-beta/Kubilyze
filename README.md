@@ -3,7 +3,7 @@
 **Kubilyze** is an all-in-one visualizing and monitoring tool designed for AWS EKS Clusters. It provides real-time metrics that give insight into specific nodes and pods by targeting their instance IDs, from the node level down to individualized pods.
 
 
-![Kubilyze Logo](client/components/logo.png)
+<img src="client/components/logo.png" alt="Kubilyze Logo" width="200"/>
 
 <div align="center">
     <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React Badge"/>
