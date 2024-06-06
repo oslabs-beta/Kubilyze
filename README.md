@@ -11,7 +11,7 @@ Monitor the health and performance of your clusters in real-time, ensuring immed
 Track CPU, memory, and storage usage across nodes and pods, allowing for efficient resource allocation and cost reduction.
 
 ### Simplified Management
-Utilize an intuitive visual interface that simplifies the management of complex EKS clusters, with support for automation and maintenance tasks.
+Utilize an intuitive visual interface that simplifies the management of complex EKS clusters. Instead of navigating different consoles to gather information that should be sequencial Kubilyze organizes data in a clear and concise manner.
 
 ### Enhanced Collaboration
 Share a unified view of the cluster's state with your team to improve collaboration and coordination, with actionable alerts for critical issues.
@@ -21,6 +21,7 @@ Leverage historical data and trends to predict future issues and take proactive 
 
 ### Seamless AWS Integration
 Integrate effortlessly with other AWS services like CloudWatch for comprehensive monitoring, alerting, and cross-service visibility.
+Any AWS EKS user can connect and access their data in a secure, fast and simple way.
 
 Kubilyze empowers developers and operations teams to effectively manage and optimize their AWS EKS clusters, enhancing reliability, performance, and cost-efficiency.
 
