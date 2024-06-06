@@ -23,7 +23,7 @@ export default function NodeDashboard({
   const handleLoginClick = (index) => {
     setSelectedPod(index);
      //Upon click, fetch podData for graphs for rendering on next page, PodDashboard 
-     fetch(`http://localhost:3000/api/metrics/${clusterName}/allpods`, {
+     fetch(`https://kubilyze-32a4b0d50531.herokuapp.com/api/metrics/${clusterName}/allpods`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
