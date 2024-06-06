@@ -532,7 +532,7 @@ margin-bottom:20px;
   font-size: large;
 
 }
-.cluster-circle:hover, .node-circle:hover{
+.cluster-circle:hover, .node-circle:hover .pod-circle:hover{
   background-color:  #31a870;
 }
 .cluster-circle{

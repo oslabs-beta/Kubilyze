@@ -25,7 +25,7 @@ export default function PodDashboard({
           <SideBarPods2/>
           <div id='cluster-dashboard' className="dashboard">
             <div className="dashboard-title">
-              <h1>Dashboard</h1> 
+              <h1>Pod Dashboard</h1> 
               <h4>Cluster 1:  {"  "+ clusterName}</h4> 
               <h4>  Node  {(selectedNode + 1) + ":" + "  "+ nodes[selectedNode].name}</h4>
               <h4 style={{ color: 'black'}} >Pods  {"  "+ pods[selectedPod].name}</h4>                        

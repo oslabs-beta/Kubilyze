@@ -79,8 +79,11 @@ cloudwatchController.getNodeMetrics = async (req, res, next) => {
     res.locals.metrics = data.MetricDataResults;
     return next();
   } catch (err) {
-    console.error('Error fetching CloudWatch metrics:', err);
-    throw err;
+    if(err.message === 'The security token included in the request is expired') {
+      res.status(400).json('Token Expired')}
+      else {
+        next({log:err})
+      }
   }
 };
 
@@ -141,8 +144,11 @@ cloudwatchController.getNodeMetrics = async (req, res, next) => {
     res.locals.metrics = data.MetricDataResults; // Save metrics in res.locals
     return next();
   } catch (err) {
-    console.error('Error fetching metrics:', err);
-    return next({ log: err, status: 500, message: 'Error fetching metrics' });
+    if(err.message === 'The security token included in the request is expired') {
+      res.status(400).json('Token Expired')}
+      else {
+        next({log:err})
+      }
   }
 };
 

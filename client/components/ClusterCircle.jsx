@@ -26,16 +26,21 @@ export const ClusterCircle = ({
     })
       .then((res) => {
         if(res.ok) return res.json();
+        return res.json()
       })
       .then((data) => {
-        if(data) {
+        if(data.clusters) {
         setClusterName(data.clusters[0].name);    
         setCluster(data.clusters);
         setNodes(data.nodes[0].nodes);      
         }
-        else {
+        else if(data === 'Token Expired') {
           navigate('/addcluster')
           alert('Credentials Expired, Please Re-enter')
+        }
+        else {
+          navigate('/addcluster')
+          alert('Incorrect Credentials')
         }             
       })
       .catch((err) => console.log("err:", err));

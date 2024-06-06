@@ -1,10 +1,12 @@
 import React from "react";
+import { useNavigate} from "react-router-dom";
 
 export default function SideBar({ clusterName }) {
+  const navigate = useNavigate()
   return (
     <div className="sidebar">
       <div className="sidebarMenu">
-        <a href="/selectcluster">Cluster {clusterName}</a>
+       <p onClick={()=> navigate('/selectcluster')}>{clusterName}</p>
         <div className="dropdown">
           <button className="dropbtn">
             Select Node
