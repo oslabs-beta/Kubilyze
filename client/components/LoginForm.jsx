@@ -14,7 +14,7 @@ export default function LoginForm({setUsername}) {
   }
   const handleLoginClick = () => {
     // console.log(userInput)
-    fetch('http://localhost:3000/user/signin', {
+    fetch('https://kubilyze-32a4b0d50531.herokuapp.com/user/signin', {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
