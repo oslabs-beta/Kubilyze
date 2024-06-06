@@ -8,7 +8,7 @@ const express = require('express');
 const metricRouter = require('./routes/metricRoute');
 const userRouter = require('./routes/userRoute.js');
 const Server = require('socket.io').Server;
-const http = require('htttp');
+const http = require('http');
 
 const app = express();
 const port = process.env.port || 3000;
