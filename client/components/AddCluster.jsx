@@ -65,7 +65,7 @@ export default function AddCluster({
                 type="text"
                 id="accessKeyId"
                 placeholder="Access Key ID"
-                name="accessKeyId"
+                name="accesskey"
                 onChange={handleUserInput}
               />
             </div>
@@ -74,7 +74,7 @@ export default function AddCluster({
                 type="text"
                 id="secretAccessKey"
                 placeholder="Secret Access Key"
-                name="secretAccessKey"
+                name="secretkey"
                 onChange={handleUserInput}
               />
             </div>
@@ -83,7 +83,7 @@ export default function AddCluster({
                 type="text"
                 id="sessionToken"
                 placeholder="Session Token"
-                name="sessionToken"
+                name="sessiontoken"
                 onChange={handleUserInput}
               />
             </div>
