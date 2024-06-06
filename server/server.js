@@ -13,12 +13,6 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-const server = http.createServer(app)
-const io = new Sever(Sever, {
-  cors: {
-    origin: '*'
-  }
-})
 
 //Serve files
 app.use(express.static(path.resolve(__dirname, '../dist')));
@@ -37,10 +31,8 @@ app.use((err, req, res, next) => {
   console.log(errorObj.log);
   return res.status(errorObj.status).json(errorObj.message);
 });
-io.on('connection', (socket)=> {
-  console.log('We are connected');
-})
+
 const PORT = process.env.PORT || 3000
-module.exports = server.listen(PORT, () =>
+module.exports = app.listen(PORT, () =>
   console.log(`Listening on port ${PORT}`)
 );
