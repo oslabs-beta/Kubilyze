@@ -15,7 +15,7 @@ export default function AddCluster({username, setClusterName, setCluster, setNod
   }
 
   const addCredentials = () => {
-    fetch('http://localhost:3000/user/credentials', {
+    fetch('https://kubilyze-32a4b0d50531.herokuapp.com/user/credentials', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
