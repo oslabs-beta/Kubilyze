@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "NODE_ENV=production webpack",
     "build-dev": "webpack --watch",
-    "start": "nodemon server/server.js",
+    "start": "server/server.js",
     "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --hot --color\" \"nodemon ./server/server.js\"",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
