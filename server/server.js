@@ -4,14 +4,21 @@ const cors = require('cors');
 
 require('dotenv').config();
 const express = require('express');
+const http = require('http')
+const Sever = require("socket.io").Server;
 const metricRouter = require('./routes/metricRoute');
 const userRouter = require('./routes/userRoute.js')
 
 const app = express();
-const port = 3000;
 
 app.use(cors());
 app.use(express.json());
+const server = http.createServer(app)
+const io = new Sever(Sever, {
+  cors: {
+    origin: '*'
+  }
+})
 
 //Serve files
 app.use(express.static(path.resolve(__dirname, '../dist')));
@@ -30,7 +37,10 @@ app.use((err, req, res, next) => {
   console.log(errorObj.log);
   return res.status(errorObj.status).json(errorObj.message);
 });
-
-module.exports = app.listen(port, () =>
-  console.log(`Listening on port ${port}`)
+io.on('connection', (socket)=> {
+  console.log('We are connected');
+})
+const PORT = process.env.PORT || 3000
+module.exports = server.listen(PORT, () =>
+  console.log(`Listening on port ${PORT}`)
 );
