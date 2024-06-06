@@ -121,7 +121,8 @@ export default function AddCluster({
             <br></br>
             <p>
               Make sure to create a role in your AWS account and have an IAM
-              user assume that role so that you're inputting those temporary
+              user assume that role so that you're inputting those{" "}
+              <b>temporary </b>
               creditionals into the app.
             </p>
             <br></br>
