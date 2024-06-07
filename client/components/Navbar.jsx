@@ -25,7 +25,7 @@ export default function Navbar() {
           </Link>
         </div>
         <div className="nav-links">
-          <a href="https://www.youtube.com/watch?v=s_o8dwzRlu4&t=7s">Docs</a>
+          <a href="https://medium.com/@nutzela/kubilyze-simplifying-observability-for-eks-kubernetes-clusters-03a8b5495049">Docs</a>
           <a href="https://github.com/oslabs-beta/Kubernetes-OSP">GitHub</a>
         </div>
         <div className="rightside">
